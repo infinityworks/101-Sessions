@@ -16,3 +16,14 @@ Schedule
 
 ## Public Slack Channel
 https://iw-101-sessions.slack.com
+
+## Course Details and Resources 
+One of the objectives of the sessions is to make the teaching side of the program as frictionless as possible. A series of templates and resources will be made available for guess teachers to quickly produce learning material.
+
+Richard Poole will facilitate the management and hosting of the sessions provide.
+
+### Course material will be categorised using the international university index,
+
+First part represents the topic, GoLang-100
+
+The second part represents the level and the session, GoLang-101 represent the first session in an introduction course in Go, Hugo-202 would be intermediate level session 2 for Hugo.
