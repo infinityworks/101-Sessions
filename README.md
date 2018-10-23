@@ -8,13 +8,13 @@ The aim is to firstly expose a new event format that might be more appealing to 
 
 Schedule
 * GoLang-100 (November 2018 /  3 Sessions)
-** 8th / 15th / 22nd November 2018
+ * 8th / 15th / 22nd November 2018
 * Hugo-100 (December 2018 / 2 Sessions
-** 6th / 13th December
+ * 6th / 13th December
 * ServerlessAWS-100 (January 2019 3 Sessions) 
-** 10th / 17th / 24th January
+ * 10th / 17th / 24th January
 * Terraform-100 (Feburay 2019 3 Sessions) 
-** 7th / 14th / 21st Feburay 
+ * 7th / 14th / 21st Feburay 
 
 ## Public Slack Channel
 https://iw-101-sessions.slack.com
