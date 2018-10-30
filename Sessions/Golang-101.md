@@ -15,6 +15,7 @@ xxxx
 - History of Go
 - The Go way
     - Compilation
+        - Platforms
     - Static Typing
     - C-Like Syntax
     - Garbage Collection
@@ -25,7 +26,7 @@ xxxx
     - Command Line / VSCode Tool Chain
     - Packages / Source / GoPath (The New and the old way)
  - Simple Command Line Tool (Manipulate some input to console)
-    - Main 
+    - Main
     - Types
     - Variables / null
     - Functions
