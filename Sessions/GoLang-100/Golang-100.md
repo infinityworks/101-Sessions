@@ -1,15 +1,18 @@
-# Overview
+# Go 101
+
+## Overview
+
 xxx
 
-# Learning Outcomes
+## Learning Outcomes
+
 xxxx
 
-# Resources
+## Resources
 
+## Sessions
 
-# Sessions
-
-## GoLang-101
+### Go-101
 
 - Overview and Trainer Introduction
 - History of Go
@@ -24,7 +27,7 @@ xxxx
     - Linting
  - Install and Setup
     - Command Line / VSCode Tool Chain
-    - Packages / Source / GoPath (The New and the old way)
+    - Packages / Source / GoPath / Go Mod
  - Simple Command Line Tool (Manipulate some input to console)
     - Main
     - Types
@@ -34,7 +37,7 @@ xxxx
     - Error Handling
     - Testing
 
-## GoLang-102
+### Go-102
  - Recap of 101
  - Web Service (Log some input to console)
     - Http Handlers
@@ -48,14 +51,14 @@ xxxx
     - Methods
     - Structs
     - Interfaces
- - Testing Strategies 
+ - Testing Strategies
 
-## GoLang-103
+### Go-103
  - Recap of 102
  - Http Client (Call web service and log to console)
     - Http Calls
     - JSON in Go
-    - Accessing Complex Types 
- - Go Routies
+    - Accessing Complex Types
+ - Go Routines
  - Channels
  - Recap of the Course.
