@@ -38,4 +38,5 @@ func fizzBuzz(n int) string {
 
 // $ go get github.com/ogier/pflag
 
-// $ go run fizzBuzz.go --help
+// $ go run fizzBuzz.go --number
+// Fizz

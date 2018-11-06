@@ -25,21 +25,31 @@ xxxx
     - Testing
     - Docs
     - Linting
- - Install and Setup
+- Install and Setup
     - Command Line / VSCode Tool Chain
     - Packages / Source / GoPath / Go Mod
- - Simple Command Line Tool (Manipulate some input to console)
+- Hello World
     - Main
-    - Types
-    - Variables / null
+    - Package
+    - Import
+    - Variables
+    - Constants
+- FizzBuzz (Test Driven)
     - Functions
-    - Multiple Return Values
-    - Error Handling
+    - Package Import
+    - Init
     - Testing
+        - Command
+        - File Structure
+    - If
+
 
 ### Go-102
  - Recap of 101
  - Web Service (Log some input to console)
+    - Error Handling
+    - Multiple Return Values
+    - Types
     - Http Handlers
     - Pointers
     - Arrays
@@ -51,7 +61,6 @@ xxxx
     - Methods
     - Structs
     - Interfaces
- - Testing Strategies
 
 ### Go-103
  - Recap of 102
@@ -62,3 +71,5 @@ xxxx
  - Go Routines
  - Channels
  - Recap of the Course.
+
+### Go-XXX Rollover Material
