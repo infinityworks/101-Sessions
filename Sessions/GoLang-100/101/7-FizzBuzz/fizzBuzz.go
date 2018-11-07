@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"strconv"
 
 	flag "github.com/ogier/pflag"
@@ -14,7 +13,7 @@ var (
 func main() {
 	flag.Parse()
 
-	fmt.Println(fizzBuzzNumber)
+	fizzBuzz(fizzBuzzNumber)
 }
 
 func init() {

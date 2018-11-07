@@ -61,6 +61,7 @@ xxxx
     - Methods
     - Structs
     - Interfaces
+ - Debugging
 
 ### Go-103
  - Recap of 102
