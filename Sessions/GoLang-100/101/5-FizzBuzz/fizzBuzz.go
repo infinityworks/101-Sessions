@@ -10,6 +10,7 @@ var (
 
 func main() {
 	flag.Parse()
+	fizzBuzz(0)
 }
 
 func init() {

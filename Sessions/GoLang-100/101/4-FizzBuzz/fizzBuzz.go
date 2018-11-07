@@ -4,9 +4,7 @@ import (
 	flag "github.com/ogier/pflag"
 )
 
-var (
-	fizzBuzzNumber int
-)
+var fizzBuzzNumber int
 
 func main() {
 	flag.Parse()
