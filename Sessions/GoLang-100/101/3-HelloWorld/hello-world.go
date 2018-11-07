@@ -18,7 +18,8 @@ func main() {
 	var a = "Hello World"
 	fmt.Println(a)
 
-	var b, c int = 1, 2
+	// var b, c int = 1, 2
+	var b, c = 1, 2
 	fmt.Println(b, c)
 
 	var d = true
@@ -30,6 +31,8 @@ func main() {
 
 	// The := syntax is shorthand for declaring and initializing a variable, e.g. for var f string = "short" in this case.
 	f := "short"
+	f = "long"
+	// f := "short"
 	fmt.Println(f)
 
 }
