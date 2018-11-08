@@ -1,15 +1,5 @@
 # Go 101
 
-## Overview
-
-xxx
-
-## Learning Outcomes
-
-xxxx
-
-## Resources
-
 ## Sessions
 
 ### Go-101
@@ -17,17 +7,16 @@ xxxx
 - Overview and Trainer Introduction
 - History of Go
 - The Go way
+- Noteworthy aspects of Go
+    - Multiple Return Values
+    - Concurrency (Go Routines)
+    - Garbage Collection
+    - Modern Standard Library
     - Compilation
         - Platforms
-    - Static Typing
-    - C-Like Syntax
-    - Garbage Collection
-    - Testing
-    - Docs
-    - Linting
 - Install and Setup
     - Command Line / VSCode Tool Chain
-    - Packages / Source / GoPath / Go Mod
+    - Packages / Source / GoPath 
 - Hello World
     - Main
     - Package

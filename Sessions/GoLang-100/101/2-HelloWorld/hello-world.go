@@ -12,7 +12,7 @@ func main() {
 
 	fmt.Println(true || false)
 
-	// Ignore this for now we cover types and assignment later
+	// Ignore this for now we cover types and assignment later, this called a slice ints with two values, a slice is a reference type
 	items := []int{10, 20}
 
 	//Tip "fmt.Println" != "println", Fmt.Println displays the elements, but "println" displays a reference value.
