@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"strconv"
 
 	flag "github.com/ogier/pflag"
@@ -12,8 +13,7 @@ var (
 
 func main() {
 	flag.Parse()
-
-	fizzBuzz(fizzBuzzNumber)
+	fmt.Println(fizzBuzz(fizzBuzzNumber))
 }
 
 func init() {
@@ -37,5 +37,5 @@ func fizzBuzz(n int) string {
 
 // $ go get github.com/ogier/pflag
 
-// $ go run fizzBuzz.go --number
+// $ go run fizzBuzz.go -n 3
 // Fizz
