@@ -8,8 +8,8 @@ Schedule
 
 * GoLang-100 (November 2018 / 3 Sessions)
   * 8th / 15th / 22nd November 2018
-* Hugo-100 (December 2018 / 2 Sessions
-  * 6th / 13th December
+* Hugo-100 (December 2018 / 1 Sessions
+  * 6th December
 * ServerlessAWS-100 (January 2019 3 Sessions)
   * 10th / 17th / 24th January
 * Terraform-100 (February 2019 3 Sessions)
