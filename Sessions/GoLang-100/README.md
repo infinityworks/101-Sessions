@@ -54,11 +54,11 @@
 
 ### Go-103
  - Recap of 102
- - Http Client (Call web service and log to console)
-    - Http Calls
+ - HTTP Client (Call web service and log to console)
+    - HTTP Calls
     - JSON in Go
     - Accessing Complex Types
- - Go Routines
+ - Goroutines
  - Channels
  - Recap of the Course.
 
