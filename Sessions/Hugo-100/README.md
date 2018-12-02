@@ -39,4 +39,23 @@
     - Scaffolding
  - Content Organization
     - Page Bundles
-    - Content formats
+    - Front Matter
+    - Content Formats
+    - Content Types
+    - Shortcodes
+    - Archetypes
+    - Taxonomies
+ - Create Theme
+    - Go Templates
+    - Theme Layout
+        - Baseof
+        - Single
+        - List
+    - Content Lookup Order
+    - Navigation
+    - Resources
+    - Custom Section Layout
+    - Pagination
+    - Related Pages
+    - Sitemap
+    - Data Templates
