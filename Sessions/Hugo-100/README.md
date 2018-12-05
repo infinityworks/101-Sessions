@@ -57,5 +57,7 @@
     - Custom Section Layout
     - Pagination
     - Related Pages
-    - Sitemap
     - Data Templates
+    - Sitemap
+    - Build
+    - Deploy
