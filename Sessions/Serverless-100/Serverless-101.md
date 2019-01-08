@@ -6,7 +6,6 @@ xxxx
 
 # Resources
 
-
 # Sessions
 
 ## ServerlessAWS-101
