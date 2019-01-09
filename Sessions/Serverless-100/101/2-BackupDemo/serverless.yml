@@ -11,3 +11,4 @@ functions:
     handler: handler.hello
     events:
       - http: GET hello
+    memorySize: 512 
