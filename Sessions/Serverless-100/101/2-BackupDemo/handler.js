@@ -3,7 +3,7 @@
 module.exports.hello = async (event, context) => {
 
 
-  console.log(event)
+  console.log("log A:" + event)
 
   return {
     statusCode: 200,
