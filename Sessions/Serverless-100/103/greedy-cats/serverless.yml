@@ -1,0 +1,8 @@
+service: greedy-cats
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+    
+plugins:
+  - serverless-pseudo-parameters

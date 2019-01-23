@@ -1,0 +1,8 @@
+{
+  "name": "evolved-cats",
+  "description": "",
+  "version": "0.1.0",
+  "dependencies": {
+    "serverless-pseudo-parameters": "^2.4.0"
+  }
+}
