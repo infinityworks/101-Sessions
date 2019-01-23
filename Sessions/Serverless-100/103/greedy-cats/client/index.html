@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cat App</title>
+    <style>
+        #image-holder img { height: 400px }
+        button {
+            font-size: 1.5em;
+            background-color: white;
+            padding: 1em 2em;
+            border: 1px solid black;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="image-holder"></div>
+
+    <button id="refresh-button">Refresh</button>
+    <button id="upload-button">Upload</button>
+
+    <input type="file" id="file-select" name="catimage" accept="image/jpeg" style="position:absolute;left:-10000px" />
+
+    <script type="text/javascript" src="./index.js"></script>
+</body>
+</html>
