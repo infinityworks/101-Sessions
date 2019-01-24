@@ -18,10 +18,6 @@ provider:
       Action: 
         - s3:ListBucket
       Resource: "arn:aws:s3:::cats-app-image-bucket-3"
-    - Effect: "Allow"
-      Action:
-        - rekognition:DetectLabels
-      Resource: "*"
 
 functions:
   app:
@@ -31,9 +27,9 @@ functions:
       - http:
           path: /{any+}
           method: any
-          cors: true
+          cors: true 
 
-package:
+          package:
   exclude:
     - client/**
     - img/**
@@ -43,7 +39,7 @@ resources:
     CatImageBucket:
       Type: AWS::S3::Bucket
       Properties:
-        BucketName: cats-app-image-bucket-3
+        BucketName: cats-app-image-bucket-3 
     StaticSite:
       Type: AWS::S3::Bucket
       Properties:
@@ -55,6 +51,7 @@ resources:
 plugins:
   - serverless-s3-sync
   - serverless-pseudo-parameters
+
 custom:
   s3Sync:
     - bucketName: cats-app-static-bucket-3

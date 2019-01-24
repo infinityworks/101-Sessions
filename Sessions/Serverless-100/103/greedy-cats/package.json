@@ -10,7 +10,7 @@
     "keywords": [
         "cats"
     ],
-    "author": "Marcell Jusztin",
+    "author": "Marcell Jusztin, Edward Browncross",
     "license": "UNLICENSED",
     "dependencies": {
         "aws-sdk": "^2.389.0",
