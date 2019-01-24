@@ -47,14 +47,6 @@ app.post('/cats', (req, res) => {
   let fileName = `${uuidv1()}.jpeg`;
   let fileData = Buffer.from(req.body.image, 'base64');
 
-  /*
-   *cats.validateImage(fileData)
-   *  .then(result => result===true ? null : Promise.reject('Image is not a cat! It\'s a '+result))
-   *  .then(() => cats.putImage(fileName, fileData))
-   *  .then(() => res.redirect(req.header('Referer')))
-   *  .catch(err => res.status(400).send(err.toString()));
-   */
-
   cats.validateImage(fileData)
   cats.putImage(fileName, fileData)
     .then(() => res.redirect(req.header('Referer')))
