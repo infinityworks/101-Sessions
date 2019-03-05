@@ -11,18 +11,17 @@ import fetch from 'isomorphic-fetch';
 
 const baseURL = 'http://localhost:3000/count';
 
-const apiCountGetter = async (setCount) => {
+const apiCountGetter = async () => {
   const result = await fetch(baseURL, {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
   });
-  const data = await result.json();
-  setCount(data.count);
+  return await result.json();
 };
 
-const apiCountIncrementer = async (setCount) => {
+const apiCountIncrementer = async () => {
   const result = await fetch(baseURL + '/increment', {
     method: 'POST',
     headers: {
@@ -30,11 +29,10 @@ const apiCountIncrementer = async (setCount) => {
       'Content-Type': 'application/json'
     },
   });
-  const data = await result.json();
-  setCount(data.count);
+  return await result.json();
 };
 
-const apiCountDecrementer = async (setCount) => {
+const apiCountDecrementer = async () => {
   const result = await fetch(baseURL + '/decrement', {
     method: 'POST',
     headers: {
@@ -42,8 +40,7 @@ const apiCountDecrementer = async (setCount) => {
       'Content-Type': 'application/json'
     },
   });
-  const data = await result.json();
-  setCount(data.count);
+  return await result.json();
 };
 
 const App = ({countGetter, countIncrementer, countDecrementer}) => {
@@ -55,25 +52,36 @@ const App = ({countGetter, countIncrementer, countDecrementer}) => {
   const incrementer = () => setIncrementing(true);
   const decrementer = () => setDecrementing(true);
  
+  const fetchCount = async () => 
+    setCount((await countGetter(setCount)).count);
+
   // Get details on load.
   useEffect(() => {
-    countGetter(setCount);
+    fetchCount();
   }, []);
 
-  useEffect(() => {
+  const incrementCount = async() => {
     if (!incrementing) {
       return;
     }
-    countIncrementer(setCount);
+    setCount((await countIncrementer()).count);
     setIncrementing(false);
-  }, [ incrementing ]);
+  }
 
   useEffect(() => {
+    incrementCount()
+  }, [ incrementing ]);
+
+  const decrementCount = async() => {
     if (!decrementing) {
       return;
     }
-    countDecrementer(setCount);
+    setCount((await countDecrementer()).count);
     setDecrementing(false);
+  }
+
+  useEffect(() => {
+    decrementCount()
   }, [ decrementing ]);
 
   return (
