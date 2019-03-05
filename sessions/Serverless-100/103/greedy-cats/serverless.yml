@@ -1,0 +1,60 @@
+service: greedy-cats
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: dev
+  region: eu-west-1
+  tags:
+    project: cats-app
+    deleteme: true
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action: 
+        - s3:PutObject
+        - s3:GetObject
+      Resource: "arn:aws:s3:::cats-app-image-bucket-3/*"
+    - Effect: "Allow"
+      Action: 
+        - s3:ListBucket
+      Resource: "arn:aws:s3:::cats-app-image-bucket-3"
+
+functions:
+  app:
+    handler: app.handler
+    memorySize: 256
+    events:
+      - http:
+          path: /{any+}
+          method: any
+          cors: true 
+
+          package:
+  exclude:
+    - client/**
+    - img/**
+
+resources:
+  Resources:
+    CatImageBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: cats-app-image-bucket-3 
+    StaticSite:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: cats-app-static-bucket-3
+        AccessControl: PublicRead
+        WebsiteConfiguration:
+          IndexDocument: index.html
+
+plugins:
+  - serverless-s3-sync
+  - serverless-pseudo-parameters
+
+custom:
+  s3Sync:
+    - bucketName: cats-app-static-bucket-3
+      localDir: client
+      acl: public-read # optional
+

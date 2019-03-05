@@ -1,0 +1,13 @@
+service: aws-nodejs-101-backup
+
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: eu-west-2
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http: GET hello

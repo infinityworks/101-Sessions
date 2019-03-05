@@ -1,0 +1,28 @@
+{
+    "name": "greedy-cats",
+    "description": "",
+    "version": "0.1.0",
+    "main": "app.js",
+    "scripts": {
+        "start": "node ./node_modules/nodemon/bin/nodemon.js app.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "cats"
+    ],
+    "author": "Marcell Jusztin, Edward Browncross",
+    "license": "UNLICENSED",
+    "dependencies": {
+        "aws-sdk": "^2.389.0",
+        "body-parser": "^1.18.3",
+        "cookie-parser": "^1.4.3",
+        "express": "^4.16.4",
+        "image-data-uri": "^2.0.0",
+        "serverless-http": "^1.8.0",
+        "uuid": "^3.3.2"
+    },
+    "devDependencies": {
+        "serverless-pseudo-parameters": "^2.4.0",
+        "serverless-s3-sync": "^1.7.1"
+    }
+}
