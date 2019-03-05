@@ -1,2 +1,5 @@
 Sessions/GoLang-100/101/Example/hello-world
 Sessions/GoLang-100/101/7-FizzBuzz/7-FizzBuzz
+node_modules
+.cache
+dist
