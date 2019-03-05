@@ -11,7 +11,42 @@ import fetch from 'isomorphic-fetch';
 
 const baseURL = 'http://localhost:3000/count';
 
-const App = () => {
+const apiCountGetter = async (setCount) => {
+  const result = await fetch(baseURL, {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+  });
+  const data = await result.json();
+  setCount(data.count);
+};
+
+const apiCountIncrementer = async (setCount) => {
+  const result = await fetch(baseURL + '/increment', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+  });
+  const data = await result.json();
+  setCount(data.count);
+};
+
+const apiCountDecrementer = async (setCount) => {
+  const result = await fetch(baseURL + '/decrement', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+  });
+  const data = await result.json();
+  setCount(data.count);
+};
+
+const App = ({countGetter, countIncrementer, countDecrementer}) => {
   const [count, setCount] = useState(0);
   const [incrementing, setIncrementing] = useState(false);
   const [decrementing, setDecrementing] = useState(false);
@@ -19,61 +54,25 @@ const App = () => {
   // Functions to increment and decrement the count.
   const incrementer = () => setIncrementing(true);
   const decrementer = () => setDecrementing(true);
-
-  // When the app loads, get the current count.
-  const apiGetter = async () => {
-    const result = await fetch(baseURL, {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-    });
-    const data = await result.json();
-    setCount(data.count);
-  };
-  
+ 
   // Get details on load.
   useEffect(() => {
-    apiGetter();
+    countGetter(setCount);
   }, []);
-
-  const apiIncrementer = async () => {
-    const result = await fetch(baseURL + '/increment', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-    });
-    const data = await result.json();
-    setCount(data.count);
-  };
 
   useEffect(() => {
     if (!incrementing) {
       return;
     }
-    apiIncrementer();
+    countIncrementer(setCount);
     setIncrementing(false);
   }, [ incrementing ]);
-
-  const apiDecrementer = async () => {
-    const result = await fetch(baseURL + '/decrement', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-    });
-    const data = await result.json();
-    setCount(data.count);
-  };
 
   useEffect(() => {
     if (!decrementing) {
       return;
     }
-    apiDecrementer();
+    countDecrementer(setCount);
     setDecrementing(false);
   }, [ decrementing ]);
 
@@ -88,7 +87,11 @@ const App = () => {
   );
 };
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App
+  countGetter={apiCountGetter}
+  countIncrementer={apiCountIncrementer}
+  countDecrementer={apiCountDecrementer}
+/>, document.getElementById('app'));
 
 if (module.hot) {
   module.hot.accept();
