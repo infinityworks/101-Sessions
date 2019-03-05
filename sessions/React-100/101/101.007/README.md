@@ -4,12 +4,13 @@ Shows importing components from other files.
 
 ## Setup
 
-* Run the app
-  * `yarn start`
+* Run the API within the api directory
+  * `yarn install`
+  * `node index.js`
+* Run the React app
+  * `yarn run`
 
 ## Learn
 
-* Review the new imports from `material-ui`.
-* Update the app to use more Material components
-  * See examples at https://material-ui.com/demos/app-bar/
-* Change the colours using the `MuiThemeProvider`
+* Review the new code for using side effects as API calls.
+* Wonder how we're going to unit test all of this.
