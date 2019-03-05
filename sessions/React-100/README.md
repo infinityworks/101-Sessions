@@ -2,48 +2,15 @@
 
 ## Session 1
 
-* React
-  * What is it?
-  * Why is it useful?
-  * Where is it from?
-  * Hello World!
-* Ecosystem
-  * Node.js
-  * yarn / npm
-  * React Native
-  * Redux
-  * Babel, Webpack
-  * create-react-app
-* JSX
-  * React without JSX
-  * React with JSX
-  * How is JSX not HTML?
-* ES6
-  * require, import
-  * var, let => const
-  * Arrow functions
-  * Classes
-  * Spread
-  * Deconstructors
-* create-react-app
+* [101.001](./101.001) - Hello World
+* [101.002](./101.002) - Node.js ecosystem tooling with JSX
+* [101.003](./101.003) - Restructuring code
+* [101.004](./101.004) - Reacting to events using the new React Hooks feature
+* [101.005](./101.005) - Using styled components to customise the display
 
 ## Session 2
 
-* Components
-  * Hateful stateful components
-  * Refactoring to Stateless Functional Components (SFC)
-  * Material UI
-* Redux
-  * Store
-  * Dispatch
-  * MapStateToProps
-  * MapDipatchToProps
-  * Reducers
-  * Side effects with Middleware
-  * Making an API call
-* Unit testing
-  * Jest
-  * Snapshot testing
+* API calls
 
 ## Session 3
 
