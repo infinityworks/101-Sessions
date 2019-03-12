@@ -7,7 +7,7 @@ import { expect } from 'chai';
 
 configure({ adapter: new Adapter() });
 
-describe('<MyComponent />', () => {
+describe('<App />', () => {
   it('renders a <Header /> component', () => {
     const wrapper = shallow(<App />);
     expect(wrapper.find(Header)).to.have.lengthOf(1);
