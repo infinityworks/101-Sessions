@@ -31,4 +31,4 @@ jest
 ## Learn
 
 * Add more tests to test that other components are rendered within the app.
-
+* Run code coverage with `jest --coverage`
