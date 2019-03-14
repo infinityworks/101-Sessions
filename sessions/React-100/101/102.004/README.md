@@ -9,3 +9,4 @@ Add unit tests for a component.
 ## Learn
 
 * Add tests for the other components.
+* Add tests for the reducers.

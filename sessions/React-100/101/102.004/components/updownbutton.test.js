@@ -14,13 +14,13 @@ describe('Components/Button', () => {
   });
 
   it('should execute onClick', () => {
+    //TODO: replace with jest.fn
     let onClickCalled = false;
     const onClick = () => {
       onClickCalled = true;
     }
     const button = shallow(<Button label="Hello" onClick={onClick} />);
     button.simulate('click');
-    console.log(onClick);
     expect(onClickCalled).toBe(true);
   });
 

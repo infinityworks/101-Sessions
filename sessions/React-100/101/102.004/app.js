@@ -5,6 +5,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Header from './components/header';
 import UpDownButton from './components/updownbutton';
 import CountDisplay from './components/countDisplay';
+import { increment, decrement } from './redux/counter';
+import { changeColor } from './redux/color';
 
 const Counter = ({ count, incrementing, decrementing, onIncrement, onDecrement, backgroundColor }) => (
   <div style={{backgroundColor: backgroundColor}}>
@@ -35,10 +37,10 @@ const mapStateToProps = state => ({
   color: state.colorpicker.color,
 });
 
-const mapDispatchToProps = dispatch => ({
-  onIncrement: (amount = 1) => dispatch({ type: 'increment', amount }),
-  onDecrement: (amount = 1) => dispatch({ type: 'decrement', amount }),
-  onChangeColor: color => dispatch({ type: 'changeColor', color }),
-})
+const mapDispatchToProps = {
+  onIncrement: increment,
+  onDecrement: decrement,
+  onChangeColor: changeColor,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

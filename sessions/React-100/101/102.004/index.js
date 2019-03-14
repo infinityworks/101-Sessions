@@ -4,29 +4,10 @@ import ReactDOM from 'react-dom';
 import App from './App'
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import rootReducer from './redux'
 
-const defaultState = {
-  counter: {
-    count: 0,
-  },
-  colorpicker: {
-    color: "#000000",
-  },
-};
-
-const rootReducer = (state, action) => {
-  switch(action.type) {
-    case 'increment':
-      return { ...state, counter: { ...state.counter, count: state.counter.count + action.amount } }; // WTF?
-    case 'decrement':
-      return { ...state, counter: { ...state.counter, count: state.counter.count - action.amount } };
-    case 'changeColor':
-      return { ...state, colorpicker: { ...state.colorpicker, color: action.color } };
-  }
-  return state;
-}
-
-const store = createStore(rootReducer, defaultState,
+// NEW: Removed the default state, that's now the responsibility of the reducers.
+const store = createStore(rootReducer, {},
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 ReactDOM.render(

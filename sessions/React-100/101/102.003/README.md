@@ -10,4 +10,41 @@ At this point, it makes sense to break the state up into multiple sections, one 
 
 ## Learn
 
-* We don't like the way that the colour changes as soon as you make the change, make it so you have to click a button instead.
+* Replace the dispatch code with "action creator" functions:
+
+```js
+const mapDispatchToProps = dispatch => ({
+  onIncrement: (amount = 1) => dispatch({ type: 'increment', amount }),
+  onDecrement: (amount = 1) => dispatch({ type: 'decrement', amount }),
+  onChangeColor: color => dispatch({ type: 'changeColor', color }),
+})
+```
+
+To something like:
+
+```js
+// Action creators
+const createIncrement = (amount) => ({ type: ACTION_INCREMENT, amount });
+
+const mapDispatchToProps = {
+  onIncrement: createIncrement,
+  onDecrement: ...,
+  onChangeColor: ...,
+}
+```
+
+* Use combineReducers and move reducers to their own file.
+
+```js
+const rootReducer = (state, action) => {
+  switch(action.type) {
+    case 'increment':
+      return { ...state, counter: { ...state.counter, count: state.counter.count + action.amount } }; // WTF?
+    case 'decrement':
+      return { ...state, counter: { ...state.counter, count: state.counter.count - action.amount } };
+    case 'changeColor':
+      return { ...state, colorpicker: { ...state.colorpicker, color: action.color } };
+  }
+  return state;
+}
+```

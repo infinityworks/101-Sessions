@@ -1,6 +1,6 @@
 # React example using JSX
 
-Shows importing components from other files.
+Demonstrate the use of styled components.
 
 ## Setup
 

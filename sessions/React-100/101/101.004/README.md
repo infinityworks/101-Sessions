@@ -1,6 +1,6 @@
 # React example using JSX
 
-Shows importing components from other files.
+Store the count and update the counts with it.
 
 ## Setup
 

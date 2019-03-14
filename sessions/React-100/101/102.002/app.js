@@ -16,6 +16,7 @@ const App = ({ count, incrementer, decrementer }) => (
   </React.Fragment>
 );
 
+// NEW.
 const mapStateToProps = state => ({
   count: state.count,
 });

@@ -1,6 +1,6 @@
 # React example using JSX
 
-Refactor to use redux.
+Refactor to use Redux to make it easier to test.
 
 ```bash
 yarn add redux react-redux
@@ -20,4 +20,4 @@ In the `App`, it's been rewritten to lose any concept about state, and just rece
 
 ## Learn
 
-* Make it possible to increment and decrement by 10.
+* Add another button and count property to the state, increment it by dispatching an action which is handled by a reducer.

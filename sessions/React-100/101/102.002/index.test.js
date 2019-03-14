@@ -4,6 +4,8 @@ import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
 import App from './app';
 
+// NEW.
+// Needed to create a store provider around the compnent.
 describe('<App />', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');

@@ -1,6 +1,6 @@
 # React example using JSX
 
-Shows importing components from other files.
+Use Material UI instead of our own components as a base.
 
 ## Setup
 

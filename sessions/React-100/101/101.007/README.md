@@ -1,6 +1,6 @@
 # React example using JSX
 
-Shows importing components from other files.
+Make API calls from within our components.
 
 ## Setup
 
