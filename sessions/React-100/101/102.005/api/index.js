@@ -13,6 +13,7 @@ const data = {
 app.get('/count', (req, res) => {
   console.log("GET received");
   res.send(data);
+  // res.error("fail")
 });
 
 app.post('/count/increment', async (req, res) => {
@@ -20,6 +21,7 @@ app.post('/count/increment', async (req, res) => {
   data.count ++;
   await sleep(2000);
   res.send(data);
+  // res.error("fail")
 });
 
 app.post('/count/decrement', async (req, res) => {
@@ -27,6 +29,7 @@ app.post('/count/decrement', async (req, res) => {
   data.count --;
   await sleep(2000);
   res.send(data);
+  // res.error("fail")
 });
 
 app.listen(port, () => console.log(`API listening on port ${port}!`))
