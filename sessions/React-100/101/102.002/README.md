@@ -1,6 +1,6 @@
 # React example using JSX
 
-Add unit tests
+Refactor to use redux.
 
 ```bash
 yarn add redux react-redux

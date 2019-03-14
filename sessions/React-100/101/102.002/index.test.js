@@ -8,7 +8,7 @@ describe('<App />', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
     const defaultState = {
-      count: 0,
+      count: 0
     };
     const rootReducer = state => state;
     const store = createStore(rootReducer, defaultState);

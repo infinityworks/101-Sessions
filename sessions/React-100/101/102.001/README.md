@@ -1,11 +1,11 @@
 # React example using JSX
 
-Add unit tests
+Add a simple render unit tests
 
 ```bash
 yarn global add jest
 yarn remove babel-preset-env babel-preset-preact cross-env
-yarn add --dev jest babel-jest @babel/plugin-transform-runtime @babel/preset-env @babel/preset-react enzyme enzyme-adapter-react-16 chai
+yarn add --dev jest babel-jest @babel/plugin-transform-runtime @babel/preset-env @babel/preset-react enzyme enzyme-adapter-react-16
 yarn add @babel/runtime
 ```
 
