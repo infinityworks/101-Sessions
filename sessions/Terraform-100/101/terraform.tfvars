@@ -1,0 +1,1 @@
+iam_role = "arn:aws:iam::12345678:role/ExampleRole"
