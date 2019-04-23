@@ -1,17 +1,17 @@
-# 2
+# Basic Containers
 ## Run Switch Docker CLI commands
-
 ### Interactive with Console
 
-To run a container locally and interact with the terminal use ```-i and -t``` switch. 
+To run a container locally and interact with a terminal use ```-i and -t``` switch. 
 This can be combined to ```-it```
 
 ```docker run -it ubuntu bash```
 
 to exit the bash terminal use ```exit```
+Notice that run command can run specific command on the container on start, here its the ```bash``` command.
 
 ### Destroy the container afterwards
-Often you wish to run a container and then destroy it. This happen a lot when editing and changing your containers in dev. You can use the ```--rm``` option to do this.
+Often you wish to run a container and then destroy it. This happens a lot when editing and changing your containers in dev. You can use the ```--rm``` option to do this.
 
 ```docker run -it --rm ubuntu bash```
 
@@ -21,7 +21,7 @@ The run command takes a string as a parameter, the above example used ```ubuntu`
 
 ```https://hub.docker.com```
 
-You can change the location of where docker looks for a image. This often is a internal vetted repository of image that is approved for you organisation.
+You can change the location of where docker looks for a image. This often is a internal vetted repository of images that are approved for you use within an organisation.
 
 Example this command will get the latest version of ```Mongo```
 
@@ -63,6 +63,7 @@ Then you can remove them all
 ```docker rm $(docker ps -a -q)```
 
 #### Images
+```docker images```
 
 ```docker rmi my_image```
 
@@ -70,14 +71,20 @@ or all
 
 ```docker rmi $(docker images -q)```
 
-
 ### Versions, Tags and Names
 
-In addition to the name of the docker image you can specify a version and or a tag. You can also give a name to the container using the ```--name```
+In addition to the name of the docker image you can specify a version and or a tag. 
 
-So below we are combining a number of commands we have looked at before with the exception of the ```-p``` switch. This will map a port from the host to the container.
-So ```-p 8000:80``` will map the ports and you can use you local browser to view the container hosted web sever. Windows hosts might need to us the ip address of the container by using the ```docker exec aspnetcore_sample ipconfig``` command.
+```docker run -it --rm mcr.microsoft.com/dotnet/core/samples:aspnetapp```
 
+You can also give a name to the container using the ```--name```
+
+```docker run -it --rm --name aspnetcore_sample  mcr.microsoft.com/dotnet/core/samples:aspnetapp```
+
+### Port Mapping, Host to Container 
+
+So  we are combining a number of commands we have looked at before. We need to use one more the ```-p``` switch. This will map a port from the host to the container.
+So ```-p 8000:80``` will map the ports we need and you can use you local browser to view the container hosted web sever. Windows hosts might need to us the ip address of the container by using the ```docker exec aspnetcore_sample ipconfig``` command in a separate terminal session.
 
 ```docker run -it --rm -p 8000:80 --name aspnetcore_sample mcr.microsoft.com/dotnet/core/samples:aspnetapp```
 
