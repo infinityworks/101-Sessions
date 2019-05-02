@@ -1,0 +1,13 @@
+{
+  "name": "docker101",
+  "version": "1.0.0",
+  "description": "Docker 101 example using Node.js",
+  "author": "Matthew Leak <matthew.leak@infinityworks.com>",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
