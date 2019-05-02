@@ -1,0 +1,22 @@
+kind: Pod
+apiVersion: v1
+
+metadata:
+  name: sql-server
+spec:
+  containers:
+    - image: microsoft/mssql-server-linux
+      name: sql-server                              
+      ports:
+      - containerPort: 1433
+      env:
+      - name: ACCEPT_EULA
+        value: "Y"
+      - name: SA_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: mssql
+            key: SA_PASSWORD
+      volumeMounts:
+      - name: mssql-persistent-storage
+        mountPath: /var/opt/mssql

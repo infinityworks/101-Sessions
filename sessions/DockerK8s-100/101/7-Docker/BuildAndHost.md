@@ -1,4 +1,4 @@
-# Full Example Build and Host dotnet core application
+# Full Example Build and Host dotnet core application (Multi stage)
 
 ## Optional Download dotnet core 2.2
 
