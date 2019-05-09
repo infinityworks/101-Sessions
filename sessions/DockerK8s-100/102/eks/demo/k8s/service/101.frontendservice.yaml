@@ -1,0 +1,17 @@
+apiVersion: v1
+# A Service within k8s is used to expose the backend deployment as a publicly accessible endpoint
+kind: Service
+metadata:
+  # Given a name and a label of 'frontendservice'
+  name: infinity101-k8s-frontendservice 
+  labels:
+    app: frontend
+spec:
+  ports:
+  # Forwards traffic from port 80 to port 80 on the container
+  - port: 80
+    targetPort: 80
+  selector:
+    app: frontend
+  # EKS launches a classic ELB to which we can form connections against
+  type: LoadBalancer 

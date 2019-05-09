@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment # Declared as 'deployment' kind - provides declarative updates for pods and replicasets
+metadata:
+  name: infinity101-k8s-frontend # Given a name and a label of 'frontend'
+  labels:
+    app: api
+spec:
+  replicas: 3 # requesting 3 replicates matching on the app label set to 'api'
+  selector:
+    matchLabels:
+      app: frontend 
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers: # container to launch backend frontend
+      - name: frontend
+        image: 240343621469.dkr.ecr.eu-west-1.amazonaws.com/101-eks-frontend:latest
+        ports:
+        - containerPort: 80
