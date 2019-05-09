@@ -1,6 +1,6 @@
 # Use the latest version of node available from docker hub
 # https://hub.docker.com/_/node
-FROM node:latest
+FROM node:10.2
 
 # Create working directory inside the container for our app
 WORKDIR /app
