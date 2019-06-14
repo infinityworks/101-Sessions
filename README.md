@@ -57,9 +57,7 @@ On the mezzanine floor is the WeWork reception, they'll show you where to go if 
 
 ## Code of Conduct
 
-IW is dedicated to providing a harassment-free experience for everyone, regardless of gender, sexual orientation, disability, physical appearance, body size, race, or religion. We do not tolerate harassment of participants in any form.
-
-Sexual language and imagery is not appropriate for any venue, including talks. Participants violating these rules may be sanctioned or expelled from the venue or managed community.
+https://raw.githubusercontent.com/infinityworks/101-Sessions/master/codeofconduct.md
 
 ## Public Slack Channel
 
