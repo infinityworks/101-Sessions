@@ -11,43 +11,6 @@ https://www.meetup.com/Infinity-Works-101-Sessions/
   * If you don't already know how to code there are great online courses at places like https://khanacademy.com
   * If you're a complete beginner check out https://codeup.com
 
-## Schedule
-
-* Manchester - GoLang-100 (November 2018 - 3 sessions)
-  * 8th November 2018
-  * 15th November 2018
-  * 22nd November 2018
-* Manchester - Hugo-100 (December 2018 - 1 sessions)
-  * 6th December
-* Manchester - ServerlessAWS-100 (January 2019 - 3 sessions)
-  * 10th January 2019
-  * 17th January 2019
-  * 24th January 2019
-* Manchester - Terraform-100 (February 2019 - 3 sessions)
-  * 7th February 2019
-  * 14th February 2019
-  * 21st February 2019
-* Manchester - React (March 2019 - 3 sessions)
-  * 5th March 2019
-  * 13th March 2019
-  * 20th March 2019
-
-## Locations
-
-### Manchester
-
-WeWork Spinningfields  
-No. 1 Spinningfields  
-Quay Street  
-Manchester  
-M3 3JE  
-
-https://goo.gl/maps/xpCQE21YFAm
-
-Enter the building and tell reception you're here for an event at WeWork. They'll give you a visitor pass and let you through the barriers up to the mezzanine floor.
-
-On the mezzanine floor is the WeWork reception, they'll show you where to go if you can't find us. We're in a meeting room behind the WeWork reception desk.
-
 ## Feedback
 
 * We love feedback, without it we cant get better.
