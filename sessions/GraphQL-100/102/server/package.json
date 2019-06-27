@@ -1,0 +1,21 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-link-ws": "^1.0.18",
+    "apollo-server": "^2.6.4",
+    "graphql": "^14.3.1",
+    "graphql-subscriptions": "^1.1.0",
+    "nodemon": "^1.19.1",
+    "subscriptions-transport-ws": "^0.9.16"
+  }
+}
