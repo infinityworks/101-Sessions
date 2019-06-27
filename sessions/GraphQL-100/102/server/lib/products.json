@@ -1,0 +1,74 @@
+[
+  {
+    "image": "https://devstickers.com/assets/img/cat/javascript.png",
+    "name": "JavaScript",
+    "price": "5.51",
+    "unitsAvailable": 35,
+    "sku": 155378986,
+    "category": 1
+  },
+  {
+    "image": "https://devstickers.com/assets/img/cat/nodejs.png",
+    "name": "Nodejs",
+    "price": "1.91",
+    "unitsAvailable": 0,
+    "sku": 155378976,
+    "category": 1
+  },
+  {
+    "image": "https://devstickers.com/assets/img/cat/react-js.png",
+    "name": "Reactjs",
+    "price": "6.71",
+    "unitsAvailable": 9,
+    "sku": 166378986,
+    "category": 1
+  },
+  {
+    "image": "https://devstickers.com/assets/img/pro/hyc7.png",
+    "name": "Go",
+    "price": "7.00",
+    "unitsAvailable": 0,
+    "sku": 155398986,
+    "category": 1
+  },
+  {
+    "image": "https://devstickers.com/assets/img/cat/git.png",
+    "name": "Git",
+    "price": "7.62",
+    "unitsAvailable": 73,
+    "sku": 355378933,
+    "category": 1
+  },
+  {
+    "image": "https://devstickers.com/assets/img/cat/vuejs.png",
+    "name": "Vuejs",
+    "price": "8.42",
+    "unitsAvailable": 62,
+    "sku": 425577986,
+    "category": 1
+  },
+  {
+    "image": "https://devstickers.com/assets/img/cat/chrome.png",
+    "name": "Google Chrome",
+    "price": "7.12",
+    "unitsAvailable": 80,
+    "sku": 424572226,
+    "category": 2
+  },
+  {
+    "image": "https://devstickers.com/assets/img/cat/linux.png",
+    "name": "Linux",
+    "price": "9.21",
+    "unitsAvailable": 67,
+    "sku": 925388986,
+    "category": 3
+  },
+  {
+    "image": "https://devstickers.com/assets/img/cat/apple.png",
+    "name": "Apple",
+    "price": "7.73",
+    "unitsAvailable": 49,
+    "sku": 835544776,
+    "category": 3
+  }
+]
