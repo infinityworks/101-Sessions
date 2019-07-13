@@ -1,6 +1,6 @@
 import 'isomorphic-fetch';
 import { RSAA } from 'redux-api-middleware';
-import { combineReducers } from '../../../../../../../Library/Caches/typescript/3.3/node_modules/redux';
+import { combineReducers } from 'redux';
 
 const baseURL = 'http://localhost:3000/count';
 
