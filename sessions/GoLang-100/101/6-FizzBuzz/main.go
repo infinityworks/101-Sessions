@@ -19,7 +19,6 @@ func init() {
 }
 
 func fizzBuzz(n int) string {
-
 	result := ""
 	if n%3 == 0 {
 		result += "Fizz"

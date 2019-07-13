@@ -1,5 +1,3 @@
-// This will have to be in your go path
-
 package main
 
 import (
@@ -8,9 +6,8 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/poolieweb/fsaweb/fsa"
-
-	"github.com/poolieweb/fsaweb/logic"
+	"github.com/101-Sessions/sessions/GoLang-100/103/fsaweb/fsa"
+	"github.com/101-Sessions/sessions/GoLang-100/103/fsaweb/logic"
 )
 
 type requestDurationLogger struct {

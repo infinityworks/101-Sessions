@@ -30,7 +30,9 @@ var buzzTests = []struct {
 
 func TestFizzBuzz(t *testing.T) {
 	for _, tt := range buzzTests {
+		// tt := tt
 		t.Run(strconv.Itoa(tt.in), func(t *testing.T) {
+			// t.Parallel()
 			s := fizzBuzz(tt.in)
 			if s != tt.out {
 				t.Errorf("FizzBuzz was incorrect, got: %s, want: %s.", s, tt.out)
