@@ -19,22 +19,22 @@ already have a working knowledge of it.
 
 ## Session 1 - Introduction to ML
 
-* [101.1](./101/1.md) - Terminology - AI, ML, deep learning, reinforcement learning, model, etc
-* [101.2](./101/2.md) - What is machine learning used for?
-* [101.3](./101/3.md) - ML algorithms and the problem classes they can be applied to
-* [101.4](./101/4.md) - Basic machine learning workflow
-* [101.5](./101/5.md) - Regression: Hands on with linear regression using scikit-learn
-* [101.6](./101/6.md) - Classification: Support vector machines using scikit-learn
+* [101.001.1](101/101.001/1.md) - Terminology - AI, ML, deep learning, reinforcement learning, model, etc
+* [101.001.2](101/101.001/2.md) - What is machine learning used for?
+* [101.001.3](101/101.001/3.md) - ML algorithms and the problem classes they can be applied to
+* [101.001.4](101/101.001/4.md) - Basic machine learning workflow
+* [101.001.5](101/101.001/5.md) - Regression: Hands on with linear regression using scikit-learn
+* [101.001.6](101/101.001/6.md) - Classification: Support vector machines using scikit-learn
 
 
 ## Session 2 - Data wrangling
 
-* [102.1](./102/1.md) - Data exploration and features
-* [102.2](./102/2.md) - The importance of data quality
-* [102.3](./102/3.md) - Introduction to Pandas and dataframes
-* [102.4](./102/4.md) - "How to be evil"
-* [102.5](./102/5.md) - How much data is enough?
-* [102.6](./102/6.md) - Why imbalanced datasets can be problematic and what you can do about it
+* [101.002.1](101/101.002/1.md) - Data exploration and features
+* [101.002.2](101/101.002/2.md) - The importance of data quality
+* [101.002.3](101/101.002/3.md) - Introduction to Pandas and dataframes
+* [101.002.4](101/101.002/4.md) - "How to be evil"
+* [101.002.5](101/101.002/5.md) - How much data is enough?
+* [101.002.6](101/101.002/6.md) - Why imbalanced datasets can be problematic and what you can do about it
 
 
 ## Session 3 - Build & train a model from scratch
@@ -42,5 +42,5 @@ already have a working knowledge of it.
 During this session we will put together all of the skills that we learned in
 sessions 1 and 2. We'll clean a data set and train a model from scratch.
 
-* [103.1](./103/1.md) - Building a model from scratch
-* [103.2](./103/2.md) - Machine learning in production
+* [101.003.1](101/101.003/1.md) - Building a model from scratch
+* [101.003.2](101/101.003/2.md) - Machine learning in production
