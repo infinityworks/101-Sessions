@@ -23,6 +23,29 @@ $ sls plugin install --name serverless-pseudo-parameters
 
 Deploy stack:
 
+Before deploy we needed to change the S3 bucket names (add a random string to the end) both ```cats-app-static-bucket-3``` and ```cats-app-image-bucket-3```because the names are global, 
+
+otherwise we will get this error "An error occurred: StaticSite - cats-app-static-bucket-3 already exists."
+
+Either do a global find and replace  or edit the below lines to all be the same name: (file : linenumber)
+```
+cats-app-static-bucket-3 (2 occurences accross 1 file):
+  serverless.yml : 46
+  serverless.yml : 57
+cats-app-image-bucket-3 (6 occurences accross 2 files):
+  serverless.yml : 16
+  serverless.yml : 20
+  serverless.yml : 42 
+  cats.js : 7
+  cats.js : 16
+  cats.js : 26
+```
+
+After we have edited the bucket names we can deploy
+
+
+
+
 ```
 $ sls deploy --aws-profile=changeme
 ```
