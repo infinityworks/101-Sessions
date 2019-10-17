@@ -27,19 +27,19 @@ functions:
       - http:
           path: /{any+}
           method: any
-          cors: true 
+          cors: true
 
           package:
-  exclude:
-    - client/**
-    - img/**
+            exclude:
+              - client/**
+              - img/**
 
 resources:
   Resources:
     CatImageBucket:
       Type: AWS::S3::Bucket
       Properties:
-        BucketName: cats-app-image-bucket-3 
+        BucketName: cats-app-image-bucket-3
     StaticSite:
       Type: AWS::S3::Bucket
       Properties:
