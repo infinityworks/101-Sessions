@@ -57,16 +57,21 @@ export GOPATH=~/go
 
 ### Location of this checked out code
 
-Because this is a go project, it must be checked out within your go/src directory and must have a specific name.
+Because this is a go project, it must be checked out (or linked) within your go/src directory.
 
-Checkout this project to 
+Copy or Link this project to
 
-~/go/src/github.com/101-step-functions/
+`~/go/src/github.com/101-step-functions/`
+
+How to Link it
 
 ```bash
 mkdir -p ~/go/src/github.com/
-cd ~/go/src/github.com/
-git clone git@github.com:StevenHarperInfinityWorks/101-step-functions.git
+mkdir ~/code
+cd ~/code
+git clone git@github.com:infinityworks/101-Sessions.git
+cd ~/go/src/github.com
+ln -s ~/code/101-Sessions/sessions/StepFunctions-100/101 101-step-functions
 ```
 
 ### Install nodejs
