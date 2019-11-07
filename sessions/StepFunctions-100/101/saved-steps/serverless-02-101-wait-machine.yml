@@ -1,0 +1,41 @@
+service: iw-101stepfunctions 
+
+frameworkVersion: ">=1.28.0 <2.0.0"
+
+provider:
+  name: aws
+  runtime: go1.x
+  stage: dev
+  region: eu-west-1
+  profile: 101profile
+
+plugins:
+  - serverless-step-functions
+
+package:
+ exclude:
+   - ./**
+ include:
+   - ./bin/**
+
+#functions:
+#  hello:
+#    handler: bin/hello
+#   world:
+#     handler: bin/world
+
+stepFunctions:
+  stateMachines:
+    iw101WaitMachine:
+      definition:
+        Comment: "A sample step function using only wait states"
+        StartAt: FirstState
+        States:
+          FirstState:
+            Type: Wait
+            Seconds: 10
+            Next: SecondState
+          SecondState:
+            Type: Wait
+            Seconds: 5
+            End: true
