@@ -92,6 +92,8 @@ _Linux_
 npm install --save-dev serverless
 ```
 
+> if you have problems running sls you can try a global install with `npm install -g serverless`
+
 ## Install AWS CLI
 
 Aws cli allows you run run commands on your computer to interact directly with your AWS Account.
@@ -126,6 +128,7 @@ If  you don't want to setup from scratch, you can just prepare to build with
 
 ```bash
 npm install
+npm install serverless
 npm install --save-dev serverless-step-functions
 ```
 
