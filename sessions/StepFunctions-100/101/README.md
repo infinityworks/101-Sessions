@@ -143,7 +143,7 @@ npm install --save-dev serverless-step-functions
 In your project directory run the serverless step functions setup
 
 ```bash
-serverless create --template aws-go --name iw-101stepfunctions
+serverless create --template aws-go --name iw-101-stepfunctions
 ```
 
 ```bash
