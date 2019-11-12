@@ -1,0 +1,64 @@
+service: iw-102stepfunctions 
+
+frameworkVersion: ">=1.28.0 <2.0.0"
+
+provider:
+  name: aws
+  runtime: go1.x
+  stage: dev
+  region: eu-west-1
+  profile: 101profile
+  versionFunctions: false
+
+plugins:
+  - serverless-step-functions
+
+package:
+ exclude:
+   - ./**
+ include:
+   - ./bin/**
+
+functions:
+  hello:
+    handler: bin/hello
+    description: A Lambda that says hello
+    memorySize: 128
+    timeout: 2
+
+stepFunctions:
+  stateMachines:
+    iw102StarterMachine:
+      events:
+        - http:
+            path: hello
+            method: GET
+        - http:
+            path: action/start
+            method: POST
+        - http:
+            path: action/status
+            method: POST
+            action: DescribeExecution
+        - http:
+            path: action/stop
+            method: POST
+            action: StopExecution
+      definition:
+        Comment: "A sample step function to say hello"
+        StartAt: FirstState
+        States:
+          FirstState:
+            Type: Wait
+            Seconds: 5
+            Next: SecondState
+          SecondState:
+            Type: Task
+            Resource:
+              Fn::GetAtt: [hello, Arn]
+            Next: ThirdState
+            ResultPath: "$.taskresult"
+          ThirdState:
+            Type: Wait
+            Seconds: 5
+            End: true
