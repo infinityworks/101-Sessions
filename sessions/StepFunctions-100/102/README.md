@@ -89,11 +89,13 @@ stepFunctions:
       definition:
 ```
 
-Run out the chnages
+Run out the changes
 
 ```bash
 make deploy STAGE=dev
 ```
+
+We can see that api endpoints get created
 
 ```yml
 Serverless StepFunctions OutPuts
@@ -112,9 +114,9 @@ You can click `Test` and send a Request Body
 
 ![alt API Gateway test post](./saved-steps/img/02-apigw-test.png "API Gateway test post")
 
-This will asynchronosly start a step function execution, you can view them at <https://eu-west-1.console.aws.amazon.com/states/home?region=eu-west-1#/statemachines>
+This will `asynchronosly` start a step function execution, you can view them at <https://eu-west-1.console.aws.amazon.com/states/home?region=eu-west-1#/statemachines>
 
-You can also use the DescribeExecution integration endpoint to see the progress of an execution
+You can also use the `DescribeExecution` integration endpoint to see the progress of an execution
 
 Click `Test` and enter a Request Body
 
@@ -142,6 +144,112 @@ This gives this kind of output
 However we have just exposed an endpoint to the world that anyone can use!
 
 Lets secure it.
+
+## More secure API
+
+Now lets introduce some keys and usage plans, also note the `private: true` on each event
+
+```yml
+provider:
+  name: aws
+  runtime: go1.x
+  stage: dev
+  region: eu-west-1
+  profile: 101profile
+  versionFunctions: false
+  apiKeys:
+    - ${opt:stage, self:provider.stage}-myFirstKey
+  usagePlan:
+    quota:
+      limit: 5000
+      offset: 2
+      period: MONTH
+    throttle:
+      burstLimit: 200
+      rateLimit: 100
+
+stepFunctions:
+  stateMachines:
+    iw102StarterMachine:
+      events:
+        - http:
+            path: hello
+            method: GET
+            private: true
+```
+
+Copy the contents of the file : see [./saved-steps/serverless-03-api-keys.yml](./saved-steps/serverless-03-api-keys.yml) over the `./serverless.yml` file.
+
+And deploy
+
+```bash
+make deploy STAGE=dev
+```
+
+Now we can see that the output generates a key that is needed to call the service, this key is shown each time and only get generated once.
+
+>You can hide the key from the output with the switch ` --conceal`
+
+```bash
+Serverless: Stack update finished...
+Service Information
+service: iw-102stepfunctions
+stage: dev
+region: eu-west-1
+stack: iw-102stepfunctions-dev
+api keys:
+  dev-myFirstKey: s1HR9a43llolcatslikeiamdoingthat7YEIvns8
+endpoints:
+functions:
+  hello: iw-102stepfunctions-dev-hello
+layers:
+  None
+```
+
+>The key is also visible in the Web Console <https://eu-west-1.console.aws.amazon.com/apigateway/home?region=eu-west-1#/api-keys/>
+
+
+![alt API Gateway key](./saved-steps/img/03-key.png "API Gateway key")
+
+You can now see that the API calls require keys, if you try without you get 
+
+```json
+{"message":"Forbidden"}
+```
+
+Test it - open an ssl connection
+
+```bash
+openssl s_client llb348ist9.execute-api.eu-west-1.amazonaws.com:443
+```
+
+Send a Request
+
+```bash
+GET /dev/hello HTTP/1.1
+host: llb348ist9.execute-api.eu-west-1.amazonaws.com
+X-API-Key: s1HR9a43llolcatslikeiamdoingthat7YEIvns8
+connection: close
+```
+
+Get a Response!
+
+```bash
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 190
+Connection: close
+Date: Tue, 12 Nov 2019 15:40:09 GMT
+x-amzn-RequestId: 9c3d8aab-83bf-4542-8256-36c9f42b6b01
+x-amz-apigw-id: DDXN9HNcDoEF8oA=
+X-Amzn-Trace-Id: Root=1-5dcad259-760ded2caa731b642837fea4
+X-Cache: Miss from cloudfront
+Via: 1.1 f79355bad214d64e02ae8e84a86f4933.cloudfront.net (CloudFront)
+X-Amz-Cf-Pop: LHR61-C2
+X-Amz-Cf-Id: 6N0AqES_u1GsNM4dzd5ZHITISEfqxCjX2qoVgCw6nwYTjnz5ZTZHiA==
+
+{"executionArn":"arn:aws:states:eu-west-1:386676700885:execution:Iw102StarterMachineStepFunctionsStateMachine-YBD4dm89PhcK:9c3d8aab-83bf-4542-8256-36c9f42b6b01","startDate":1.573573209347E9}closed
+```
 
 ## CloudWatch Notifications
 
