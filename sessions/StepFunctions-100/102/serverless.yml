@@ -1,0 +1,11 @@
+service: iw-102stepfunctions 
+
+frameworkVersion: ">=1.28.0 <2.0.0"
+
+provider:
+  name: aws
+  runtime: go1.x
+  stage: dev
+  region: eu-west-1
+
+# TODO: make some things

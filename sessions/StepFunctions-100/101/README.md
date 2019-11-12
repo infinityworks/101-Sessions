@@ -256,6 +256,7 @@ So it's time to actually deploy this:
 ```bash
 make deploy STAGE=dev
 ```
+
 ### What happened?
 
 > Cloudformation was created, copied to S3 and run out

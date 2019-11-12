@@ -1,0 +1,16 @@
+{
+  "name": "102",
+  "version": "1.0.0",
+  "description": "This is the 102 on Step Functions.",
+  "main": "index.js",
+  "dependencies": {
+    "serverless": "^1.57.0",
+    "serverless-step-functions": "^2.11.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
