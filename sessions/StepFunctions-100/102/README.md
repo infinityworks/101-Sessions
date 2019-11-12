@@ -6,7 +6,8 @@ You will need to setup the project by following the setup in the [101 README](..
 ## Outline
 
 * First Step Machine : iw102StarterMachine
-* add APIs to Step Machine : iw102StarterMachine
+* Add APIs to Step Machine : iw102StarterMachine
+* More secure API : iw102StarterMachine
 
 ### Location of this checked out code
 
@@ -57,7 +58,7 @@ This runs the stepfunction synchronously
   output: '{"thekey":"thevalue","taskresult":"Hello 102 Class"}' }
 ```
 
-## add APIs to Step Machine : iw102StarterMachine
+## Add APIs to Step Machine : iw102StarterMachine
 
 Next we are going to expose an API to allow Step Machines to be started / stoped / described.
 
@@ -98,7 +99,7 @@ make deploy STAGE=dev
 We can see that api endpoints get created
 
 ```yml
-Serverless StepFunctions OutPuts
+Serverless StepFunctions Outputs
 endpoints:
   GET - https://iev7deoka1.execute-api.eu-west-1.amazonaws.com/dev/hello
   POST - https://iev7deoka1.execute-api.eu-west-1.amazonaws.com/dev/action/start
@@ -145,7 +146,7 @@ However we have just exposed an endpoint to the world that anyone can use!
 
 Lets secure it.
 
-## More secure API
+## More secure API : iw102StarterMachine
 
 Now lets introduce some keys and usage plans, also note the `private: true` on each event
 
