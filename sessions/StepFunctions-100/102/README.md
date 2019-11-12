@@ -46,7 +46,7 @@ sls invoke stepf --name iw102StarterMachine --data '{"thekey":"thevalue"}'
 
 This runs the stepfunction synchronously 
 
-```json
+```bash
 { executionArn: 'arn:aws:states:eu-west-1:000000000000:execution:Iw102StarterMachineStepFunctionsStateMachine-C8ZYXzFB9SCO:0e0eac81-ce53-4db5-aa86-86e92efdeed7',
   stateMachineArn: 'arn:aws:states:eu-west-1:000000000000:stateMachine:Iw102StarterMachineStepFunctionsStateMachine-C8ZYXzFB9SCO',
   name: '0e0eac81-ce53-4db5-aa86-86e92efdeed7',
