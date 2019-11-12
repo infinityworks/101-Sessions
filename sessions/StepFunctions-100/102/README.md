@@ -170,3 +170,12 @@ stepFunctions:
           - stepFunctions: STATE_MACHINE_ARN
         FAILED:
 ```
+
+
+## Clean UP
+
+This will un-deploy all the resources being used in AWS
+
+```bash
+sls remove -STAGE=DEV
+```
