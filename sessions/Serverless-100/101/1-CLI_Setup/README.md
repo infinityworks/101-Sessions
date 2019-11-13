@@ -123,7 +123,7 @@ https://eu-west-2.console.aws.amazon.com/apigateway/home?region=eu-west-2#/apis
 ## Debug
 ### VS Code debug profile
 
-Click on the debug icon on the side bae in Visual Studio Code.
+Click on the debug icon on the side bar in Visual Studio Code.
 
 Add a configuration can edit like the example below:
 ```
