@@ -1,0 +1,104 @@
+service: iw-102stepfunctions 
+
+frameworkVersion: ">=1.28.0 <2.0.0"
+
+provider:
+  name: aws
+  runtime: go1.x
+  stage: dev
+  region: eu-west-1
+  profile: 101profile
+  versionFunctions: false
+  apiKeys:
+    - ${opt:stage, self:provider.stage}-myFirstKey
+  usagePlan:
+    quota:
+      limit: 5000
+      offset: 2
+      period: MONTH
+    throttle:
+      burstLimit: 200
+      rateLimit: 100
+
+plugins:
+  - serverless-step-functions
+
+package:
+ exclude:
+   - ./**
+ include:
+   - ./bin/**
+
+functions:
+  hello:
+    handler: bin/hello
+    description: A Lambda that says hello
+    memorySize: 128
+    timeout: 2
+  sendWait:
+    handler: bin/sendWait
+    description: A Lambda that recieves the wait Token to share
+    memorySize: 128
+    timeout: 2
+  printItem:
+    handler: bin/printItem
+    description: A Lambda that prints each Item
+    memorySize: 128
+    timeout: 2
+  processItem:
+    handler: bin/processItem
+    description: A Lambda that processes each Item
+    memorySize: 128
+    timeout: 2
+
+stepFunctions:
+  stateMachines:
+    iw102MapMachine:
+      events:
+        - http:
+            path: action/start
+            method: POST
+            private: true
+        - http:
+            path: action/status
+            method: POST
+            action: DescribeExecution
+            private: true
+        - http:
+            path: action/stop
+            method: POST
+            action: StopExecution
+            private: true
+
+      definition:
+        Comment: "A sample step function to demonstrate the Map type"
+        StartAt: FirstState
+        States:
+
+          FirstState:
+            Type: Wait
+            Seconds: 5
+            Next: ProcessBasket
+
+          ProcessBasket:
+            Type: Map
+            InputPath: "$.basket"
+            ItemsPath: "$.items"
+            Parameters:
+              "item.$": "$$.Map.Item.Value"
+              "platform.$": "$.platform"
+              "ordernumber.$": "$.ordernumber"
+            MaxConcurrency: 3
+            Iterator:
+              StartAt: ProcessItem
+              States:
+                ProcessItem:
+                  Type: Task
+                  Resource:
+                    Fn::GetAtt: [processItem, Arn]
+                  End: true
+            ResultPath: "$.taskresult"
+            Next: SuccessState
+
+          SuccessState:
+            Type: Succeed

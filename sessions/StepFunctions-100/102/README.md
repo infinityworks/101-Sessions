@@ -10,6 +10,7 @@ You will need to setup the project by following the setup in the [101 README](..
 * More secure API : iw102StarterMachine
 * Callback State Machine : iw102CallbackMachine
 * Dynamic parallel processing with Map : iw102MapMachine
+* Map Features : iw102MapMachine
 
 ### Location of this checked out code
 
@@ -619,6 +620,163 @@ These are added to the state in an array in `"taskresult": []`
 }
 ```
 
+## Map Features : iw102MapMachine
+
+In this example we want fields that are outside of the array to be included in each lambda call, consider this input
+
+```json
+{
+  "customer": "54632976324324324",
+  "basket": {
+    "platform": "WEB",
+    "ordernumber": 6875675878,
+    "items": [
+      { "id": "12345", "name": "fish sticks", "quantity": 1 },
+      { "id": "23456", "name": "cheese sticks", "quantity": 2 },
+      { "id": "34567", "name": "squid sticks", "quantity": 3 },
+      { "id": "45678", "name": "llama sticks", "quantity": 4 },
+      { "id": "56789", "name": "turkey sticks", "quantity": 5 }
+    ]
+  }
+}
+```
+
+We want the following to be passed to each lambda
+
+```json
+{
+  "item": {
+    "id": "34567",
+    "name": "squid sticks",
+    "quantity": 3
+  },
+  "ordernumber": 6875675878,
+  "platform": "WEB"
+}
+```
+
+The `Parameters:` part defines the structure of the `JSON` that will be passed to the Lambda
+
+> Note : the `MaxConcurrency: 3`  has been set to control how many items get processed concurrently for each execution
+
+```yaml
+         ProcessBasket:
+            Type: Map
+            InputPath: "$.basket"
+            ItemsPath: "$.items"
+            Parameters:
+              "item.$": "$$.Map.Item.Value"
+              "platform.$": "$.platform"
+              "ordernumber.$": "$.ordernumber"
+            MaxConcurrency: 3
+            Iterator:
+              StartAt: ProcessItem
+              States:
+                ProcessItem:
+                  Type: Task
+                  Resource:
+                    Fn::GetAtt: [processItem, Arn]
+                  End: true
+            ResultPath: "$.taskresult"
+            Next: SuccessState
+```
+
+Copy the contents of the file : see [./saved-steps/serverless-06-map.yml](./saved-steps/serverless-06-map.yml) over the `./serverless.yml` file.
+
+Then deploy
+
+```bash
+make deploy STAGE=dev
+```
+
+Now lets start a `new execution` with a similar payload as the previous example
+
+```json
+{
+  "customer": "54632976324324324",
+  "basket": {
+    "platform": "WEB",
+    "ordernumber": 6875675878,
+    "items": [
+      { "id": "12345", "name": "fish sticks", "quantity": 1 },
+      { "id": "23456", "name": "cheese sticks", "quantity": 2 },
+      { "id": "34567", "name": "squid sticks", "quantity": 3 },
+      { "id": "45678", "name": "llama sticks", "quantity": 4 },
+      { "id": "56789", "name": "turkey sticks", "quantity": 5 }
+    ]
+  }
+}
+```
+
+The new Lambda `processItem` parses the request to a structure
+
+
+```go
+// Item an event to hold an Item
+type Item struct {
+	ID       string `json:"id"`
+	Name     string `json:"name"`
+	Quantity int    `json:"quantity"`
+}
+
+// ItemEvent an event to hold the whole object
+type ItemEvent struct {
+	Item        Item
+	Platform    string `json:"platform"`
+	Ordernumber int    `json:"ordernumber"`
+}
+```
+
+And now includes data outside of the array in its input and output
+
+![Map Item](./saved-steps/img/06-map-item.png "Map Item")
+
+So the final output is now
+
+```json
+{
+  "customer": "54632976324324324",
+  "basket": {
+    "platform": "WEB",
+    "ordernumber": 6875675878,
+    "items": [
+      {
+        "id": "12345",
+        "name": "fish sticks",
+        "quantity": 1
+      },
+      {
+        "id": "23456",
+        "name": "cheese sticks",
+        "quantity": 2
+      },
+      {
+        "id": "34567",
+        "name": "squid sticks",
+        "quantity": 3
+      },
+      {
+        "id": "45678",
+        "name": "llama sticks",
+        "quantity": 4
+      },
+      {
+        "id": "56789",
+        "name": "turkey sticks",
+        "quantity": 5
+      }
+    ]
+  },
+  "taskresult": [
+    "Processing Item WEB 6875675878 12345 fish sticks 1",
+    "Processing Item WEB 6875675878 23456 cheese sticks 2",
+    "Processing Item WEB 6875675878 34567 squid sticks 3",
+    "Processing Item WEB 6875675878 45678 llama sticks 4",
+    "Processing Item WEB 6875675878 56789 turkey sticks 5"
+  ]
+}
+```
+
 ## CloudWatch Notifications
 
 You can monitor the execution state of your state machines via CloudWatch Events. It allows you to be alerted when the status of your state machine changes to `ABORTED`, `FAILED`, `RUNNING`, `SUCCEEDED` or `TIMED_OUT`.
@@ -648,7 +806,7 @@ stepFunctions:
 ```
 
 
-## Clean UP
+## Clean Up
 
 This will un-deploy all the resources being used in AWS
 
