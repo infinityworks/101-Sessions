@@ -36,7 +36,7 @@ ln -s ~/code/101-Sessions/sessions/StepFunctions-100/102 102-step-functions
 
 Copy the contents of the file : see [./saved-steps/serverless-01-starter.yml](./saved-steps/serverless-01-starter.yml) over the `./serverless.yml` file.
 
-Now we setup deploy the step function:
+Now we deploy the step function:
 
 ```bash
 npm install
@@ -64,7 +64,7 @@ This runs the stepfunction synchronously
 
 ## Add APIs to Step Machine : iw102StarterMachine
 
-Next we are going to expose an API to allow Step Machines to be started / stoped / described.
+Next we are going to expose an API to allow Step Machines to be started / stopped / described.
 
 Copy the contents of the file : see [./saved-steps/serverless-02-api.yml](./saved-steps/serverless-02-api.yml) over the `./serverless.yml` file.
 
@@ -816,6 +816,22 @@ stepFunctions:
           - firehose: FIREHOSE_STREAM_ARN
           - stepFunctions: STATE_MACHINE_ARN
         FAILED:
+```
+
+We howwver will just use a simple `lambda` example - and use the same lambda for all notifictaions
+
+> Note the strange way we need to Refer to the name of the Lambda, this I looked up in the generated .serverless files
+
+```yml
+      notifications:
+        ABORTED: 
+          - lambda: !GetAtt MonitorLambdaFunction.Arn
+        FAILED:
+          - lambda: !GetAtt MonitorLambdaFunction.Arn
+        RUNNING:
+          - lambda: !GetAtt MonitorLambdaFunction.Arn
+        SUCCEEDED:
+          - lambda: !GetAtt MonitorLambdaFunction.Arn
 ```
 
 Copy the contents of the file : see [./saved-steps/serverless-07-notification.yml](./saved-steps/serverless-07-notification.yml) over the `./serverless.yml` file.
