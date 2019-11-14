@@ -11,6 +11,7 @@ You will need to setup the project by following the setup in the [101 README](..
 * Callback State Machine : iw102CallbackMachine
 * Dynamic parallel processing with Map : iw102MapMachine
 * Map Features : iw102MapMachine
+* CloudWatch Notifications : iw101NotificationMachine
 
 ### Location of this checked out code
 
@@ -459,6 +460,8 @@ aws stepfunctions send-task-failure --task-token $token --profile 101profile --r
 
 Now lets start another execution to test `FAILURES`
 
+> Note : Your `host` & `x-api-key` will be different - update it in the 3 places
+
 ```bash
 openssl s_client llb348ist9.execute-api.eu-west-1.amazonaws.com:443
 ```
@@ -777,9 +780,19 @@ So the final output is now
 }
 ```
 
-## CloudWatch Notifications
+## CloudWatch Notifications : iw101NotificationMachine
 
 You can monitor the execution state of your state machines via CloudWatch Events. It allows you to be alerted when the status of your state machine changes to `ABORTED`, `FAILED`, `RUNNING`, `SUCCEEDED` or `TIMED_OUT`.
+
+These notifications can be passed to a number of AWS Services
+
+* SNS
+* SQS
+* LAMBDA
+* KINESIS / FIREHOSE
+* STEP FUNCTIONS
+
+Here are some examples
 
 ```yml
 stepFunctions:
@@ -804,6 +817,47 @@ stepFunctions:
           - stepFunctions: STATE_MACHINE_ARN
         FAILED:
 ```
+
+Copy the contents of the file : see [./saved-steps/serverless-07-notification.yml](./saved-steps/serverless-07-notification.yml) over the `./serverless.yml` file.
+
+Then deploy
+
+```bash
+make deploy STAGE=dev
+```
+
+we should now lets start an execution
+
+```bash
+openssl s_client llb348ist9.execute-api.eu-west-1.amazonaws.com:443
+```
+
+Then paste in
+
+```bash
+GET /dev/action/start HTTP/1.1
+host: llb348ist9.execute-api.eu-west-1.amazonaws.com
+X-API-Key: s1HR9a43llolcatslikeiamdoingthat7YEIvns8
+connection: close
+
+```
+
+As each event gets fired, the `monitor lambda` will get called <https://eu-west-1.console.aws.amazon.com/lambda/home?region=eu-west-1#/functions/iw-102stepfunctions-dev-monitor>
+
+This lambda simply writes out to cloudwatch.
+
+```go
+// HandleRequest the method that recieves the step call
+func HandleRequest(ctx context.Context, cwEvent events.CloudWatchEvent) (string, error) {
+	fmt.Printf("Processing Item (logged to cloudwatch) %v ", string(cwEvent.Detail))
+	return fmt.Sprintf("Processing Item %v ", string(cwEvent.Detail)), nil
+}
+```
+
+If you view the `Monitoring` tab, and click `view logs in CloudWatch` and choose the latest Log Stream; you can see the lambda recieving the events.
+
+![Notification Log](./saved-steps/img/07-notification-log.png "Notification Log")
+
 
 
 ## Clean Up
