@@ -9,6 +9,7 @@ You will need to setup the project by following the setup in the [101 README](..
 * Add APIs to Step Machine : iw102StarterMachine
 * More secure API : iw102StarterMachine
 * Callback State Machine : iw102CallbackMachine
+* Dynamic parallel processing with Map : iw102MapMachine
 
 ### Location of this checked out code
 
@@ -485,6 +486,139 @@ aws stepfunctions send-task-heartbeat --task-token $token --profile 101profile -
 
 ![Callback Failure](./saved-steps/img/04-callback-failure.png "Callback Failure")
 
+## Dynamic parallel processing with Map : iw102MapMachine
+
+Assuming we have input that contains an Array of Items, then a Map is a great way to dynamically process each item in a step funtion.
+
+> Here we have a `Basket` containing an array of `Items`
+
+```json
+{
+  "customer": "54632976324324324",
+  "basket": {
+    "platform": "WEB",
+    "items": [
+      { "id": "12345", "name": "fish sticks", "quantity": 1 },
+      { "id": "23456", "name": "cheese sticks", "quantity": 2 },
+      { "id": "34567", "name": "squid sticks", "quantity": 3 },
+      { "id": "45678", "name": "llama sticks", "quantity": 4 },
+      { "id": "56789", "name": "turkey sticks", "quantity": 5 }
+    ]
+  }
+}
+```
+
+The `Type: Map` can be seen here, we pass in the `InputPath` to the items and then `ItemsPath`.
+
+There can be `multiple steps` within the Iterator, including cnaything that you can do in a step function however in this example we just have 1 step.
+
+```yml
+          ProcessBasket:
+            Type: Map
+            InputPath: "$.basket"
+            ItemsPath: "$.items"
+            Iterator:
+              StartAt: PrintItem
+              States:
+                PrintItem:
+                  Type: Task
+                  Resource:
+                    Fn::GetAtt: [printItem, Arn]
+                  End: true
+            ResultPath: "$.taskresult"
+            Next: SuccessState
+```
+
+Copy the contents of the file : see [./saved-steps/serverless-05-map.yml](./saved-steps/serverless-05-map.yml) over the `./serverless.yml` file.
+
+Then deploy
+
+```bash
+make deploy STAGE=dev
+```
+
+The `Map` type can be seen if you `Edit` the state machine <https://eu-west-1.console.aws.amazon.com/states/home?region=eu-west-1#/statemachines>
+
+![Map Machine](./saved-steps/img/05-map-machine.png "Map Machine")
+
+
+Great, lets start one, for simplicity lets do it in the `Web Console`, click `Start Execution` and add this payload:
+
+```json
+{
+  "customer": "54632976324324324",
+  "basket": {
+    "platform": "WEB",
+    "items": [
+      { "id": "12345", "name": "fish sticks", "quantity": 1 },
+      { "id": "23456", "name": "cheese sticks", "quantity": 2 },
+      { "id": "34567", "name": "squid sticks", "quantity": 3 },
+      { "id": "45678", "name": "llama sticks", "quantity": 4 },
+      { "id": "56789", "name": "turkey sticks", "quantity": 5 }
+    ]
+  }
+}
+```
+
+Here we can see each Lambda gets in input of each row
+
+```json
+{
+  "id": "45678",
+  "name": "llama sticks",
+  "quantity": 4
+}
+```
+
+![Map Item](./saved-steps/img/05-map-item.png "Map Item")
+
+and the output is a line of text `"Processing Item 45678 llama sticks 4"`
+
+These are added to the state in an array in `"taskresult": []`
+
+```json
+{
+  "customer": "54632976324324324",
+  "basket": {
+    "platform": "WEB",
+    "items": [
+      {
+        "id": "12345",
+        "name": "fish sticks",
+        "quantity": 1
+      },
+      {
+        "id": "23456",
+        "name": "cheese sticks",
+        "quantity": 2
+      },
+      {
+        "id": "34567",
+        "name": "squid sticks",
+        "quantity": 3
+      },
+      {
+        "id": "45678",
+        "name": "llama sticks",
+        "quantity": 4
+      },
+      {
+        "id": "56789",
+        "name": "turkey sticks",
+        "quantity": 5
+      }
+    ]
+  },
+  "taskresult": [
+    "Processing Item 12345 fish sticks 1",
+    "Processing Item 23456 cheese sticks 2",
+    "Processing Item 34567 squid sticks 3",
+    "Processing Item 45678 llama sticks 4",
+    "Processing Item 56789 turkey sticks 5"
+  ]
+}
+```
+
 ## CloudWatch Notifications
 
 You can monitor the execution state of your state machines via CloudWatch Events. It allows you to be alerted when the status of your state machine changes to `ABORTED`, `FAILED`, `RUNNING`, `SUCCEEDED` or `TIMED_OUT`.
@@ -521,3 +655,23 @@ This will un-deploy all the resources being used in AWS
 ```bash
 sls remove -STAGE=DEV
 ```
+
+## More Reading
+
+<https://github.com/awsdocs/aws-step-functions-developer-guide/blob/master/doc_source/connect-lambda.md>
+
+<https://docs.aws.amazon.com/step-functions/latest/dg/input-output-contextobject.html>
+
+<https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-wait-token>
+
+<http://wrschneider.github.io/2019/06/20/step-function-callbacks.html>
+
+<https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-map-state.html>
+
+<https://docs.aws.amazon.com/step-functions/latest/dg/sample-map-state.html>
+
+<https://docs.aws.amazon.com/lambda/latest/dg/go-programming-model-logging.html>
+
+<https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html>
+
+<https://serverless.com/plugins/serverless-step-functions/>
