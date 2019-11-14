@@ -8,6 +8,7 @@ You will need to setup the project by following the setup in the [101 README](..
 * First Step Machine : iw102StarterMachine
 * Add APIs to Step Machine : iw102StarterMachine
 * More secure API : iw102StarterMachine
+* Callback State Machine : iw102CallbackMachine
 
 ### Location of this checked out code
 
@@ -251,6 +252,238 @@ X-Amz-Cf-Id: 6N0AqES_u1GsNM4dzd5ZHITISEfqxCjX2qoVgCw6nwYTjnz5ZTZHiA==
 
 {"executionArn":"arn:aws:states:eu-west-1:386676700885:execution:Iw102StarterMachineStepFunctionsStateMachine-YBD4dm89PhcK:9c3d8aab-83bf-4542-8256-36c9f42b6b01","startDate":1.573573209347E9}closed
 ```
+
+## Callback State Machine : iw102CallbackMachine
+
+This step machine will stop, generate a wake-up token, and then wait for an external task to use the token to :
+
+* Send a `Success`
+* Send a `Failure`
+* Send a `Heartbeat`*
+
+> *if you don't set a `HeartbeatSeconds:` then the step function will wait for the whole year
+
+The Task is a special one that can be used to push a message with the token to any of the following services (see <https://github.com/awsdocs/aws-step-functions-developer-guide/blob/master/doc_source/concepts-service-integrations.md>)
+
+* AWS Lambda
+* AWS Batch
+* AWS ECS/Fargate
+* SNS
+* SQS
+* Step Functions!
+
+In this example we call a `Lambda` named `sendWait` to tell it the token to wake us up with.
+
+In a longer example we could Email or SMS this out to a customer as a one-use URL.
+
+```yml
+          SendWait:
+            Type: Task
+            Resource: "arn:aws:states:::lambda:invoke.waitForTaskToken"
+            HeartbeatSeconds: 60
+            Parameters:
+              FunctionName: iw-102stepfunctions-${opt:stage, self:provider.stage}-sendWait
+              Payload: 
+                message: "Please use this token to wake up this Step Function Execution"
+                token.$: "$$.Task.Token"
+            Catch:
+            - ErrorEquals:
+              - States.Timeout
+              Next : TimeoutState
+            - ErrorEquals:
+              - States.TaskFailed
+              Next : FailState
+            Next: SuccessState
+            ResultPath: "$.taskresult"
+```
+
+Lets deploy this out.
+
+Copy the contents of the file : see [./saved-steps/serverless-04-callback.yml](./saved-steps/serverless-04-callback.yml) over the `./serverless.yml` file.
+
+And deploy
+
+```bash
+make deploy STAGE=dev
+```
+
+You should see the new state machine <https://eu-west-1.console.aws.amazon.com/states/home?region=eu-west-1#/statemachines>
+
+> Note that the `GET` API call has moved to share the context with the `POST` API at `/action/start`
+
+![Callback](./saved-steps/img/04-callback-machine.png "Callback")
+
+Once one of these is waiting the result can be :
+
+* Success
+* Timeout
+* Failure
+
+We can now hit the API to start one of the executions
+
+```bash
+openssl s_client llb348ist9.execute-api.eu-west-1.amazonaws.com:443
+```
+
+Then paste in
+> Note you need to have 2 returns after the `close`
+
+```bash
+GET /dev/action/start HTTP/1.1
+host: llb348ist9.execute-api.eu-west-1.amazonaws.com
+X-API-Key: s1HR9a43llolcatslikeiamdoingthat7YEIvns8
+connection: close
+
+```
+
+An Execution should now be running, and if you look at the execution, you should see the Token getting passed to the Lambda
+
+![Callback Running](./saved-steps/img/04-callback-machine-running.png "Callback Running")
+
+If you see the `sendWait Lambda` <https://eu-west-1.console.aws.amazon.com/lambda/home?region=eu-west-1#/functions/iw-102stepfunctions-dev-sendWait?> it recieves the token and writes it to log (Cloudwatch)
+
+![Callback Lambda](./saved-steps/img/04-callback-lambda.png "Callback Lambda")
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+
+	"github.com/aws/aws-lambda-go/lambda"
+)
+
+// WaitEvent an event to make the token accessible
+type WaitEvent struct {
+	Token string `json:"token"`
+}
+
+// HandleRequest the method that recieves the step call
+func HandleRequest(ctx context.Context, waitEvent WaitEvent) (string, error) {
+	fmt.Printf("Waiting for token (logged to cloudwatch) %v", waitEvent.Token)
+	// This could email out this token as a URL to click on in an Email.
+	return fmt.Sprintf("Waiting for token %v", waitEvent.Token), nil
+}
+
+func main() {
+	lambda.Start(HandleRequest)
+}
+```
+
+You can click in the `Monitoring` tab in the Lambda and then click the `View logs in CloudWatch` button.
+
+If you pick the newest logstream, you can see the Lambda printing out the token.
+
+![Callback Log](./saved-steps/img/04-callback-cloudwatch.png "Callback Log")
+
+By now this execution will  have `timed out`, in our state machine this is caught and treated as a `SUCCESS`
+
+```yml
+            Catch:
+            - ErrorEquals:
+              - States.Timeout
+              Next : TimeoutState
+```
+
+![Callback Timeout](./saved-steps/img/04-callback-timeout.png "Callback Timeout")
+
+
+However `when the execution is waiting for a callback`, we can hit the AWS API with
+
+* send-task-success
+* send-task-failure
+* send-task-heartbeat
+
+First lets set our timeout to be `5 minutes`, to give ourselves more time to work
+
+```yaml
+          SendWait:
+            Type: Task
+            Resource: "arn:aws:states:::lambda:invoke.waitForTaskToken"
+            HeartbeatSeconds: 300
+            Parameters:
+```
+
+And re-deploy
+
+```bash
+make deploy STAGE=dev
+```
+
+Great, now lets start another execution
+
+```bash
+openssl s_client llb348ist9.execute-api.eu-west-1.amazonaws.com:443
+```
+
+Then paste in
+
+```bash
+GET /dev/action/start HTTP/1.1
+host: llb348ist9.execute-api.eu-west-1.amazonaws.com
+X-API-Key: s1HR9a43llolcatslikeiamdoingthat7YEIvns8
+connection: close
+
+```
+
+Ok we need to grab the `token` from either the `step machine execution` or the `lambda log`
+
+Then we export is as `${token}` variable in our shell
+
+```bash
+export token=AAAAKgAAAAIAAAAAAAAAAXH1adiaFSjaEB5xg48ruVvjRhI3yJ7Hxnitg8FAVFxDblKIDE6ql4ZsRru+zCDMGFCM5qHefmQXfK2m6lsqzuIU4EUa7iuqxuLYzyA2LBJTUlAClKFSXqbzmsdNP8uS8M1NMp1V82sp4VvigJ1iAA8m+36L1InskdR/vFGP1pSXn1vgO4EjlniCc9ATFQc3F+0rWi0/GCpQ8TK20+CitVv8uIPxccA/H3K5uk690bfBX0fOkf/ecIztIGXo0jhw/inEHrt7lenV0i1eYZX5OXQpqw/lPxW3KKDYNa3mOMBzd4GJwi7gWKvGiI4tr8inzDoSl7Arp4FfXvAjSuEM+qYUlu5VhmoWYUq0SG2Nsy+AzmZo/CD+O94LgutB/bH6Fiys3Jbk0aT8vQ8PAjm8DhmlXGNFyJJMX00p2kyK35CV+F932ViSE7vXXKz7PZsVqBdpUG+oDM1Ue4poSG6hBAT2I8EevcKddqbu921OhimYZLDGFTgq/ykvMpoyHMVwQBAVqzPuEGw2QCRGhUBU3YEj06tze8RR1p0fo4VcwLC+51P7n94XlonuqlKFxVVVtJJzw7hDbnAPm6qmc+NKG0AIIIwrAvc+Po2fqB9gqieNjI5DoGt43EXvI9UaeHL0s6AGCvXsHMe4QtM73O9ByEacMEYY5w6B7qk59ivte0Gv3VuwDjd1qkTg3WqjXnxLNg==
+```
+
+Now we can use the `awscli` to send the callback events
+
+This command sends a `heartbeat`, which will re-set the timeout back to `300 seconds`
+
+```bash
+aws stepfunctions send-task-heartbeat --task-token $token --profile 101profile --region eu-west-1
+```
+
+Ok lets make this execution `succeed`, and use this command
+
+```bash
+aws stepfunctions send-task-success --task-token $token --task-output '{"status": "success"}' --profile 101profile --region eu-west-1
+```
+
+![Callback Success](./saved-steps/img/04-callback-success.png "Callback Success")
+
+```bash
+aws stepfunctions send-task-failure --task-token $token --profile 101profile --region eu-west-1
+```
+
+Now lets start another execution to test `FAILURES`
+
+```bash
+openssl s_client llb348ist9.execute-api.eu-west-1.amazonaws.com:443
+```
+
+Then paste in
+
+```bash
+GET /dev/action/start HTTP/1.1
+host: llb348ist9.execute-api.eu-west-1.amazonaws.com
+X-API-Key: s1HR9a43llolcatslikeiamdoingthat7YEIvns8
+connection: close
+
+```
+
+Now we must get the `${token}` again and export it
+
+```bash
+export token=AAAAKgAAAAIAAAAAAAAAAXH1adiaFSjaEB5xg48ruVvjRhI3yJ7Hxnitg8FAVFxDblKIDE6ql4ZsRru+zCDMGFCM5qHefmQXfK2m6lsqzuIU4EUa7iuqxuLYzyA2LBJTUlAClKFSXqbzmsdNP8uS8M1NMp1V82sp4VvigJ1iAA8m+36L1InskdR/vFGP1pSXn1vgO4EjlniCc9ATFQc3F+0rWi0/GCpQ8TK20+CitVv8uIPxccA/H3K5uk690bfBX0fOkf/ecIztIGXo0jhw/inEHrt7lenV0i1eYZX5OXQpqw/lPxW3KKDYNa3mOMBzd4GJwi7gWKvGiI4tr8inzDoSl7Arp4FfXvAjSuEM+qYUlu5VhmoWYUq0SG2Nsy+AzmZo/CD+O94LgutB/bH6Fiys3Jbk0aT8vQ8PAjm8DhmlXGNFyJJMX00p2kyK35CV+F932ViSE7vXXKz7PZsVqBdpUG+oDM1Ue4poSG6hBAT2I8EevcKddqbu921OhimYZLDGFTgq/ykvMpoyHMVwQBAVqzPuEGw2QCRGhUBU3YEj06tze8RR1p0fo4VcwLC+51P7n94XlonuqlKFxVVVtJJzw7hDbnAPm6qmc+NKG0AIIIwrAvc+Po2fqB9gqieNjI5DoGt43EXvI9UaeHL0s6AGCvXsHMe4QtM73O9ByEacMEYY5w6B7qk59ivte0Gv3VuwDjd1qkTg3WqjXnxLNg==
+```
+
+And now we can force this one to `Fail`
+
+```bash
+aws stepfunctions send-task-heartbeat --task-token $token --profile 101profile --region eu-west-1
+```
+
+![Callback Failure](./saved-steps/img/04-callback-failure.png "Callback Failure")
 
 ## CloudWatch Notifications
 
