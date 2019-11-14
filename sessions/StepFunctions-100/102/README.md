@@ -32,6 +32,49 @@ cd ~/go/src/github.com
 ln -s ~/code/101-Sessions/sessions/StepFunctions-100/102 102-step-functions
 ```
 
+## Tooling
+
+Some examples in here require you to have the command line util `openssl`
+
+_Linux Install_
+
+```bash
+sudo apt install openssl
+```
+
+_Windows Install_
+
+<https://wiki.openssl.org/index.php/Binaries>
+
+
+_OSX Install_
+```bash
+brew update
+brew install openssl
+echo 'export PATH="/usr/local/opt/openssl/bin:$PATH"' >> ~/.bash_profile
+source ~/.bash_profile
+```
+
+We use this to make `HTTPS` requests out to `API GATEWAY`
+
+First we open the connection
+
+```bash
+openssl s_client google.com:443
+```
+
+Send a Request
+
+```bash
+GET / HTTP/1.1
+host: google.com
+connection: close
+
+```
+
+
+
+
 ## First Step Machine : iw102StarterMachine
 
 Copy the contents of the file : see [./saved-steps/serverless-01-starter.yml](./saved-steps/serverless-01-starter.yml) over the `./serverless.yml` file.
