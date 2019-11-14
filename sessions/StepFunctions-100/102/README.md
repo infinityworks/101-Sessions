@@ -861,7 +861,7 @@ stepFunctions:
         FAILED:
 ```
 
-We howwver will just use a simple `lambda` example - and use the same lambda for all notifictaions
+We however will just use a simple `lambda` example - and use the same lambda for all notifictaions
 
 > Note the strange way we need to Refer to the name of the Lambda, this I looked up in the generated .serverless files
 
