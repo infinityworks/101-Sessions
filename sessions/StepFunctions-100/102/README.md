@@ -137,6 +137,8 @@ stepFunctions:
       definition:
 ```
 
+![alt Platform](./saved-steps/img/02-platform.png "Platform")
+
 Run out the changes
 
 ```bash
