@@ -30,21 +30,6 @@ package:
    - ./bin/**
 
 functions:
-  hello:
-    handler: bin/hello
-    description: A Lambda that says hello
-    memorySize: 128
-    timeout: 2
-  sendWait:
-    handler: bin/sendWait
-    description: A Lambda that recieves the wait Token to share
-    memorySize: 128
-    timeout: 2
-  printItem:
-    handler: bin/printItem
-    description: A Lambda that prints each Item
-    memorySize: 128
-    timeout: 2
   processItem:
     handler: bin/processItem
     description: A Lambda that processes each Item
