@@ -499,10 +499,6 @@ aws stepfunctions send-task-success --task-token $token --task-output '{"status"
 
 ![Callback Success](./saved-steps/img/04-callback-success.png "Callback Success")
 
-```bash
-aws stepfunctions send-task-failure --task-token $token --profile 101profile --region eu-west-1
-```
-
 Now lets start another execution to test `FAILURES`
 
 > Note : Your `host` & `x-api-key` will be different - update it in the 3 places
@@ -530,7 +526,7 @@ export token=AAAAKgAAAAIAAAAAAAAAAXH1adiaFSjaEB5xg48ruVvjRhI3yJ7Hxnitg8FAVFxDblK
 And now we can force this one to `Fail`
 
 ```bash
-aws stepfunctions send-task-heartbeat --task-token $token --profile 101profile --region eu-west-1
+aws stepfunctions send-task-failure --task-token $token --profile 101profile --region eu-west-1
 ```
 
 ![Callback Failure](./saved-steps/img/04-callback-failure.png "Callback Failure")
