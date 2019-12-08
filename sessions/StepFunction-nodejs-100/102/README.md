@@ -11,7 +11,7 @@ You will need to setup the project by following the setup in the [101 README](..
 * Callback State Machine : iw102CallbackMachine
 * Dynamic parallel processing with Map : iw102MapMachine
 * Map Features : iw102MapMachine
-* CloudWatch Notifications : iw101NotificationMachine
+* CloudWatch Notifications : iw102NotificationMachine
 
 ## Running in Docker
 
