@@ -1,0 +1,46 @@
+service: iw-101-stepfunctions-nodejs 
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: dev
+  region: eu-west-1
+  profile: 101profile
+  versionFunctions: false
+
+plugins:
+  - serverless-step-functions
+
+stepFunctions:
+  stateMachines:
+    iw101ChoiceMachine:
+      definition:
+        Comment: "A sample step function to demonstrate choices"
+        StartAt: FirstState
+        States:
+          FirstState:
+            Type: Wait
+            Seconds: 5
+            Next: SecondState
+          SecondState:
+            Type: Choice
+            Choices:
+            - Variable: "$.inputNum"
+              NumericEquals: 1
+              Next: ThirdState
+            - Variable: "$.inputNum"
+              NumericGreaterThan: 5
+              Next: FourthState
+            Default: FifthState
+          ThirdState:
+            Type: Wait
+            Seconds: 10
+            End: true
+          FourthState:
+            Type: Wait
+            Seconds: 10
+            End: true
+          FifthState:
+            Type: Wait
+            Seconds: 10
+            End: true

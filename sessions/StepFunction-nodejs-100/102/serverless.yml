@@ -1,0 +1,9 @@
+service: iw-102-stepfunctions-nodejs 
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: dev
+  region: eu-west-1
+
+  # TODO: make some things

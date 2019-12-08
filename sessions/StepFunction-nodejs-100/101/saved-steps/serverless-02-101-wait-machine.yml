@@ -1,0 +1,31 @@
+service: iw-101-stepfunctions-nodejs 
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: dev
+  region: eu-west-1
+  profile: 101profile
+
+plugins:
+  - serverless-step-functions
+
+# functions:
+#   hello:
+#     handler: handler.hello
+
+stepFunctions:
+  stateMachines:
+    iw101WaitMachine:
+      definition:
+        Comment: "A sample step function using only wait states"
+        StartAt: FirstState
+        States:
+          FirstState:
+            Type: Wait
+            Seconds: 10
+            Next: SecondState
+          SecondState:
+            Type: Wait
+            Seconds: 5
+            End: true

@@ -1,0 +1,70 @@
+service: iw-102-stepfunctions-nodejs 
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: dev
+  region: eu-west-1
+  profile: 101profile
+  versionFunctions: false
+  apiKeys:
+    - ${opt:stage, self:provider.stage}-myFirstKey
+  usagePlan:
+    quota:
+      limit: 5000
+      offset: 2
+      period: MONTH
+    throttle:
+      burstLimit: 200
+      rateLimit: 100
+
+plugins:
+  - serverless-step-functions
+
+functions:
+  hello:
+    handler: hello.handler
+    description: A Lambda that says hello
+    memorySize: 128
+    timeout: 2
+
+stepFunctions:
+  stateMachines:
+    iw102StarterMachine:
+      events:
+        - http:
+            path: hello
+            method: GET
+            private: true
+        - http:
+            path: action/start
+            method: POST
+            private: true
+        - http:
+            path: action/status
+            method: POST
+            action: DescribeExecution
+            private: true
+        - http:
+            path: action/stop
+            method: POST
+            action: StopExecution
+            private: true
+      definition:
+        Comment: "A sample step function to say hello"
+        StartAt: FirstState
+        States:
+          FirstState:
+            Type: Wait
+            Seconds: 5
+            Next: SecondState
+          SecondState:
+            Type: Task
+            Resource:
+              Fn::GetAtt: [hello, Arn]
+            Next: ThirdState
+            ResultPath: "$.taskresult"
+          ThirdState:
+            Type: Wait
+            Seconds: 5
+            End: true

@@ -1,0 +1,90 @@
+service: iw-102-stepfunctions-nodejs 
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: dev
+  region: eu-west-1
+  profile: 101profile
+  versionFunctions: false
+  apiKeys:
+    - ${opt:stage, self:provider.stage}-myFirstKey
+  usagePlan:
+    quota:
+      limit: 5000
+      offset: 2
+      period: MONTH
+    throttle:
+      burstLimit: 200
+      rateLimit: 100
+
+plugins:
+  - serverless-step-functions
+
+functions:
+  sendWait:
+    handler: sendwait.handler
+    description: A Lambda that recieves the wait Token to share
+    memorySize: 128
+    timeout: 2
+
+stepFunctions:
+  stateMachines:
+    iw102CallbackMachine:
+      events:
+        - http:
+            path: action/start
+            method: GET
+            private: true
+        - http:
+            path: action/start
+            method: POST
+            private: true
+        - http:
+            path: action/status
+            method: POST
+            action: DescribeExecution
+            private: true
+        - http:
+            path: action/stop
+            method: POST
+            action: StopExecution
+            private: true
+
+      definition:
+        Comment: "A sample step function to wait for a callback"
+        StartAt: FirstState
+        States:
+
+          FirstState:
+            Type: Wait
+            Seconds: 5
+            Next: SendWait
+
+          SendWait:
+            Type: Task
+            Resource: "arn:aws:states:::lambda:invoke.waitForTaskToken"
+            HeartbeatSeconds: 60
+            Parameters:
+              FunctionName: iw-102-stepfunctions-nodejs-${opt:stage, self:provider.stage}-sendWait
+              Payload: 
+                message: "Please use this token to wake up this Step Function Execution"
+                token.$: "$$.Task.Token"
+            Catch:
+            - ErrorEquals:
+              - States.Timeout
+              Next : TimeoutState
+            - ErrorEquals:
+              - States.TaskFailed
+              Next : FailState
+            Next: SuccessState
+            ResultPath: "$.taskresult"
+
+          SuccessState:
+            Type: Succeed
+
+          TimeoutState:
+            Type: Succeed
+
+          FailState:
+            Type: Fail

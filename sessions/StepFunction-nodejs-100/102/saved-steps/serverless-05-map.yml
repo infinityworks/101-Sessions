@@ -1,0 +1,80 @@
+service: iw-102-stepfunctions-nodejs 
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: dev
+  region: eu-west-1
+  profile: 101profile
+  versionFunctions: false
+  apiKeys:
+    - ${opt:stage, self:provider.stage}-myFirstKey
+  usagePlan:
+    quota:
+      limit: 5000
+      offset: 2
+      period: MONTH
+    throttle:
+      burstLimit: 200
+      rateLimit: 100
+
+plugins:
+  - serverless-step-functions
+
+functions:
+  printItem:
+    handler: printitem.handler
+    description: A Lambda that prints each Item
+    memorySize: 128
+    timeout: 2
+
+stepFunctions:
+  stateMachines:
+    iw102MapMachine:
+      events:
+        - http:
+            path: action/start
+            method: GET
+            private: true
+        - http:
+            path: action/start
+            method: POST
+            private: true
+        - http:
+            path: action/status
+            method: POST
+            action: DescribeExecution
+            private: true
+        - http:
+            path: action/stop
+            method: POST
+            action: StopExecution
+            private: true
+
+      definition:
+        Comment: "A sample step function to demonstrate the Map type"
+        StartAt: FirstState
+        States:
+
+          FirstState:
+            Type: Wait
+            Seconds: 5
+            Next: ProcessBasket
+
+          ProcessBasket:
+            Type: Map
+            InputPath: "$.basket"
+            ItemsPath: "$.items"
+            Iterator:
+              StartAt: PrintItem
+              States:
+                PrintItem:
+                  Type: Task
+                  Resource:
+                    Fn::GetAtt: [printItem, Arn]
+                  End: true
+            ResultPath: "$.taskresult"
+            Next: SuccessState
+
+          SuccessState:
+            Type: Succeed

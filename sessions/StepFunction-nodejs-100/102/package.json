@@ -1,0 +1,15 @@
+{
+  "name": "101",
+  "version": "1.0.0",
+  "description": "This is the 101 on Step Functions, this course will introduce you to step functions and some of the features that make them so great.",
+  "main": "handler.js",
+  "dependencies": {},
+  "devDependencies": {
+    "serverless-step-functions": "^2.12.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

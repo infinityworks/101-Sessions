@@ -1,0 +1,14 @@
+service: iw-101-stepfunctions-nodejs 
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: dev
+  region: eu-west-1
+
+plugins:
+  - serverless-step-functions
+
+functions:
+  hello:
+    handler: handler.hello
