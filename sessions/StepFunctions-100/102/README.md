@@ -13,6 +13,25 @@ You will need to setup the project by following the setup in the [101 README](..
 * Map Features : iw102MapMachine
 * CloudWatch Notifications : iw101NotificationMachine
 
+## Running in Docker
+
+If you prefer docker there is a `Remote Container` configuarion in `.devcontainer`
+
+See <https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers>
+
+
+Plugin install
+
+```bash
+ext install ms-vscode-remote.remote-containers
+```
+
+Too us it
+
+```bash
+Remote-Containers: Open Folder in Container.
+```
+
 ### Location of this checked out code
 
 Because this is a go project, it must be checked out (or linked) within your go/src directory.
@@ -71,9 +90,6 @@ host: google.com
 connection: close
 
 ```
-
-
-
 
 ## First Step Machine : iw102StarterMachine
 

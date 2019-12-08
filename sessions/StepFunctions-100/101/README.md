@@ -21,6 +21,25 @@ The workflows have ability to retry failed Lambda steps, sleep, wait, and many o
 * Next Step Function : 101ParallelMachine
 * Next Step Function : 101ChoiceMachine
 
+## Running in Docker
+
+If you prefer docker there is a `Remote Container` configuarion in `.devcontainer`
+
+See <https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers>
+
+
+Plugin install
+
+```bash
+ext install ms-vscode-remote.remote-containers
+```
+
+Too us it
+
+```bash
+Remote-Containers: Open Folder in Container.
+```
+
 ## Setup software
 
 Check to see you have `GO`, `NPM` and `NODE` installed
