@@ -856,7 +856,7 @@ So the final output is now
 }
 ```
 
-## CloudWatch Notifications : iw101NotificationMachine
+## CloudWatch Notifications : iw102NotificationMachine
 
 You can monitor the execution state of your state machines via CloudWatch Events. It allows you to be alerted when the status of your state machine changes to `ABORTED`, `FAILED`, `RUNNING`, `SUCCEEDED` or `TIMED_OUT`.
 
