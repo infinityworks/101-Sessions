@@ -8,6 +8,12 @@ provider:
   profile: 101profile
   versionFunctions: false
 
+package:
+  exclude:
+    - node_modules/**
+    - saved-steps/**
+    - README.md
+
 plugins:
   - serverless-step-functions
 
