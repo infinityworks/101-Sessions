@@ -32,7 +32,7 @@ stepFunctions:
   stateMachines:
     iw101FlakeyMachine:
       definition:
-        Comment: "A sample step function to say hello"
+        Comment: "A sample step function that sometimes breaks"
         StartAt: FirstState
         States:
           FirstState:
