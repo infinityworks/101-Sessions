@@ -41,12 +41,12 @@ npm -v
 _Linux_
 
 ```bash
- sudo apt install nodejs
- ```
+sudo apt install nodejs
+```
 
- _macOS and Windows_
+_macOS and Windows_
 
- <https://nodejs.org/en/download/>
+<https://nodejs.org/en/download/>
 
 ### Install serverless
 
