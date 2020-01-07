@@ -181,7 +181,7 @@ and lets add `stage: dev` and `region: eu-west-1` to the provider section
 ```yaml
 provider:
   name: aws
-  runtime: nodejs8.10
+  runtime: nodejs12.x
   stage: dev
   region: eu-west-1
 ```
@@ -552,7 +552,7 @@ To fix this, we can disable version creation using `versionFunctions: false`
 ```yml
 provider:
   name: aws
-  runtime: nodejs8.10
+  runtime: nodejs12.x
   stage: dev
   region: eu-west-1
   profile: 101profile
