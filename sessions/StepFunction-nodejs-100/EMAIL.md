@@ -2,16 +2,11 @@
 
 Hi Everyone,
 
-In the interests of getting the most out of the 101 Step Functions noejs session, it would be great if you could do some preparation.
+In the interests of getting the most out of the 101 Step Functions nodejs session, it would be great if you could do some preparation.
 
 ## Setup software
 
 Check to see you have `NPM`, `NODE`, and `SERVERLESS` installed
-
-```bash
-go version
-go version go1.11.4 linux/amd64
-```
 
 ```bash
 node -v
@@ -22,21 +17,6 @@ v8.10.0
 npm -v
 6.8.0
 ```
-
-### Install Go
-
-Create a `go directory` in your home folder 
-
-* _OSX_ - /Users/steven/go
-* _Linux_ - /home/steven/go
-
-Download - https://golang.org/dl/
-
-Get GO in your `PATH` and set your `GOPATH`
-
-````bash
-export GOPATH=~/go
-````
 
 ### Install nodejs
 
