@@ -2,11 +2,17 @@ service: iw-102-stepfunctions-nodejs
 
 provider:
   name: aws
-  runtime: nodejs8.10
+  runtime: nodejs12.x
   stage: dev
   region: eu-west-1
   profile: 101profile
   versionFunctions: false
+
+package:
+  exclude:
+    - node_modules/**
+    - saved-steps/**
+    - README.md
 
 plugins:
   - serverless-step-functions
