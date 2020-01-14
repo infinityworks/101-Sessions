@@ -7,11 +7,11 @@ provider:
   region: eu-west-1
   profile: 101profile
 
-  package:
-    exclude:
-      - node_modules/**
-      - saved-steps/**
-      - README.md
+package:
+  exclude:
+    - node_modules/**
+    - saved-steps/**
+    - README.md
 
 plugins:
   - serverless-step-functions
