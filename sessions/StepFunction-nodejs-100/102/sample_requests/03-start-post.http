@@ -1,0 +1,10 @@
+@baseUrl = https://ziv58cfqj8.execute-api.eu-west-1.amazonaws.com
+@theKey = 5aD0dfji1K2Wj9Bi7GorI53eQNIXXXXXXXXX
+
+POST {{baseUrl}}/dev/action/start HTTP/1.1
+content-type: application/json
+X-API-Key: {{theKey}}
+
+{
+    "thekey":"thevalue"
+}
