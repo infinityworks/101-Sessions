@@ -222,7 +222,7 @@ A collection of `cloudformation` has been generated in `.serverless/*`
 So it's time to actually deploy this:
 
 ```bash
-sls deploy --verbose stage=dev
+sls deploy --verbose --stage=dev
 ```
 
 ### What happened?
@@ -297,7 +297,7 @@ functions:
 and deploy it
 
 ```bash
-sls deploy --verbose stage=dev
+sls deploy --verbose --stage=dev
 ```
 
 You can now see the new Lambda <https://eu-west-1.console.aws.amazon.com/lambda/home?region=eu-west-1#/functions/iw-101-stepfunctions-nodejs-dev-hello?tab=configuration>
@@ -429,7 +429,7 @@ Once it runs out of retries, the Catch is activated.  This leads is to a `Type :
 Lets deploy this to give it a go.
 
 ```bash
-sls deploy --verbose stage=dev
+sls deploy --verbose --stage=dev
 ```
 
 So that worked : lets test it with a few dummy events
@@ -528,7 +528,7 @@ export SLS_DEBUG=*
 And deploy it.
 
 ```bash
-sls deploy --verbose stage=dev
+sls deploy --verbose --stage=dev
 ```
 
 Now lets run one!
@@ -606,7 +606,7 @@ There is an `Array` of choice Rules that run in order, in this example we use `N
 Lets deploy it out
 
 ```bash
-sls deploy --verbose stage=dev
+sls deploy --verbose --stage=dev
 ```
 
 This is how it is rendered.

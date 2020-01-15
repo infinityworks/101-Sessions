@@ -72,6 +72,12 @@ connection: close
 
 ```
 
+>OSX users may need to adjust the `openssl` command to
+
+```bash
+openssl s_client -host google.com -port 443
+```
+
 ## First Step Machine : iw102StarterMachine
 
 Copy the contents of the file : see [./saved-steps/serverless-01-starter.yml](./saved-steps/serverless-01-starter.yml) over the `./serverless.yml` file.
@@ -80,7 +86,7 @@ Now we deploy the step function:
 
 ```bash
 npm install
-sls deploy --verbose stage=dev
+sls deploy --verbose --stage=dev
 ```
 
 > You can Invoke a step function from the CLI
@@ -141,7 +147,7 @@ stepFunctions:
 Run out the changes
 
 ```bash
-sls deploy --verbose stage=dev
+sls deploy --verbose --stage=dev
 ```
 
 We can see that api endpoints get created
@@ -238,7 +244,7 @@ Copy the contents of the file : see [./saved-steps/serverless-03-api-keys.yml](.
 And deploy
 
 ```bash
-sls deploy --verbose stage=dev
+sls deploy --verbose --stage=dev
 ```
 
 Now we can see that the output generates a key that is needed to call the service, this key is shown each time and only get generated once.
@@ -357,7 +363,7 @@ Copy the contents of the file : see [./saved-steps/serverless-04-callback.yml](.
 And deploy
 
 ```bash
-sls deploy --verbose stage=dev
+sls deploy --verbose --stage=dev
 ```
 
 You should see the new state machine <https://eu-west-1.console.aws.amazon.com/states/home?region=eu-west-1#/statemachines>
@@ -456,7 +462,7 @@ First lets set our timeout to be `5 minutes`, to give ourselves more time to wor
 And re-deploy
 
 ```bash
-sls deploy --verbose stage=dev
+sls deploy --verbose --stage=dev
 ```
 
 Great, now lets start another execution
@@ -579,7 +585,7 @@ Copy the contents of the file : see [./saved-steps/serverless-05-map.yml](./save
 Then deploy
 
 ```bash
-sls deploy --verbose stage=dev
+sls deploy --verbose --stage=dev
 ```
 
 The `Map` type can be seen if you `Edit` the state machine <https://eu-west-1.console.aws.amazon.com/states/home?region=eu-west-1#/statemachines>
@@ -750,7 +756,7 @@ Copy the contents of the file : see [./saved-steps/serverless-06-map.yml](./save
 Then deploy
 
 ```bash
-sls deploy --verbose stage=dev
+sls deploy --verbose --stage=dev
 ```
 
 Now lets start a `new execution` with a similar payload as the previous example we have added some data at the basket level `platform` and `ordernumber`
@@ -915,7 +921,7 @@ Copy the contents of the file : see [./saved-steps/serverless-07-notification.ym
 Then deploy
 
 ```bash
-sls deploy --verbose stage=dev
+sls deploy --verbose --stage=dev
 ```
 
 we should now lets start an execution
