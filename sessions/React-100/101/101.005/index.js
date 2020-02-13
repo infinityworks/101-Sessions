@@ -20,7 +20,7 @@ const AppContainer = styled.div`
     background-color: #eeeeee;
 `;
 
-const App = ({ name }) => {
+const App = () => {
   const [count, setCount] = useState(0); // Initial count of zero.
 
   // Functions to increment and decrement the count.
