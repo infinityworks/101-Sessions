@@ -6,26 +6,28 @@
   </head>
 
   <body>
-    <div id="put-hello-here-please"></div>
+    <div id="app"></div>
   </body>
 
   <script type="text/javascript">
-    class Hello extends React.Component {
-      render() {
-        return React.createElement('div', null, `Hello ${this.props.name}`);
-        // Using JSX:
-        // return (
-        //   <div>
-        //     Hello {this.props.name}
-        //   </div>
-        // );
-      }
-    }
 
+    function Hello (props) {
+      return React.createElement('div', null, `Hello ${props.name}`);
+    };
+
+    // Using JSX:
+    // function HelloWorld() {
+    //   return (
+    //     <div>
+    //       Hello {this.props.name}
+    //     </div>
+    //   );
+    // }
+    
     const element = React.createElement(Hello, {name: 'Mr Anderson'}, null);
     // Using JSX:
-    // const element = (<Hello name="Mr Anderson" />),
-    const target = document.getElementById('put-hello-here-please')
+    // const element = (<HelloWorld name="Mr Anderson" />),
+    const target = document.getElementById('app')
     ReactDOM.render(element, target)
   </script>
 
