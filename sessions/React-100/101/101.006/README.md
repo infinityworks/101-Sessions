@@ -13,3 +13,5 @@ Use Material UI instead of our own components as a base.
 * Update the app to use more Material components
   * See examples at https://material-ui.com/demos/app-bar/
 * Change the colours using the `MuiThemeProvider`
+
+https://material-ui.com/guides/migration-v0x/#where-should-i-start-in-a-migration

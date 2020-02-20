@@ -5,7 +5,7 @@ import Header from './components/header'
 import IncrementButton from './components/incrementButton'
 import CountDisplay from './components/countDisplay'
 
-const App = ({ name }) => {
+const App = () => {
   const [count, setCount] = useState(0); // Initial count of zero.
 
   // Function to increment the count.
