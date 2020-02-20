@@ -1,0 +1,23 @@
+{
+  "name": "101.008",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development parcel index.html"
+  },
+  "dependencies": {
+    "babel-preset-react-app": "^7.0.1",
+    "global": "^4.3.2",
+    "parcel": "^1.11.0",
+    "parcel-bundler": "^1.11.0",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3"
+  },
+  "devDependencies": {
+    "cross-env": "^5.2.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
