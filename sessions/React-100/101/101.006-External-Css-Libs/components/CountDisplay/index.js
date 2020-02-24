@@ -1,5 +1,7 @@
 import React from 'react';
 
-export default ({ count }) => (
+const CountDisplay = ({ count }) => (
   <div>Count: {count}</div>
-);
+)
+
+export default CountDisplay;

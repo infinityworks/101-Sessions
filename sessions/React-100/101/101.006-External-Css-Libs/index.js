@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Header from './components/header'
-import UpDownButton from './components/updownbutton'
-import CountDisplay from './components/countDisplay'
+import Header from './components/Header'
+import Button from './components/Button'
+import CountDisplay from './components/CountDisplay'
 
 const App = () => {
   const [count, setCount] = useState(0); // Initial count of zero.
@@ -13,13 +12,13 @@ const App = () => {
   const decrementer = () => setCount(count - 1);
 
   return (
-    <React.Fragment>
-      <CssBaseline />
+    <>
+    <h1>this</h1>
       <Header/>
       <CountDisplay count={count} />
-      <UpDownButton label="Up" action={incrementer} />
-      <UpDownButton label="Down" action={decrementer} />
-    </React.Fragment>
+      <Button label="Up" action={incrementer} />
+      <Button label="Down" action={decrementer} />
+    </>
   );
 };
 

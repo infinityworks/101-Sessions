@@ -1,5 +1,7 @@
 import React from 'react';
 
-export default ({ label, action }) => (
-  <Button onClick={action}>{label}</Button>
+const Button = ({ label, action }) => (
+  <input type="button" value={label} onClick={action}/>
 );
+
+export default Button;
