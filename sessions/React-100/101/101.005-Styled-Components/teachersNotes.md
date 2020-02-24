@@ -19,7 +19,10 @@
     * import { createGlobalStyle } from styled-compoents
     * use https://meyerweb.com/eric/tools/css/reset/ for css reset
     * import into index.js
-  * Resize margin on Header using styled(Header)``
+  * Add Title.js
+    * add css for size and weight
+    * import into Header
+    * use styled(Header) to add margin bottom
   * Theme
     * import { ThemeProvider }
     * <ThemeProvider theme={{ fontColor: 'red' }}></ThemeProvider>
