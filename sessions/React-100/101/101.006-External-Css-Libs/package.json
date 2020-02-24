@@ -1,0 +1,25 @@
+{
+  "name": "react-basic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development parcel index.html"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@material-ui/core": "^4.9.4",
+    "@types/react": "^16.8.6",
+    "babel-preset-react-app": "^7.0.1",
+    "global": "^4.3.2",
+    "parcel": "^1.11.0",
+    "parcel-bundler": "^1.11.0",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
+    "styled-components": ">= 4.X"
+  },
+  "devDependencies": {
+    "cross-env": "^5.2.0"
+  }
+}
