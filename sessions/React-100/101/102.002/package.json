@@ -33,6 +33,7 @@
     "babel-jest": "^24.4.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.10.0",
-    "jest": "^24.4.0"
+    "jest": "^24.4.0",
+    "prettier": "^2.0.5"
   }
 }
