@@ -6,6 +6,7 @@ import Header from "../components/header";
 import UpDownButton from "../components/updownbutton";
 import CountDisplay from "../components/countDisplay";
 import { increment, decrement } from "../actions/counter";
+import { getCount } from "../selectors/counter";
 
 const App = ({ count, incrementer, decrementer }) => (
   <React.Fragment>
@@ -17,9 +18,8 @@ const App = ({ count, incrementer, decrementer }) => (
   </React.Fragment>
 );
 
-// NEW.
 const mapStateToProps = (state) => ({
-  count: state.count
+  count: getCount(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
