@@ -19,9 +19,9 @@ const mapStateToProps = (state) => ({
   count: getCount(state)
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onIncrement: (amount = 1) => dispatch(increment(amount)),
-  onDecrement: (amount = 1) => dispatch(decrement(amount))
-});
+const mapDispatchToProps = {
+  onIncrement: increment,
+  onDecrement: decrement
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
