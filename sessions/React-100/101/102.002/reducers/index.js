@@ -1,8 +1,10 @@
+import { COUNTER_INCREMENT, COUNTER_DECREMENT } from "../actionTypes";
+
 const rootReducer = (state, action) => {
   switch (action.type) {
-    case "increment":
+    case COUNTER_INCREMENT:
       return { ...state, count: state.count + action.amount };
-    case "decrement":
+    case COUNTER_DECREMENT:
       return { ...state, count: state.count - action.amount };
   }
   return state;
