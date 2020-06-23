@@ -23,8 +23,10 @@
     "react-dom": "^16.3.0",
     "react-redux": "^6.0.1",
     "redux": "^4.0.1",
+    "redux-api-middleware": "^3.2.1",
     "redux-logger": "^3.0.6",
-    "styled-components": ">= 4.X"
+    "styled-components": ">= 4.X",
+    "yarn": "^1.22.4"
   },
   "devDependencies": {
     "@babel/core": "^7.3.4",

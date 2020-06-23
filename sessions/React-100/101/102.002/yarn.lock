@@ -6353,6 +6353,11 @@ realpath-native@^1.1.0:
     react-lifecycles-compat "^3.0.2"
     symbol-observable "^1.0.4"
 
+redux-api-middleware@^3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/redux-api-middleware/-/redux-api-middleware-3.2.1.tgz#979473ba2bfcf78b1fd50763fe7a4bbf0c252e6e"
+  integrity sha512-LgFm9RIxjEOL1T2lVjlfsdHh6BOaduDsmmUWi2TV0F3nKrOMSCWS7AUmzgmr/wNuFzENGUC5SqklYJDNCwmuoA==
+
 redux-logger@^3.0.6:
   version "3.0.6"
   resolved "https://registry.yarnpkg.com/redux-logger/-/redux-logger-3.0.6.tgz#f7555966f3098f3c88604c449cf0baf5778274bf"
@@ -7766,3 +7771,8 @@ yargs@^12.0.2:
     which-module "^2.0.0"
     y18n "^3.2.1 || ^4.0.0"
     yargs-parser "^11.1.1"
+
+yarn@^1.22.4:
+  version "1.22.4"
+  resolved "https://registry.yarnpkg.com/yarn/-/yarn-1.22.4.tgz#01c1197ca5b27f21edc8bc472cd4c8ce0e5a470e"
+  integrity sha512-oYM7hi/lIWm9bCoDMEWgffW8aiNZXCWeZ1/tGy0DWrN6vmzjCXIKu2Y21o8DYVBUtiktwKcNoxyGl/2iKLUNGA==
