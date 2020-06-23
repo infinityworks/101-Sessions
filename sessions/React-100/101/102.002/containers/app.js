@@ -5,6 +5,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { increment, decrement } from "../actions/counter";
 import { changeColor } from "../actions/colorPicker";
 import { getCount } from "../selectors/counter";
+import { getColor } from "../selectors/colorPicker";
 import Header from "../components/header";
 import Counter from "../components/counter";
 import ColorPicker from "../components/colorPicker";
@@ -20,7 +21,7 @@ const App = ({ count, onIncrement, onDecrement, color, onChangeColor }) => (
 
 const mapStateToProps = (state) => ({
   count: getCount(state),
-  color: state.color
+  color: getColor(state)
 });
 
 const mapDispatchToProps = {
