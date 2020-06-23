@@ -23,6 +23,7 @@
     "react-dom": "^16.3.0",
     "react-redux": "^6.0.1",
     "redux": "^4.0.1",
+    "redux-logger": "^3.0.6",
     "styled-components": ">= 4.X"
   },
   "devDependencies": {
