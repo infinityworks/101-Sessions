@@ -1,4 +1,4 @@
-# Snow Cannon 101 - Terraforming a Snowflake data warehouse
+# Snowflake 101 - Terraforming a Snowflake data warehouse
 
 ## Sessions
 
