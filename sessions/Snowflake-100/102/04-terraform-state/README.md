@@ -2,7 +2,7 @@
 
 To begin we must create a remote state bucket and lock table within an AWS account; this is referenced to keep track of all changes made by Terraform and ensures stateful deployments.
 
-The remote state bucket and lock table's name are comprised of your project name, this can be updated in `./aws/state_resources/s3/environment/dev/environment.tfvars`. Your AWS region can be updated in `./aws/state_resources/s3/variables.tf`
+The remote state bucket and lock table's name are comprised of your `project name`, this can be updated in `./aws/state_resources/s3/environment/dev/environment.tfvars`. Your AWS region can be updated in `./aws/state_resources/s3/variables.tf`
 
 **If you are using the IW AWS sandbox account, you must update the above file before planning and applying to ensure your resources are uniquely named; one suggestion is to include a hash or your initials in the project name**
 
@@ -15,7 +15,7 @@ In order to deploy the state bucket, navigate to `./aws/state_resources/s3/` and
     terraform apply tfplan
     rm -r .terraform && rm tfplan
 
-This will create a remote state bucket with the name `<your-project>-remote-state-<env>`. Next for the lock table, again changing the `environment.tfvars` variables and region, `./aws/state_resources/s3/variables.tf`:
+This will create a remote state bucket with the name `<your-project>-remote-state-<env>`. Next for the lock table, again changing the `environment.tfvars` variables and region, `./aws/state_resources/dynamoDB/variables.tf`:
 
     cd ../dynamoDB
     terraform init -backend=true -backend-config=environment/dev/backend-config.tfvars

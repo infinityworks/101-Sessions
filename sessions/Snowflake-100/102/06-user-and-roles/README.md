@@ -1,19 +1,19 @@
-## Users
-To create users navigate to `./Snowflake/rbac/users/` and create a new `.tf` file for each group of users, a recommended approach is to create one file per squad or business area.  Within this file use the provider resource `snowflake_user` and define the user's preferences:
+## Users [[provider docs](https://github.com/chanzuckerberg/terraform-provider-snowflake/blob/master/docs/resources/user.md)]
+To create users, navigate to `./Snowflake/rbac/users/` and create a new `.tf` file for each group of users, a recommended approach is to create one file per squad or business area.  Within this file use the provider resource `snowflake_user` and define the user's preferences:
 
-    resource "snowflake_user" "user_JohnSnow" {
-      name                 = "JohnSnow"
-      login_name           = "JohnSnow"
+    resource "snowflake_user" "user_DanielLaRusso" {
+      name                 = "DanielLaRusso"
+      login_name           = "DanielLaRusso"
       default_role         = "PUBLIC"
       password             = "replace"
       must_change_password = "true"
-      comment              = "Data consumer in the wall squad"
+      comment              = "Data consumer in the transport squad"
     }
 
 To grant the user a role we will reference the user's name from the above resource using Terraform outputs; create an output in `outputs.tf` with the following structure:
 
-    output "JohnSnow_name" {
-      value = snowflake_role.user_JohnSnow.name
+    output "DanielLaRusso_name" {
+      value = snowflake_role.user_DanielLaRusso.name
     }
 
 For now, leave the default role as `PUBLIC`, since the user block will not automatically grant said role.
@@ -23,7 +23,7 @@ The default password is currently "replace", this must be changed immediately af
 **Note:** Any plain text run through Terraform will be stored in the remote state and so a user's chosen password should not be included in Terraform and a generic one is provided; it is recommended to include the flag to force a user to change their password on first login. Feel free to change the sample password in the Terraform code to make things less generic (in a live system it is possible people may try and log in as new users if they know the generic password after user creation).
 
 
-The `main.tf` file configures Terraform including our snowflake region, account and role. These are to be updated in `./snowflake/rbac/users/variables.tf`. You can also see the required provider block which will download and install the provider on initialisation.
+The `main.tf` file configures Terraform including the snowflake region, account and role. These are to be updated in `./snowflake/rbac/users/variables.tf`. You can also see the required provider block which will download and install the provider on initialisation.
 
     terraform {
       required_version = ">= 0.13.2"
@@ -52,14 +52,14 @@ Once the variables have been updated, run:
 
 This pattern of initialisation, planning and deployment is repeated across each directory to create different resources.
 
-# Roles
+# Roles ([provider docs](https://github.com/chanzuckerberg/terraform-provider-snowflake/blob/master/docs/resources/role.md))
 Roles are created in a similar way to users in `./Snowflake/rbac/roles/`. Each role comes with a grant block which will grant the role created to users or other roles. It is recommended that one role is created per file to maintain separation and ease of organisation.
 
 To persist user changes, for example name or default roles, it is recommended to reference the user's `name` value from the remote state of the user file. This is achieved by the `data` block, `terraform_remote_state`.
 
 **WARNING:** As previously mentioned, grant statements will misbehave if instantiated multiple times to the same object. The provider appears to run a query to find where the grant statement has already been applied and finds the difference to the grant block you are running; this includes removing any granted permissions that were created in the console and not through code using this provider and remote state. It is recommended not to use the resource which grants AccountAdmin, when revoking or destroying it is possible to remove your own role access and lock yourself out.
 
-The role and permission block look like the following. It is here we can assign the role to a user or other roles.
+The role and permission block ([provider docs](https://github.com/chanzuckerberg/terraform-provider-snowflake/blob/master/docs/resources/role_grants.md))looks like the following. It is here we can assign the role to a user or other roles.
 
     resource "snowflake_role" "DATA_ANALYST" {
       name    = "DATA_ANALYST"
@@ -74,6 +74,7 @@ The role and permission block look like the following. It is here we can assign 
       ]
     }
 
+**Note:** If you are referencing the remote state, be sure to update the bucket and file key in `data.tf`.
 
 After any edits in `./Snowflake/rbac/roles/`, run:
 
