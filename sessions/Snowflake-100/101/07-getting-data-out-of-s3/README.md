@@ -47,7 +47,7 @@ Once the policy and role has been created, we require a snowflake resource calle
 
 ## Storage Integrations [[docs](https://docs.snowflake.com/en/sql-reference/sql/create-storage-integration.html)]
 
-A storage integration forms the bridge between Snowflake and your AWS account, and contains the authentication required to access resources like s3. This resource must be created by the ACCOUNTADMIN and any resources that depend on it must also be created by the ACCOUNTADMIN role.
+A storage integration forms the bridge between Snowflake and your AWS account, and contains the authentication required to access resources like s3. The integration must be created by the ACCOUNTADMIN and any resources that depend on it must also be created by the ACCOUNTADMIN role.
 
     USE ROLE ACCOUNTADMIN;
     create or replace storage integration S3_STORAGE_INTEGRATION
@@ -92,14 +92,13 @@ Return to the [Snowflake docs and follow Step 5](https://docs.snowflake.com/en/u
 
 ## External stage [[docs](https://docs.snowflake.com/en/user-guide/data-load-s3-create-stage.html#external-stages)]
 
-An external stage is required to "look" into the bucket, this depends on the account storage integration that we have just created. The stage must be created within a database and schema.
+An external stage is used to "look" into the bucket, this relies on the account storage integration that we have just created. The stage must be created within a database and schema.
 
     USE ROLE ACCOUNTADMIN;
     USE DATABASE RAW_DATA;
     USE SCHEMA SALES;
     create or replace stage S3_EXTERNAL_STAGE
         url='s3://<bucket-name>/'
-
         storage_integration = S3_STORAGE_INTEGRATION;
 
 ## Push local data to s3 with the AWS CLI

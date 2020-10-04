@@ -1,7 +1,7 @@
-# Installing the Snowsql CLI
-You'll need to [download Snowflake's CLI](https://docs.snowflake.com/en/user-guide/snowsql-install-config.html#installing-snowsql), snowsql.
+# Installing the SnowSQL CLI
+For the next sections you'll need [Snowflake's CLI](https://docs.snowflake.com/en/user-guide/snowsql-install-config.html#installing-snowsql), snowsql; download it from their website or use a package manager.
 
-If you're a Mac user and use the package manager Homebrew:
+If you're a Mac user and use Homebrew:
 
     brew cask install snowflake-snowsql
 
@@ -23,11 +23,11 @@ If you are using multiple Snowflake accounts or users, you can create additional
     username = YourUserName
     password = YourPassword
 
-Now you've configured your CLI profiles, enter the CLI using your default profile with:
+Now you've configured your CLI profiles, enter the CLI in the terminal using your default profile with:
 
     snowsql
 
-or to select another profile, for example with the name `connections.demo`
+or to select another profile, for example with the name `connections.demo`:
 
     snowsql -c demo
 

@@ -1,6 +1,6 @@
 # Creating resources
 
-You can either use worksheets in the GUI or execute SQL commands with the CLI tool snowsql,which we come on to later.
+You can either use worksheets in the GUI or execute SQL commands with the CLI tool SnowSQL, which we will come on to later.
 
 Try running:
 
@@ -29,7 +29,7 @@ List users:
 
     SHOW ROLES;
 
-Note: Objects are not case sensitive unless "quoted".
+**Note:** Objects are not case sensitive unless "quoted".
 
 ### Assigning a role to a user
 
@@ -54,10 +54,16 @@ To enable roles to access the database we must grant permissions:
 
 ## Create tables [[docs](https://docs.snowflake.com/en/sql-reference/sql/create-table.html)]
 
+The format to create tables is:
+
+    CREATE TABLE db_name.schame_name.table_name (col_1_name col_1_data_type, col_2_name col_1_data_type)
+
+We will consume JSON data and so choose the variant type which allows querying of semi-structured data.
+
     CREATE TABLE RAW_DATA.SALES.TRANSACTIONS (RAW_DATA VARIANT);
 
-The variant data type allows semi-structured data like JSON to be consumed and queried.
-
 ## File formats [[docs](https://docs.snowflake.com/en/sql-reference/sql/show-file-formats.html)]
+
+You can create custom file formats you wish to consume, it is worth noting for future table creation but for now we will use the defaults. File formats belong to a database and schema, you can retireve them using:
 
     SHOW FILE FORMATS

@@ -1,8 +1,8 @@
 # Automating data ingestion from s3 with snowpipes [[docs](https://docs.snowflake.com/en/sql-reference/sql/create-pipe.html)]
 
-A snowpipe is an event driven resource which automates data ingestion from cloud storage.
+A snowpipe is an event driven resource which automates data ingestion from cloud storage. When a pipe is created, Snowflake also creates and manages an SQS queue, which is configured for when a file lands in our s3 bucket - an event notification is published to this queue; the Snowpipe polls the queue for metadata to consume new files.
 
-To automate data consumption from s3 we will need the following: [[AWS docs](https://docs.snowflake.com/en/user-guide/data-load-snowpipe-auto-s3.html)]
+To automate data consumption from s3 [[docs](https://docs.snowflake.com/en/user-guide/data-load-snowpipe-auto-s3.html)], we will need the following:
 
 - Landing table
 - Account integration
@@ -10,10 +10,9 @@ To automate data consumption from s3 we will need the following: [[AWS docs](htt
 - Snowpipe
 - s3 bucket notification
 
-
 Since our stage and storage integration were created with the ACCOUNTADMIN role, we'll need to adopt that role to use them in pipe creation:
 
-    use role accountadmin;
+    use role ACCOUNTADMIN;
 
 Configure the database and schema:
 
@@ -33,7 +32,7 @@ Create the snowpipe:
         from @S3_EXTERNAL_STAGE
         file_format = (type = 'JSON');
 
-With the pipe now instantiated we must configure event notifications on the chosen s3 bucket. Grab the SQS ARN for the pipe, `notification_channel` from:
+With the pipe now instantiated we must configure an event notification on our chosen s3 bucket. Grab the Snowflake SQS ARN for the pipe, `notification_channel` from:
 
     DESC pipe S3_PIPE;
 
@@ -58,7 +57,7 @@ Here we can `add notification` to publish to Snowflake's SQS arn when a new file
 - `Add Queue ARN`
 - Save
 
-This should now have configured for all files landing into the bucket to be consumed by the pipe.
+This should now be configured for all files landing into the bucket to be consumed by the pipe.
 
 ![Bucket notification](./assets/bucket-notification.png "Bucket notification")
 

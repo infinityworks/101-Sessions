@@ -1,12 +1,14 @@
 # Snowpipe Module
 
-The Snowpipe module is a revolutionary approach to setting up automated data ingestion with Snowflake. We saw it took a long time to configure the table, IAM role, storage integration, IAM update, stage, pipe and bucket notification and if an integration is updated, as the external ID changes we have to tear down any resources that rely on it; the Terraform module can handle all the above and in it's simplest form deploy all the resources from two lines of code, the bucket name and key.
+The Snowpipe module is a revolutionary approach to setting up automated data ingestion with Snowflake. During the 101 we saw it took a long time to configure the table, IAM role, storage integration, IAM update, stage, pipe and bucket notification and if an integration is updated, as the external ID changes we have to tear down any resources that rely on it; the Terraform module can handle all the above and in it's simplest form deploy all the resources from two lines of code, the bucket name and key.
 
     module "test_pipe" {
       source         = "../../modules/snowpipe-module/"
       s3_bucket_name = "snow-cannon-data-lake-${lower(var.env)}"
       s3_path        = "key3"
     }
+
+The database, schema and other common variables have been set as defaults within the module, these can be changed within or included in the module block above.
 
 **Note:** to benefit from the decoupled nature of the pipes resources through using modules, we also create them in their own directory with their own remote state, that ensures they truly are decoupled.
 
@@ -51,7 +53,7 @@ The three sources are:
 
 - Transactions
 - Customer data
-- Prodcut data
+- Product data
 
 We have the template code needed for JSON data, all we need to do is customise it to ingest the transactions data. A suggestion is to define the keys in the s3 bucket by each data source.
 

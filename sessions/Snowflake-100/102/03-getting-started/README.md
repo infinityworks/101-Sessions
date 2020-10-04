@@ -6,7 +6,7 @@ You will need to clone the [Snow Cannon](https://github.com/infinityworks/snow-c
 
 The directory structure is split into AWS and Snowflake resources. Within AWS you will find templated code for creating an s3 bucket, Terraform state resources and a module for creating IAM roles; this module will be called by "Snowflake modules" when a resource requires an IAM role.
 
-The Snowflake directory is split by infrastructure and role based access control. All Snowflake modules, including creating integrations, stages and pipes, can be found in `snowflake/infra/modules` - these are later called from an appropriate directory, such as `snowflake/infra/stages`.
+The Snowflake directory is split by infrastructure and role based access control. All Snowflake modules, including creating integrations, stages and pipes, can be found in `snowflake/infra/modules` - these are later called from an appropriate directory where you want to create resources, such as `snowflake/infra/stages`.
 
 To begin we need to authenticate both SnowSQL and Terraform.
 

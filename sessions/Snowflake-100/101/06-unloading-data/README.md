@@ -16,7 +16,7 @@ Show which files have been prepared for unloading:
 
     list @my_unload_stage;
 
-Change to the snowsql CLI and run:
+Change to the SnowSQL CLI and run:
 
     get @my_unload_stage/unload/data_0_0_0.json file:///path/to/export/;
 

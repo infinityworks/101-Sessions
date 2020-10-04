@@ -10,6 +10,8 @@ Snowflake can query semi-structured data too:
 
     SELECT RAW_DATA:"basket" FROM "RAW_DATA"."SALES"."TRANSACTIONS"
 
+**Note:** `basket` is lowercase and so we must quote this key when querying.
+
 We can explode lists within each row to flatten the data for analysis [[docs](https://docs.snowflake.com/en/sql-reference/functions/flatten.html)]
 
     SELECT RAW_DATA:"customer_id" AS "customer_id",

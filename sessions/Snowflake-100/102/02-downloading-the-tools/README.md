@@ -2,7 +2,7 @@
 
 ## SnowSQL
 
-If you haven't already, [download Snowflake's CLI](https://docs.snowflake.com/en/user-guide/snowsql-install-config.html#installing-snowsql), snowsql.
+If you haven't already, [download Snowflake's CLI](https://docs.snowflake.com/en/user-guide/snowsql-install-config.html#installing-snowsql), SnowSQL.
 
 ## Terraform 0.13
 

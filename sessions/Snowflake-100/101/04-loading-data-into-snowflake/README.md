@@ -16,7 +16,7 @@ Next select the database and schemas we wish to load the data into.
     USE DATABASE RAW_DATA;
     USE SCHEMA SALES;
 
-Load the data into the named stage with the `PUT` command:
+Load the data into the table's stage with the `PUT` command:
 
     put file://path/to/file/*.json @%TRANSACTIONS SOURCE_COMPRESSION = AUTO_DETECT;
 
