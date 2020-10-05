@@ -1,5 +1,5 @@
 ## Users [[provider docs](https://github.com/chanzuckerberg/terraform-provider-snowflake/blob/master/docs/resources/user.md)]
-To create users, navigate to `./Snowflake/rbac/users/` and create a new `.tf` file for each group of users, a recommended approach is to create one file per squad or business area.  Within this file use the provider resource `snowflake_user` and define the user's preferences:
+To create users, navigate to `./snowflake/rbac/users/` and create a new `.tf` file for each group of users, a recommended approach is to create one file per squad or business area.  Within this file use the provider resource `snowflake_user` and define the user's preferences:
 
     resource "snowflake_user" "user_DanielLaRusso" {
       name                 = "DanielLaRusso"
