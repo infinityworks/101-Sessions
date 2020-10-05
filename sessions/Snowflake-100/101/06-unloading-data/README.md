@@ -1,4 +1,4 @@
-# Unloading data from Snowflake [docs](https://docs.snowflake.com/en/user-guide/data-unload-snowflake.html)]
+# Unloading data from Snowflake [[docs](https://docs.snowflake.com/en/user-guide/data-unload-snowflake.html)]
 
 A stage is needed to unload data locally.
 
