@@ -1,8 +1,16 @@
-# Snowflake 101 - Terraforming a Snowflake data warehouse
+# Snowflake 101 - Creating a data warehouse
+
+This 101 session can be guided or completed solo.
+
+The learning aims are to build a Snowflake data warehouse from scratch which can ingest data from a local source, or automatically from event driven S3 file creation, and unload / export data as `.csv` or `.json`.
+
+The 102 covers how to deploy Snowflake through code using Terraform.
+
+[See here for the Instructors guide](./sessions/Snowflake-100/INSTRUCTORS_GUIDE.md)
 
 ## Sessions
 
-### Snow Cannon-100
+### 100 Introduction
 
 - Overview and Trainer Introduction
 - [What is Snowflake](https://github.com/infinityworks/knowledge-base/blob/master/items/snowflake.md)
@@ -10,7 +18,7 @@
 - Noteworthy features of Snowflake
 - Snowflake tech partners
 
-### Snow Cannon-101
+### 101 Warehousing & Getting Data In / Out
 
 - Setting up a Snowflake account
 - Creating resources:
@@ -32,7 +40,7 @@
     - Landing data with Snowpipes
         - Pushing data from the CLI
 
-### Snow Cannon-102
+### 102 Deploying Snowflake With Terraform
 - Recap of 101
 - Programmatic deployments
     - How the UK's largest account does it
@@ -54,7 +62,7 @@
 - Zero to warehouse in 60 seconds
 - Automating data exports to s3
 
-### Snow Cannon-103
+### 103 Snowflake In An Event Driven Architecture
 - Recap of 102
 - End-to-end pipe creation for .csv files
 - Warehousing streaming data with AWS Kinesis Firehose

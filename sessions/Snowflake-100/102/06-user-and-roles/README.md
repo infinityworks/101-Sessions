@@ -15,7 +15,7 @@ For now, leave the default role as `PUBLIC`, since the user block will not autom
 To grant the user a role we will reference the user's name from the above resource using Terraform outputs; create an output in `outputs.tf` with the following structure:
 
     output "DanielLaRusso_name" {
-      value = snowflake_role.user_DanielLaRusso.name
+      value = snowflake_user.user_DanielLaRusso.name
     }
 
 The default password is currently "replace", this must be changed immediately after creation, by the user in the Snowflake console.
