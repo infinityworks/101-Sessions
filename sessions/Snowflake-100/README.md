@@ -6,14 +6,14 @@ The learning aims are to build a Snowflake data warehouse from scratch which can
 
 The 102 covers how to deploy Snowflake through code using Terraform.
 
-[See here for the Instructors guide](./sessions/Snowflake-100/INSTRUCTORS_GUIDE.md)
+[See here for the Instructors guide](https://github.com/infinityworks/101-Sessions/blob/master/sessions/Snowflake-100/INSTRUCTORS_GUIDE.md)
 
 ## Sessions
 
 ### 100 Introduction
 
 - Overview and Trainer Introduction
-- [What is Snowflake](https://github.com/infinityworks/knowledge-base/blob/master/items/snowflake.md)
+- [What is Snowflake](https://kb.infinityworks.com/snowflake/)
 - Why is it useful?
 - Noteworthy features of Snowflake
 - Snowflake tech partners
