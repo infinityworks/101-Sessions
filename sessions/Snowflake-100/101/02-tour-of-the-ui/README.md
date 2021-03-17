@@ -47,3 +47,5 @@ Provides an interface for submitting SQL queries, performing DDL and DML operati
 Allows you to view the details of all queries executed in the last 14 days in the Snowflake account.
 
 ## Account
+
+The account area allows you to manage/monitor billing and resource usage as well as create users and roles. This is only visible when you are using the `ACCOUNTADMIN` role.
