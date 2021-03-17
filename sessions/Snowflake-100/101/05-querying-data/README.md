@@ -1,6 +1,6 @@
 # Querying data
 
-Swap back to the console in browser to make use of the GUI's rendering.
+Swap back to a worksheet if you're not there already.
 
 The most basic query is to retrieve everything:
 
@@ -21,3 +21,12 @@ We can explode lists within each row to flatten the data for analysis [[docs](ht
 
     FROM "RAW_DATA"."SALES"."TRANSACTIONS" AS TRANSACTIONS,
         lateral flatten(input => TRANSACTIONS.RAW_DATA, path => 'basket') AS flattened_data  
+
+We can find insights like the most popular products sold:
+
+    SELECT flattened_data.VALUE:"product_id" AS "product_id",
+        sum(1) AS Frequency
+    FROM "RAW_DATA"."SALES"."TRANSACTIONS" AS TRANSACTIONS,
+        lateral flatten(input => TRANSACTIONS.RAW_DATA, path => 'basket') AS flattened_data
+    GROUP BY flattened_data.VALUE:"product_id"
+    ORDER BY Frequency DESC;
