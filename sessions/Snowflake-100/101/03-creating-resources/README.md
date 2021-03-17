@@ -76,9 +76,3 @@ The format to create tables is:
 We will consume JSON data and so choose the variant type which allows querying of semi-structured data.
 
 ```CREATE TABLE RAW_DATA.SALES.TRANSACTIONS (RAW_DATA VARIANT);```
-
-## File formats [[docs](https://docs.snowflake.com/en/sql-reference/sql/show-file-formats.html)]
-
-You can create custom file formats you wish to consume, it is worth noting for future table creation but for now we will use the defaults. File formats belong to a database and schema, you can retireve them using:
-
-```SHOW FILE FORMATS```
