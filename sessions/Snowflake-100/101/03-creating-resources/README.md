@@ -7,12 +7,13 @@ You can either use worksheets in the GUI or execute SQL commands with the CLI to
 
 A 'user' is user identity recognized by Snowflake, whether associated with a real person or program.
 
-Try running:
+In a new worksheet, try running:
 
 ```USE ROLE SECURITYADMIN;```
 
+This will change the role for your _current worksheet_ only.
 
-Now we have adopted the security admin role, we will create users and roles.
+Now we have adopted the security admin role, we can create users and roles.
 
 ```CREATE USER IF NOT EXISTS JohnnyLawrence password='superSecretPass' default_role = PUBLIC must_change_password = true;```
 
