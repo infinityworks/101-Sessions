@@ -1,28 +1,24 @@
-# Unloading data from Snowflake [[docs](https://docs.snowflake.com/en/user-guide/data-unload-snowflake.html)]
+# Downloading (unloading) data from Snowflake [[docs](https://docs.snowflake.com/en/user-guide-data-unload.html)]
 
-A stage is needed to unload data locally.
+Now you have some interesting insights you might want to share your findings with your team and stakeholders. If they don't have direct access to Snowflake, we'll need to export it into a common format.
 
-Use the following to create a stage which will allow us to unload the data using the CLI.
+There are a number of ways to export data (for non-technical people, being able to query a SQL data warehouse isn't much use); one could use the programmatic connectors (Python, Go, Node.js etc.), the SnowSQL CLI, Visualisation tools with native Snowflake support (AWS QuickSight, Tableau, Microsoft Power BI), or by using the `COPY INTO` command in the opposite direction to copy from Snowflake to S3 or other blob storage. The simplest method when doing ad-hoc development is to export via the web UI after running your query.
 
-    USE DATABASE RAW_DATA;
-    USE SCHEMA SALES;
-    create or replace stage my_unload_stage file_format = (TYPE='JSON' compression=none);
+## Exporting data from query results
 
-Copy a table's data into the stage:
+Let's start by querying the view we made:
 
-    copy into @my_unload_stage/unload/ from "RAW_DATA"."SALES"."TRANSACTIONS"
+```SELECT * FROM RAW_DATA.SALES.TOP_10_PRODUCTS;```
 
-Show which files have been prepared for unloading:
+Next, hit the download button.
 
-    list @my_unload_stage;
+![Download](./assets/unload.png "Download")
 
-Change to the SnowSQL CLI and run:
+You'll be presented with a few options to configure the delimiter (what separates the columns in the file) and file name. One of the most common file formats to consume is a `.csv`; this can be opened by a vast number of applications, including Microsoft Excel.
 
-    get @my_unload_stage/unload/data_0_0_0.json file:///path/to/export/;
+![Export options](./assets/export_options.png "Export options")
 
-## Unloading with a user stage
-You can copy directly into your own user stage bypassing the need to create one
 
-    copy into @~/unload/ from "RAW_DATA"."SALES"."TRANSACTIONS" file_format = (TYPE= 'JSON' compression = none);
+Congratulations, you've exported your data!
 
-    get @~/unload/data_0_0_0.json  file:///path/to/export/;
+![View export](./assets/view_export.png "Export View export")

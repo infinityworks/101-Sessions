@@ -5,3 +5,5 @@ sessions/Snowflake-100/NOTES.md
 node_modules
 .cache
 dist
+.DS_Store
+snowsql_rt*

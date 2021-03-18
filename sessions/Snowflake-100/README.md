@@ -2,7 +2,7 @@
 
 This 101 session can be guided or completed solo.
 
-The learning aims are to build a Snowflake data warehouse from scratch which can ingest data from a local source, or automatically from event driven S3 file creation, and unload / export data as `.csv` or `.json`.
+The learning aims are to build a Snowflake data warehouse from scratch which can ingest data from the local filesystem and AWS S3, and unload / export data as `.csv`.
 
 The 102 covers how to deploy Snowflake through code using Terraform.
 
@@ -21,24 +21,20 @@ The 102 covers how to deploy Snowflake through code using Terraform.
 ### 101 Warehousing & Getting Data In / Out
 
 - Setting up a Snowflake account
+- Snowflake UI Tour
 - Creating resources:
     - Users
     - Roles
     - Databases
     - Schemas
     - Tables
-        - Useful data types
-- Getting data into Snowflake
+        - Data types
+- Getting data in
 - Querying
-- Getting data out of Snowflake
-- Automating data ingestion from s3
-    - Account integrations: connecting Snowflake to AWS s3
-    - IAM Roles
-        - What is an IAM role
-        - Configuring the role
+- Getting data out
+- Ingesting data from a cloud provider
+    - Storage Integrations: connecting Snowflake to S3
     - Stages: Where the source data lives
-    - Landing data with Snowpipes
-        - Pushing data from the CLI
 
 ### 102 Deploying Snowflake With Terraform
 - Recap of 101
