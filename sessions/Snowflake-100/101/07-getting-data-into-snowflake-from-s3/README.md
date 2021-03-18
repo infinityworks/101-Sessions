@@ -1,6 +1,6 @@
 # Getting data into Snowflake from AWS S3
 
-A snowflake account can be connected to an external cloud account (AWS S3, Azure Blob Storageto consume data from or send data to.
+A snowflake account has in-built capabilities connected to an external cloud account (AWS S3, Azure Blob Storage, Google Cloud Storage) to consume data from or send data to.
 
 Unlike importing data directly into a table using the Data Import Wizard, we require a Stage. This stage will also need a supporting resource; a `storage integration` with the source bucket details and optionally, an authentication resource - in the case of AWS, an `IAM role` or `Access Key`/`Secret Access Key` pair.
 

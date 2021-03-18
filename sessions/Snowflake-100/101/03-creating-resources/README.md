@@ -67,15 +67,16 @@ USE DATABASE RAW_DATA;
 CREATE SCHEMA SALES;
 ```
 
-## Data Types [[docs](https://docs.snowflake.com/en/sql-reference/intro-summary-data-types.html)]
-
-Snowflake supports most of the standard data types (strings, numbers, booleans, dates) as well as the VARIANT data type for semi-structured data and the GEOGRAPHY data type for geospatial data: [docs](https://docs.snowflake.com/en/sql-reference/intro-summary-data-types.html)
 
 ## Create tables [[docs](https://docs.snowflake.com/en/sql-reference/sql/create-table.html)]
 
 The format to create tables is:
 
 ```CREATE TABLE db_name.schame_name.table_name (col_1_name col_1_data_type, col_2_name col_1_data_type)```
+
+### Data Types [[docs](https://docs.snowflake.com/en/sql-reference/intro-summary-data-types.html)]
+
+Snowflake supports most of the standard data types (strings, numbers, booleans, dates) as well as the VARIANT data type for semi-structured data and the GEOGRAPHY data type for geospatial data: [docs](https://docs.snowflake.com/en/sql-reference/intro-summary-data-types.html)
 
 
 We will consume JSON data and so choose a single column of the Snowflake's special VARIANT type which allows importing and querying of semi-structured data.

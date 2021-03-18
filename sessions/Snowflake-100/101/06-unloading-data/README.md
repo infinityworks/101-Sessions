@@ -1,14 +1,16 @@
 # Downloading data from Snowflake
 
-Now you have some interesting insights you wish to share with the team and your stake holders, we need to export it into a common format.
+Now you have some interesting insights you might want to share your findings with your team and stakeholders. If they don't have direct access to Snowflake, we'll need to export it into a common format.
 
-There are a number of ways to export data; one could use the programmatic connectors, the SnowSQL CLI but the simplest is to export via the web UI after running your query.
+There are a number of ways to export data (for non-technical people, being able to query a SQL data warehouse isn't much use); one could use the programmatic connectors (Python, Go, Node.js etc.), the SnowSQL CLI, Visualisation tools with native Snowflake support (AWS QuickSight, Tableau, Microsoft Power BI) or by using the `COPY INTO` command in the opposite direction to copy from Snowflake to S3 or other blob storage. The simplest method when doing ad-hoc development is to export via the web UI after running your query.
+
+## Exporting data from query results
 
 Let's start by querying the view we made:
 
-    SELECT * FROM "RAW_DATA"."SALES"."TOP_10_PRODUCTS";
+```SELECT * FROM RAW_DATA.SALES.TOP_10_PRODUCTS;```
 
-Next hit the download button.
+Next, hit the download button.
 
 ![Download](./assets/unload.png "Download")
 
@@ -17,6 +19,6 @@ You'll be presented with a few options to configure the delimiter (what separate
 ![Export options](./assets/export_options.png "Export options")
 
 
-Congratulations, you've exported your data!!
+Congratulations, you've exported your data!
 
 ![View export](./assets/view_export.png "Export View export")

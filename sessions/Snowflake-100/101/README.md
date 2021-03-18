@@ -1,6 +1,7 @@
 # 101 Snowflake up and running
 
 - Setting up a Snowflake account
+- Snowflake UI Tour
 - Creating resources:
     - Users
     - Roles
@@ -11,11 +12,6 @@
 - Getting data in
 - Querying
 - Getting data out
-- Automating data ingestion from s3
-    - Account integrations: connecting Snowflake to s3
-    - IAM Roles
-        - What is an IAM role
-        - Configuring the role
+- Ingesting data from a cloud provider
+    - Storage Integrations: connecting Snowflake to S3
     - Stages: Where the source data lives
-    - Landing data with Snowpipes
-        - Pushing data from the CLI

@@ -16,7 +16,6 @@ Areas:
 * History
 * Account
 
-
 ## Databases
 
 Shows information about the databases you have created or have privileges to access. You can create, clone, drop, or transfer ownership of databases as well as load data (limited) in the UI.
@@ -41,6 +40,12 @@ This is where you set up and manage compute resources (virtual warehouses) to lo
 ## Worksheets
 
 Provides an interface for submitting SQL queries, performing DDL and DML operations and viewing results as your queries/operations complete.
+
+Each worksheet has it's own "context" which defines which role, warehouse, database, and schema your queries will be run inside. This allows you to have multiple worksheets simultaneously with different config. This differs from the account context (top right) which determines which items appear in the top menu and what function you are allowed to run in the UI outside of the worksheet context.
+
+![Snowflake worksheets](./assets/snowflake_worksheet.png "Snowflake worksheets")
+
+Worksheets are saved automatically each time you change the content and will be persisted in your account until you explicily remove them.
 
 ## History
 
