@@ -27,7 +27,7 @@ SELECT
     RAW_DATA:"date_of_purchase" AS "date_of_purchase"
 FROM
     RAW_DATA.SALES.TRANSACTIONS AS TRANSACTIONS,
-    LATERAL FLATTEN(input = > TRANSACTIONS.RAW_DATA, path = > 'basket') AS flattened_data
+    LATERAL FLATTEN(input => TRANSACTIONS.RAW_DATA, path => 'basket') AS flattened_data;
 ```
 
 This query specifies the database and schema where the table lives; if you do not specify them you must set the context as seen previously with:

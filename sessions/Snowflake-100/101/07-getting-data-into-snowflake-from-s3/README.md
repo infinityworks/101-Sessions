@@ -2,27 +2,17 @@
 
 A snowflake account has in-built capabilities connected to an external cloud account (AWS S3, Azure Blob Storage, Google Cloud Storage) to consume data from or send data to.
 
-Unlike importing data directly into a table using the Data Import Wizard, we require a Stage. This stage will also need a supporting resource; a `storage integration` with the source bucket details and optionally, an authentication resource - in the case of AWS, an `IAM role` or `Access Key`/`Secret Access Key` pair.
+Unlike importing data directly into a table using the Data Import Wizard, we require a Stage. This stage will also need a supporting resource; a `Storage Integration` with the source bucket details and optionally, an authentication resource - in the case of AWS, an `IAM role` or `Access Key ID`/`Secret Access Key` pair.
 
 ## Storage Integrations [[docs](https://docs.snowflake.com/en/sql-reference/sql/create-storage-integration.html)]
 
 A storage integration forms the bridge between Snowflake and your AWS account, and contains the configuration required (storage provider, authentication etc.) to access resources like S3. The integration must be created by the ACCOUNTADMIN and any resources that depend on it must also be created by the ACCOUNTADMIN role.
 
-As we are accessing a public S3 bucket, we don't need to provide any authentication details. 
+As we are accessing a public S3 bucket, we don't need to provide any authentication details so we don't need to create a STORAGE INTEGRATION for this example.
 
-```
-USE ROLE ACCOUNTADMIN;
+You can see the details of Storage Integrations by running the following command:
 
-CREATE OR REPLACE STORAGE INTEGRATION TRANSACTIONS_STORAGE_INTEGRATION
-    TYPE = external_stage
-    STORAGE_PROVIDER = s3
-    ENABLED = true
-    STORAGE_ALLOWED_LOCATIONS = ('s3://generation-snowflake-day');
-```
-
-You can see the details of the Storage Integration by running the following command:
-
-```DESC INTEGRATION TRANSACTIONS_STORAGE_INTEGRATION```
+```DESC INTEGRATION <integration-name>```
 
 ![Storage Integration](./assets/storage-integration.png "Storage Integration")
 
@@ -35,9 +25,8 @@ USE ROLE ACCOUNTADMIN;
 USE DATABASE RAW_DATA;
 USE SCHEMA SALES;
 
-CREATE OR REPLACE TRANSACTIONS_EXTERNAL_STAGE
-    URL = 's3://generation-snowflake-day/'
-    STORAGE_INTEGRATION = TRANSACTIONS_STORAGE_INTEGRATION;
+CREATE OR REPLACE STAGE TRANSACTIONS_EXTERNAL_STAGE
+    URL = 's3://generation-snowflake-day/';
 ```
 
 # List the contents of the stage
@@ -60,8 +49,8 @@ We're now ready to load data into Snowflake. Instaed of using the Data Load Wiza
 COPY INTO 
     RAW_DATA.SALES.TRANSACTIONS
 FROM
-    @TRANSACTIONS_EXTERNAL_STAGE/transactions.json
-    FILE_FORMAT = (TYPE = 'JSON')
+    @TRANSACTIONS_EXTERNAL_STAGE/all_transactions.json
+    FILE_FORMAT = RAW_DATA.PUBLIC.TRANSACTIONS_JSON
     ON_ERROR = 'skip_file';
 ```
 

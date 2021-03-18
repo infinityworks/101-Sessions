@@ -65,7 +65,7 @@ Let's continue with the wizard.
 
 Our data is JSON so select the `Format Type` as JSON and enter the name as `TRANSACTIONS_JSON`. Click `Finish` once you have filled these two fields. This file format resource will be available in the PUBLIC schema of our database by default, and the default settings will detect if the file is compressed upon loading from the stage.
 
-Once you have created the `FILE _FORMAT` and clicked `Finish`, it should automatically populate the File Format box with your new Format. Click load to load the data into your `TRANSACTIONS` table.
+Once you have created the `FILE_FORMAT` and clicked `Finish`, it should automatically populate the File Format box with your new Format. Click load to load the data into your `TRANSACTIONS` table.
 
 ![Data loaded](./assets/loaded.png "Data loaded")
 

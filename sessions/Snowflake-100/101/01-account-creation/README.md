@@ -23,6 +23,8 @@ Once you have entered your details, you should recieve an email with a confirmat
 
 ![Activate account](./assets/activate_user.png "Activate account")
 
+When you click the activation link in your email, you should be shown a prompt to setup your first user.
+
 The user details you enter will be the default account admin, name this appropriately and after initial account set up and RBAC implementation, lock this user away for emergencies or infrequent access.
 
 You should enter the console and see the following:
