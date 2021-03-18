@@ -1,28 +1,22 @@
-# Unloading data from Snowflake [[docs](https://docs.snowflake.com/en/user-guide/data-unload-snowflake.html)]
+# Downloading data from Snowflake
 
-A stage is needed to unload data locally.
+Now you have some interesting insights you wish to share with the team and your stake holders, we need to export it into a common format.
 
-Use the following to create a stage which will allow us to unload the data using the CLI.
+There are a number of ways to export data; one could use the programmatic connectors, the SnowSQL CLI but the simplest is to export via the web UI after running your query.
 
-    USE DATABASE RAW_DATA;
-    USE SCHEMA SALES;
-    create or replace stage my_unload_stage file_format = (TYPE='JSON' compression=none);
+Let's start by querying the view we made:
 
-Copy a table's data into the stage:
+    SELECT * FROM "RAW_DATA"."SALES"."TOP_10_PRODUCTS";
 
-    copy into @my_unload_stage/unload/ from "RAW_DATA"."SALES"."TRANSACTIONS"
+Next hit the download button.
 
-Show which files have been prepared for unloading:
+![Download](./assets/unload.png "Download")
 
-    list @my_unload_stage;
+You'll be presented with a few options to configure the delimiter (what separates the columns in the file) and file name. One of the most common file formats to consume is a `.csv`; this can be opened by a vast number of applications, including Microsoft Excel.
 
-Change to the SnowSQL CLI and run:
+![Export options](./assets/export_options.png "Export options")
 
-    get @my_unload_stage/unload/data_0_0_0.json file:///path/to/export/;
 
-## Unloading with a user stage
-You can copy directly into your own user stage bypassing the need to create one
+Congratulations, you've exported your data!!
 
-    copy into @~/unload/ from "RAW_DATA"."SALES"."TRANSACTIONS" file_format = (TYPE= 'JSON' compression = none);
-
-    get @~/unload/data_0_0_0.json  file:///path/to/export/;
+![View export](./assets/view_export.png "Export View export")
