@@ -2,6 +2,10 @@
 
 You can either use worksheets in the GUI or execute SQL commands with the CLI tool SnowSQL, which we will come on to later.
 
+## Resources overview
+
+![Snowflake objects hierarchy](./assets/snowflake_objects_hierarchy.png "Snowflake objects hierarchy")
+
 
 ## Creating users [[docs](https://docs.snowflake.com/en/sql-reference/sql/create-user.html)]
 
