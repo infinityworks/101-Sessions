@@ -26,7 +26,7 @@ USE DATABASE RAW_DATA;
 USE SCHEMA SALES;
 
 CREATE OR REPLACE STAGE TRANSACTIONS_EXTERNAL_STAGE
-    URL = 's3://generation-snowflake-day/';
+    URL = 's3://snowflake-101/';
 ```
 
 # List the contents of the stage
