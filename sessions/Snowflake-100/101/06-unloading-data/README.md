@@ -8,7 +8,7 @@ There are a number of ways to export data (for non-technical people, being able 
 
 Let's start by querying the view we made:
 
-```SELECT * FROM RAW_DATA.SALES.TOP_10_PRODUCTS;```
+```SELECT * FROM RAW_DATA.SALES.TOP_10_VIEWED_PRODUCTS;```
 
 Next, hit the download button.
 
