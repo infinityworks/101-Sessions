@@ -9,7 +9,7 @@ To load data into the transactions table, we can use Snowflake's built-in table 
 
 ## Getting the data
 
-Sample transaction data has been provided in a public S3 bucket `generation-snowflake-day` based on shopping baskets for a supermarket.
+Sample transaction data has been provided in a public S3 bucket `snowflake-101` based on shopping baskets for a supermarket.
 
 
 ### Transactions files
