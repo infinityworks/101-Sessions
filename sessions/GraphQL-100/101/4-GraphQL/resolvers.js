@@ -81,7 +81,9 @@ const resolvers = {
       const { name, image, companyName } = args;
       const user = {
         id: users.length + 1,
-        name
+        name,
+        image,
+        company: companyName
       };
       users.push(user);
       return user;

@@ -26,9 +26,68 @@ in server.js
 
 `const server = new ApolloServer({ typeDefs, resolvers });`
 
+
+## Query the server
+
+Use the GraphQL Playground console to query the server
+
+http://localhost:4000/
+
+Return an array of users and include the id and name attributes
+```
+{
+  getUsers {
+    id name 
+  }
+}
+```
+
+```
+{
+  "data": {
+    "getUsers": [
+      {
+        "id": "1",
+        "name": "John"
+      },
+      {
+        "id": "2",
+        "name": "Mary"
+      },
+      {
+        "id": "3",
+        "name": "Matt"
+      }
+    ]
+  }
+}
+```
+
+
+Return an instace of a user
+```
+{
+  getUser(id:1) {
+    id image name 
+  }
+}
+```
+
+```
+{
+  "data": {
+    "getUser": {
+      "id": "1",
+      "image": "http://place-puppy.com/300x300",
+      "name": "John"
+    }
+  }
+}
+```
+
 ## Resolver type signature
 
-REsolvers receive arguments, the full resolver function signature contains four arguments:
+Resolvers receive arguments, the full resolver function signature contains four arguments:
 `parents, args, context, info`.
 
 - `parent` the object that contains the result returned from the resolver on the parent field.

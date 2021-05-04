@@ -28,4 +28,16 @@ More info: [GraphQL Tag](https://github.com/apollographql/graphql-tag)
 
 ## GraphQL Playground
 
-<TODO>
+Start the server using 
+
+```
+npm install
+npm start
+```
+
+Open the web console and review the schema and docs
+
+http://localhost:4000/
+
+Although our GraphQL server runs and we've defined our schema, no data will be returned
+when executing a query in the GraphQL playground.
