@@ -11,11 +11,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "apollo-link-ws": "^1.0.18",
-    "apollo-server": "^2.6.4",
-    "graphql": "^14.3.1",
-    "graphql-subscriptions": "^1.1.0",
-    "nodemon": "^1.19.1",
-    "subscriptions-transport-ws": "^0.9.16"
+    "apollo-link-ws": "^1.0.20",
+    "apollo-server": "^2.24.0",
+    "graphql": "^15.5.0",
+    "graphql-subscriptions": "^1.2.1",
+    "nodemon": "^2.0.7",
+    "subscriptions-transport-ws": "^0.9.18"
   }
 }
