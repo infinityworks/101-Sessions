@@ -57,7 +57,7 @@ Notice how our key is the same name of our subscription.
 
 ## Playground example
 
-Subscribe to `userCreated`
+Query tab 1: Subscribe to `userCreated`
 ```
 subscription {
   userCreated {
@@ -66,7 +66,7 @@ subscription {
 }
 ```
 
-Add new user (new query)
+Query tab 2: Add a new user
 ```
 mutation { 
   newUser(
@@ -80,7 +80,7 @@ mutation {
 }
 ```
 
-Subscription `userCreated` response
+Query tab 1: Observe `userCreated` subscription response
 ```
 {
   "data": {

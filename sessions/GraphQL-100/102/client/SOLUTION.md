@@ -35,7 +35,7 @@ Create an Order
 const CREATE_ORDER = gql`
   mutation($sku: Int!) { 
     createOrder(productSku: $sku) {
-      orderDate, product {name, inStock} 
+      id, orderDate, product {name, inStock} 
     }  
   }
 `;

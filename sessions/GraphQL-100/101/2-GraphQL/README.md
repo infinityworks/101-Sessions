@@ -64,7 +64,7 @@ Return an array of users and include the id and name attributes
 ```
 
 
-Return an instace of a user
+Return an instance of a user
 ```
 {
   getUser(id:1) {
