@@ -2,8 +2,6 @@ const products = require("./products.json");
 
 let orders = [];
 
-const pubSub = new PubSub();
-
 const resolvers = {
   Query: {
     getProduct: (parent, args) =>

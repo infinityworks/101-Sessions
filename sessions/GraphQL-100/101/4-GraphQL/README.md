@@ -41,3 +41,32 @@ Mutation: {
 
 The resolver will add a new user to our list of users and return the new user that has
 just been created.
+
+
+## Playground example
+
+```
+mutation { 
+  newUser(
+    name: "George", 
+    image: "https://example.com/image", 
+    companyName: "1"
+  ),
+  {
+    id, name, image
+  }
+}
+```
+
+
+```
+{
+  "data": {
+    "newUser": {
+      "id": "5",
+      "name": "George",
+      "image": "https://example.com/image"
+    }
+  }
+}
+```

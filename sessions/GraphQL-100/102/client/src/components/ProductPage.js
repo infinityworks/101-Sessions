@@ -27,7 +27,7 @@ const ProductPage = props => (
 
         return (
           <div className="product">
-            <img src={data.getProduct.image} width="160" height="160" />
+            <img src={data.getProduct.image} width="160" height="160" alt=""/>
             <p>
               <b>{data.getProduct.name}</b>
             </p>

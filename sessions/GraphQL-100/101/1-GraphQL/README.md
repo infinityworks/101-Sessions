@@ -26,6 +26,17 @@ Apollo that parses GraphQL query strings into the standard GraphQL Abstract Synt
 
 More info: [GraphQL Tag](https://github.com/apollographql/graphql-tag)
 
-## GraphQL Playground
+## Setup
 
-<TODO>
+Install dependencies and run server.js using 
+```
+npm install
+npm start
+```
+
+Open the GraphQL Playground to review the schema and docs
+
+http://localhost:4000/
+
+Although our GraphQL server runs and we've defined our schema, no data will be returned
+when executing a query.

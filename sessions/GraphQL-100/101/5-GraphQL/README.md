@@ -40,7 +40,9 @@ Now, implement your Subscriptions type resolver using the `pubsub.asyncIterator`
 const resolvers = {
   Subscription: {
     someAction: {
-      subscribe: () => pubsub.asyncIterator(<TOPIC>)
+      subscribe: () => pubsub.asyncIterator(<TOPIC>),
+
+
     }
   }
 }
@@ -51,3 +53,42 @@ In the Mutations we want to listen to changes for, add:
 `pubsub.publish(<TOPIC>, { someAction: args } )`
 
 Notice how our key is the same name of our subscription.
+
+
+## Playground example
+
+Query tab 1: Subscribe to `userCreated`
+```
+subscription {
+  userCreated {
+    id, name, image
+  }
+}
+```
+
+Query tab 2: Add a new user
+```
+mutation { 
+  newUser(
+    name: "George", 
+    image: "https://example.com/image", 
+    companyName: "1"
+  ),
+  {
+    id, name, image
+  }
+}
+```
+
+Query tab 1: Observe `userCreated` subscription response
+```
+{
+  "data": {
+    "userCreated": {
+      "id": "5",
+      "name": "George",
+      "image": "https://example.com/image"
+    }
+  }
+}
+```

@@ -85,13 +85,15 @@ const resolvers = {
       const { name, image, companyName } = args;
       const user = {
         id: users.length + 1,
-        name
+        name,
+        image,
+        company: companyName
       };
       users.push(user);
 
       // publish a message to the USER_ADDED channel object returns matches
       // the name of our subscription
-      pubSub.publish("USER_ADDED", { userCreated: args });
+      pubSub.publish("USER_ADDED", user );
 
       return user;
     }
@@ -101,7 +103,10 @@ const resolvers = {
   // on the USER_ADDED channel
   Subscription: {
     userCreated: {
-      subscribe: () => pubSub.asyncIterator(["USER_ADDED"])
+      subscribe: () => pubSub.asyncIterator(["USER_ADDED"]),
+      resolve: payload => {
+        return payload
+      }
     }
   },
 
