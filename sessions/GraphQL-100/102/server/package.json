@@ -12,7 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "apollo-link-ws": "^1.0.20",
-    "apollo-server": "^2.24.0",
+    "apollo-server": "^2.14.2",
     "graphql": "^15.5.0",
     "graphql-subscriptions": "^1.2.1",
     "nodemon": "^2.0.7",
