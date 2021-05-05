@@ -40,3 +40,17 @@ const CREATE_ORDER = gql`
   }
 `;
 ```
+
+
+## OrdersPage.js
+
+Retrieve orders array
+```
+const GET_ORDERS = gql`
+  query {
+    getOrders {
+	    id, orderDate, product {name}
+    }
+  }
+`;
+```
