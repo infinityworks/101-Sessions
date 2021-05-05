@@ -16,7 +16,7 @@ const ProductList = () => (
       return data.getProducts.map(({ name, image, price, sku }, index) => (
         <div className="product" key={index}>
           <Link to={`/product/${sku}`}>
-            <img src={image} width="160" height="160" />
+            <img src={image} width="160" height="160" alt=""/>
             <p>
               <b>{name}</b>
             </p>

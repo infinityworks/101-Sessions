@@ -1,5 +1,5 @@
 import React from "react";
-import { Query, Subscription } from "react-apollo";
+import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
 import moment from "moment";
 
@@ -17,7 +17,7 @@ const OrdersPage = props => (
     <Query query={GET_ORDERS}>
       {({ loading, error, data }) => {
         if (loading) return <p>Loading...</p>;
-        if (error) return <p>Oops something went wrong 😵</p>;
+        if (error) return <p>Oops something went wrong</p>;
         console.log(data.getOrders);
         return data.getOrders.map(order => (
           <div key={order.id} className="orderRow">
