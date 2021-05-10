@@ -10,8 +10,10 @@
     - Tables
         - Data types
 - Getting data in
-- Querying
+    - File formats
+- Querying data
+    - Creating views
 - Getting data out
 - Ingesting data from a cloud provider
-    - Storage Integrations: connecting Snowflake to S3
+    - Storage Integrations: connecting Snowflake to cloud accounts
     - Stages: Where the source data lives

@@ -1,10 +1,11 @@
-# Automating data ingestion from s3 with snowpipes [[docs](https://docs.snowflake.com/en/sql-reference/sql/create-pipe.html)]
+# Automating data ingestion from S3 with snowpipes [[docs](https://docs.snowflake.com/en/sql-reference/sql/create-pipe.html)]
 
-A snowpipe is an event driven resource which automates data ingestion from cloud storage. When a pipe is created, Snowflake also creates and manages an SQS queue, which is configured for when a file lands in our s3 bucket - an event notification is published to this queue; the Snowpipe polls the queue for metadata to consume new files.
+A snowpipe is an event driven resource which automates data ingestion from cloud storage. When a pipe is created, Snowflake also creates and manages an SQS resource, which is configured for when a file lands in our s3 bucket - an event notification is published to this queue; the snowpipe polls the queue for metadata to consume new files.
 
 To automate data consumption from s3 [[docs](https://docs.snowflake.com/en/user-guide/data-load-snowpipe-auto-s3.html)], we will need the following:
 
 - Landing table
+- IAM role
 - Account integration
 - External Stage
 - Snowpipe
@@ -39,10 +40,9 @@ With the pipe now instantiated we must configure an event notification on our ch
 ![Snowpipes](./assets/snowpipes.png "Snowpipes")
 
 
-You may want to drop and recreate the data table before we push data so it is clearer when something lands:
+Truncate the table before our data load:
 
-    DROP TABLE "RAW_DATA"."SALES".TRANSACTIONS ;
-    CREATE TABLE "RAW_DATA"."SALES".TRANSACTIONS (RAW_DATA VARIANT);
+    TRUNCATE TABLE RAW_DATA.SALES.TRANSACTIONS;
 
 Return to the AWS console and enter the settings of your s3 bucket and select `Events`:
 
@@ -64,9 +64,15 @@ This should now be configured for all files landing into the bucket to be consum
 
 ## Pipe status
 
-We can test the system by using the AWS CLI to push data into S3 and watch it be consumed in Snowflake. Similarly to testing the stage, run:
+We can test the system by using the AWS CLI to push data into S3 and watch it be consumed in Snowflake. This time, we will load individual json files, rather than an aggregate file.
 
-    aws s3 cp /path/to/file/transactions.json s3://<bucket-name>/transactions.json
+To aquire this, use the AWS CLI; note you will need a valid AWS session.
+
+    aws s3 cp --recursive s3://snowflake-101/transactions/ transactions/   
+
+To push this to your bucket:
+
+    aws s3 cp --recursive transactions/ s3://<bucket-name>/transactions/
 
 The pipe takes 5-10s to pick up the notification and we can see how many files are queued for ingestion using:
 

@@ -10,7 +10,7 @@ To create users, navigate to `./snowflake/rbac/users/` and create a new `.tf` fi
       comment              = "Data consumer in the transport squad"
     }
 
-For now, leave the default role as `PUBLIC`, since the user block will not automatically grant said role.
+For now, leave the default role as `PUBLIC`, since the user resource will not automatically grant said role.
 
 To grant the user a role we will reference the user's name from the above resource using Terraform outputs; create an output in `outputs.tf` with the following structure:
 
@@ -20,35 +20,14 @@ To grant the user a role we will reference the user's name from the above resour
 
 The default password is currently "replace", this must be changed immediately after creation, by the user in the Snowflake console.
 
-**Note:** Any plain text run through Terraform will be stored in the remote state and so a user's chosen password should not be included in Terraform and a generic one is provided; it is recommended to include the flag to force a user to change their password on first login. Feel free to change the sample password in the Terraform code to make things less generic (in a live system it is possible people may try and log in as new users if they know the generic password after user creation).
-
-
-The `main.tf` file configures Terraform - including the snowflake region, account and role. These are to be updated in `./snowflake/rbac/users/variables.tf`. You can also see the required provider block which will download and install the provider on initialisation.
-
-    terraform {
-      required_version = ">= 0.13.2"
-      backend "s3" {}
-      required_providers {
-        snowflake = {
-          source  = "chanzuckerberg/snowflake"
-          version = "0.15.0"
-        }
-      }
-    }
-
-    provider "snowflake" {
-      account = var.snowflake_account
-      region  = var.snowflake_region
-      role    = "SECURITYADMIN"
-    }
-
+**Note:** Any plain text run through Terraform will be stored in the remote state and so a user's chosen password should not be included in Terraform and a generic one is provided; it is recommended to include the flag to force a user to change their password on first login. Though in later versions of Terraform the flag `sensitive = true` resolves this, it's best not to commit passwords either way. Feel free to change the sample password in the Terraform code to make things less generic (in a live system it is possible people may try and log in as new users if they know the generic password after user creation).
 
 Once the variables have been updated, run:
 
-    terraform init -backend=true -backend-config=environment/dev/backend-config.tfvars
-    terraform plan -var-file=environment/dev/environment.tfvars -out=tfplan
-    terraform apply tfplan
-    rm -r .terraform && rm tfplan
+    terraform init
+    terraform workspace new dev || terraform workspace select dev
+    terraform plan
+    terraform apply
 
 This pattern of initialisation, planning and deployment is repeated across each directory to create different resources.
 
@@ -78,7 +57,6 @@ The role and permission block ([provider docs](https://github.com/chanzuckerberg
 
 After any edits in `./Snowflake/rbac/roles/`, run:
 
-    terraform init -backend=true -backend-config=environment/dev/backend-config.tfvars
-    terraform plan -var-file=environment/dev/environment.tfvars -out=tfplan
-    terraform apply tfplan
-    rm -r .terraform && rm tfplan
+    terraform init && terraform workspace new dev || terraform workspace select dev
+    terraform plan
+    terraform apply

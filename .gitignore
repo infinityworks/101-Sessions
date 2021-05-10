@@ -7,3 +7,5 @@ node_modules
 dist
 .DS_Store
 snowsql_rt*
+all_transactions.json
+transactions/
