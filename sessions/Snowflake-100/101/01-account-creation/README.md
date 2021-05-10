@@ -7,7 +7,11 @@ Open a browser and navigate to the [Snowflake homepage](https://www.snowflake.co
 
 You'll need to enter the following details to set up a Snowflake account.
 
-- Name, Email address, Title, Company, Country
+- Name
+- Email address
+- Title
+- Company
+- Country
 
 Account type:
 - Snowflake edition (tier): Snowflake offers multiple tiers depending on the features you require `Recommended: Enterprise for multi-cluster compute and other features`
@@ -19,7 +23,7 @@ Account type:
 
 ## Activate your account
 
-Once you have entered your details, you should recieve an email with a confirmation link to access your account.
+Once you have entered your details, you should receive an email with a confirmation link to access your account.
 
 ![Activate account](./assets/activate_user.png "Activate account")
 

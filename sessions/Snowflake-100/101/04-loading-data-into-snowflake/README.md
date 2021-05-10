@@ -11,7 +11,6 @@ To load data into the transactions table, we can use Snowflake's built-in table 
 
 Sample transaction data has been provided in a public S3 bucket `snowflake-101` based on shopping baskets for a supermarket.
 
-
 ### Transactions files
 
 To download the files, you have a couple of options:
@@ -22,7 +21,7 @@ Visit https://snowflake-101.s3.eu-west-2.amazonaws.com/all_transactions.json and
 
 In your terminal using `curl`:
 
-```curl https://snowflake-101.s3.eu-west-2.amazonaws.com/all_transactions.json```
+    curl https://snowflake-101.s3.eu-west-2.amazonaws.com/all_transactions.json >> all_transactions.json
 
 ## Loading data via the console UI
 
@@ -57,7 +56,7 @@ At this point you must create a `FILE FORMAT` which defines your data; we can cr
 
 ## File formats [[docs](https://docs.snowflake.com/en/sql-reference/sql/show-file-formats.html)]
 
-File formats are used to define custom data structures, whether that be unstructured JSON or relational CSV data; they instruct Snowflake how to read and handle the data you wish to upload. File formats belong to a database and schema. A file format can receive instructions including if the file is compressed or not, the encoding, whether the CSV file has a header row (column names), and how Snowflake handles errors when it recieves bad data.
+File formats are used to define custom data structures, whether that be unstructured JSON or relational CSV data; they instruct Snowflake how to read and handle the data you wish to upload. File formats belong to a database and schema. A file format can receive instructions including if the file is compressed or not, the encoding, whether the CSV file has a header row (column names), and how Snowflake handles errors when it receives bad data.
 
 Let's continue with the wizard.
 
@@ -75,4 +74,4 @@ You can now navigate back to a worksheet and run queries on the data.
 
 To retrieve all existing file formats run:
 
-```SHOW FILE FORMATS;```
+    SHOW FILE FORMATS;

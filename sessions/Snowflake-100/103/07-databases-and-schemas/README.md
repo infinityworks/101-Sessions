@@ -17,8 +17,11 @@ Schemas should be separated by directory for each database created:
 
 Roles will also need to be granted access to schemas with the [grant block](https://github.com/chanzuckerberg/terraform-provider-snowflake/blob/master/docs/resources/schema_grant.md).
 
-Navigate to `snowflake/infra/databases/`, update the variables and environments.tfvars files, init, plan and apply. This will error, can you figure out why?
+Navigate to `snowflake/infra/databases/`, update any naming you wish and run the terraform.
 
-Hint: pay attention to the filenames which already exist.
+    terraform init
+    terraform workspace new dev || terraform workspace select dev
+    terraform plan
+    terraform apply
 
-Copy an existing file which contains a database resource and its grants, modify it and try deploying it, giving access to the role you created.
+Following this we can build schemas in `snowflake/infra/schemas/`

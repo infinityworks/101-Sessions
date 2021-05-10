@@ -10,7 +10,11 @@ Some resources are dependent on others already existing, for example schemas bel
 1. Pipes
 1. Tasks
 
-Each directory containing a resource has an associated `main.tf` file which declares the provider; this provider includes the Snowflake account name, region and role which is adopted to create, modify and destroy infra. You must ensure you can adopt the appropriate roles required by Snowflake. With an infra as code approach, this project is designed to be deployed across multiple environments using separate accounts; the separation is controlled through configuration with `environment.tfvars` files (though it is possible to deploy `n` environments in a single account by appending resource names with the env).
+Each deployment directory contains files declaring the Terraform providers, the back-end for the associated remote state and any variables which need to be passed. The providers include account information pointing to your AWS and Snowflake accounts; this includes account name, region and role which are adopted to create, modify and destroy infra. You must ensure you can adopt the appropriate roles required by Snowflake.
+
+These details can be set in the [terraform-config/providers.tf](https://github.com/infinityworks/snow-cannon/tree/master/terraform-config/providers.tf).
+
+With an infra as code approach, this project is designed to be deployed across multiple environments using separate accounts; the separation is controlled through loading the config using terraform workspaces and the map in the `terraform-config/providers.tf` file.
 
 ## Modules
 Modules are a key element of what makes this project successful, particularly for automating data ingestion from cloud storage. Modules simplify the work flow and reduce maintenance of groups of resources that depend on each other. For example, the pipes-module will dynamically create the supporting infrastructure of a landing table, account integration, AWS iam role, external stage and the pipe itself, as a one-to-one relationship. Each data flow is decoupled and independent from one another.
