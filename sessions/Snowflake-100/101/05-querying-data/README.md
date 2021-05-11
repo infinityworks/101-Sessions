@@ -8,11 +8,10 @@ The most basic query is to retrieve everything from our table:
 
 Snowflake can query JSON and other semi-structured data from within a VARIANT column too:
 
-    SELECT RAW_DATA:"basket" FROM RAW_DATA.SALES.TRANSACTIONS
+    SELECT RAW_DATA:"PRODUCTS_VIEWED" FROM RAW_DATA.SALES.TRANSACTIONS
 
-You can use a colon to traverse the keys in the JSON to get to the required element, in this case `"basket"`.
+You can use a colon to traverse the keys in the JSON to get to the required element, in this case `"PRODUCTS_VIEWED"`.
 
->**Note:** `basket` is lowercase and so we must quote this key when querying.
 
 ## Unpacking lists and arrays in data
 
