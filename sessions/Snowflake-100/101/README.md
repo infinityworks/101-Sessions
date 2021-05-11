@@ -17,3 +17,4 @@
 - Ingesting data from a cloud provider
     - Storage Integrations: connecting Snowflake to cloud accounts
     - Stages: Where the source data lives
+- Analytics dashboards with Metabase
