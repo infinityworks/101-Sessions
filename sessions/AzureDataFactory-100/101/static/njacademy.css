@@ -1,0 +1,177 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap");
+.reveal {
+  background: #212121;
+  font-family: "Inter", sans-serif;
+  text-align: left;
+}
+
+.reveal .slides {
+  text-align: left;
+  text-transform: none;
+}
+
+.reveal .slides p,
+.reveal .slides h1,
+.reveal .slides h2,
+.reveal .slides h3,
+.reveal .slides h4,
+.reveal .slides h5,
+.reveal .slides h6 {
+  text-transform: none;
+  text-align: left;
+}
+
+.reveal .slides:before {
+  content: " ";
+  display: block;
+  position: fixed;
+  background: url(academy-logo-light.svg) no-repeat top left;
+  opacity: 0.5;
+  background-size: 10% auto;
+  width: 200%;
+  height: 200%;
+  left: 0;
+  top: 0;
+}
+
+.reveal .slides ul {
+  list-style: none;
+  margin-bottom: 1rem;
+}
+
+.reveal .slides ul li {
+  margin: 0.5rem 0;
+}
+
+.reveal .slides ul li:before {
+  content: "\2022";
+  color: #009688;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  margin: 0 0 1rem 0;
+  color: #fff;
+  font-weight: 500;
+  line-height: 1.2;
+  font-family: "Inter", sans-serif;
+  text-shadow: none;
+  word-wrap: normal;
+  text-transform: none;
+  text-align: left;
+}
+
+.reveal h1 {
+  font-size: 5rem;
+  max-width: 800px;
+}
+
+.reveal h2 {
+  font-size: 4rem;
+}
+
+.reveal h3 {
+  font-size: 3rem;
+}
+
+.reveal li,
+.reveal p {
+  font-weight: 300;
+  color: #d4d4d4;
+  font-size: 1.8rem;
+}
+
+.reveal .slide-menu li {
+  font-size: 1rem;
+}
+
+.reveal strong {
+  font-weight: 500;
+  color: #fff;
+}
+
+.reveal pre,
+.reveal code {
+  font-family: monospace;
+}
+
+.reveal pre code {
+  color: #f8f8f2;
+}
+
+.reveal code {
+  color: #ffa726;
+}
+
+.reveal blockquote {
+  width: auto;
+  margin: 0;
+  padding: .5rem .5rem .5rem 2rem;
+  background: none;
+  border-left: 8px solid #ffa726;
+  font-style: normal;
+}
+
+.reveal a,
+.reveal .progress,
+.reveal .controls {
+  color: #46bdc6;
+}
+
+.reveal .controls {
+  z-index: 100;
+}
+
+.reveal a:hover {
+  color: #fff;
+}
+
+.reveal .title {
+  display: block;
+}
+
+.reveal li.mcq,
+.reveal li.mcq ~ li {
+  list-style: upper-alpha;
+}
+
+.reveal img {
+  max-height: 400px;
+  border: none !important;
+  background: none;
+}
+
+footer {
+  height: 4rem !important;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-pack: center !important;
+      -ms-flex-pack: center !important;
+          justify-content: center !important;
+  -webkit-box-align: center !important;
+      -ms-flex-align: center !important;
+          align-items: center !important;
+}
+
+/* Reduce width of title so it doesn't overlap graphic */
+section[data-background="static/a-graphic-colour.svg"] h2 {
+  width: 60%;
+}
+
+.centered {
+  text-align: center !important;
+}
+/*# sourceMappingURL=njacademy.css.map */
