@@ -82,4 +82,4 @@ Snowflake supports most of the standard data types (strings, numbers, booleans, 
 
 We will consume JSON data and so choose a single column of the Snowflake's special VARIANT type which allows importing and querying of semi-structured data.
 
-    CREATE TABLE RAW_DATA.SALES.TRANSACTIONS (RAW_DATA VARIANT);
+    CREATE TABLE RAW_DATA.SALES.TRANSACTIONS (PAYLOAD VARIANT);
