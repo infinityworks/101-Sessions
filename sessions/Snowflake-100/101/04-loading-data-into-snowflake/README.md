@@ -17,11 +17,11 @@ To download the files, you have a couple of options:
 
 Via your web browser:
 
-Visit https://snowflake-101.s3.eu-west-2.amazonaws.com/all_transactions.json and save the file/page to your local disk.
+Visit https://snowflake-101.s3.eu-west-1.amazonaws.com/all_transactions.json and save the file/page to your local disk.
 
 In your terminal using `curl`:
 
-    curl https://snowflake-101.s3.eu-west-2.amazonaws.com/all_transactions.json >> all_transactions.json
+    curl https://snowflake-101.s3.eu-west-1.amazonaws.com/all_transactions.json > all_transactions.json
 
 ## Loading data via the console UI
 
