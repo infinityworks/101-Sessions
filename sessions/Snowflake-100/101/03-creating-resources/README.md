@@ -32,7 +32,9 @@ Snowflake uses roles to control the objects (virtual warehouses, databases, tabl
 * In addition to the PUBLIC role, each user can be assigned additional roles, with one of these roles designated as their default role. A user’s default role determines the role used in the Snowflake sessions initiated by the user; however, this is only a default. Users can change roles within a session at any time.
 * Roles can be assigned at user creation or afterwards.
 
-    CREATE ROLE IF NOT EXISTS DATA_CONSUMER COMMENT = 'Role to access raw data';
+```
+CREATE ROLE IF NOT EXISTS DATA_CONSUMER COMMENT = 'Role to access raw data';
+```
 
 Take a look at all the system users and roles created so far:
 
