@@ -53,7 +53,7 @@ Here we can `add notification` to publish to Snowflake's SQS arn when a new file
 - Give it an appropriate name
 - Select `All object create events`
 - Add any file meta data you wish to filter by (for now leave this empty).
-- Send to: `SNS Queue`
+- Send to: `SQS Queue`
 - `Add Queue ARN`
 - Save
 
