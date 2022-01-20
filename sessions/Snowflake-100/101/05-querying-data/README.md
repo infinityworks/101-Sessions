@@ -8,9 +8,9 @@ The most basic query is to retrieve everything from our table:
 
 Snowflake can query JSON and other semi-structured data from within a VARIANT column too:
 
-    SELECT PAYLOAD:"PRODUCTS_VIEWED" FROM RAW_DATA.SALES.TRANSACTIONS;
+    SELECT PAYLOAD:"basket" FROM RAW_DATA.SALES.TRANSACTIONS;
 
-You can use a colon to traverse the keys in the JSON to get to the required element, in this case `"PRODUCTS_VIEWED"`.
+You can use a colon to traverse the keys in the JSON to get to the required element, in this case `"basket"`.
 
 
 ## Unpacking lists and arrays in data
@@ -19,13 +19,13 @@ We can explode lists within a nested JSON structure in a VARIANT field to flatte
 
 
     SELECT
-        PAYLOAD:CUSTOMER_ID::VARCHAR AS customer_id,
-        FLATTENED_DATA.VALUE:PRODUCT_ID::VARCHAR AS product_id,
-        FLATTENED_DATA.VALUE:PRICE::NUMBER AS price,
-        PAYLOAD:DATE_OF_SESSION::TIMESTAMP AS DATE_OF_SESSION
+        PAYLOAD:customer_id::VARCHAR AS customer_id,
+        FLATTENED_DATA.VALUE:product_id::VARCHAR AS product_id,
+        FLATTENED_DATA.VALUE:price::NUMBER AS price,
+        PAYLOAD:date_of_purchase::TIMESTAMP AS DATE_OF_SESSION
     FROM
         RAW_DATA.SALES.TRANSACTIONS AS TRANSACTIONS,
-        LATERAL FLATTEN(input => TRANSACTIONS.PAYLOAD, path => 'PRODUCTS_VIEWED') AS FLATTENED_DATA;
+        LATERAL FLATTEN(input => TRANSACTIONS.PAYLOAD, path => 'basket') AS FLATTENED_DATA;
 
 
 This query specifies the database and schema where the table lives; if you do not specify them you must set the context as seen previously with:
@@ -35,11 +35,11 @@ This query specifies the database and schema where the table lives; if you do no
 
 We can find insights like the most popular products sold:
 
-    SELECT FLATTENED_DATA.VALUE:PRODUCT_ID::VARCHAR AS PRODUCT_ID,
+    SELECT FLATTENED_DATA.VALUE:product_id::VARCHAR AS PRODUCT_ID,
         SUM(1) AS FREQUENCY
     FROM RAW_DATA.SALES.TRANSACTIONS AS TRANSACTIONS,
-        LATERAL FLATTEN(input => TRANSACTIONS.PAYLOAD, path => 'PRODUCTS_VIEWED') AS FLATTENED_DATA
-    GROUP BY FLATTENED_DATA.VALUE:PRODUCT_ID
+        LATERAL FLATTEN(input => TRANSACTIONS.PAYLOAD, path => 'basket') AS FLATTENED_DATA
+    GROUP BY FLATTENED_DATA.VALUE:product_id
     ORDER BY FREQUENCY DESC;
 
 ## Creating a view [[docs](https://docs.snowflake.com/en/user-guide/views-introduction.html)]
@@ -50,11 +50,11 @@ The physical data is not stored again but instead acts as a handy shortcut to ru
 
     CREATE OR REPLACE VIEW RAW_DATA.SALES."TOP_10_VIEWED_PRODUCTS" AS
     (
-      SELECT FLATTENED_DATA.VALUE:PRODUCT_ID::VARCHAR AS PRODUCT_ID,
+      SELECT FLATTENED_DATA.VALUE:product_id::VARCHAR AS PRODUCT_ID,
           SUM(1) AS FREQUENCY
       FROM RAW_DATA.SALES.TRANSACTIONS AS TRANSACTIONS,
-          LATERAL FLATTEN(input => TRANSACTIONS.PAYLOAD, path => 'PRODUCTS_VIEWED') AS FLATTENED_DATA
-      GROUP BY FLATTENED_DATA.VALUE:PRODUCT_ID
+          LATERAL FLATTEN(input => TRANSACTIONS.PAYLOAD, path => 'basket') AS FLATTENED_DATA
+      GROUP BY FLATTENED_DATA.VALUE:product_id
       ORDER BY FREQUENCY DESC
       LIMIT 10
     ); 
