@@ -58,3 +58,21 @@ printSize(y); // compile error: Type 'string' is not assignable to type 'number'
 let z = { age: 42 };
 printSize(z); // compile error: Property 'size' is missing in type '{ age: number; }' but required in type '{ size: number; }'.
 ```
+
+You can also use this to check the function properties an object has:
+```
+function callSayHello(
+    obj: {sayHello(name: string): string}
+) {
+    let name: string = "world";
+    let greeting: string = obj.sayHello(name); // call function on the object
+    console.log(greeting);
+}
+
+callSayHello({
+    // object knows how to say hello
+    sayHello(name: string): string {
+        return `hello ${name}`;
+    }
+});
+```
