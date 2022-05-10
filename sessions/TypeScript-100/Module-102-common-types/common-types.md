@@ -3,6 +3,9 @@
 
 ## Primitives
 
+Along with this file, there are code examples of each type in [common-types-examples.ts](./common-types-examples.ts).
+
+
 Similar to JavaScript, there are 3 commonly used primitives
 - `boolean`
 	- Same as JavaScript, simple true/false value
