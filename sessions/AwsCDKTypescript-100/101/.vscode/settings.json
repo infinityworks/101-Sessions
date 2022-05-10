@@ -1,0 +1,34 @@
+{
+    "files.eol": "\n",
+    "files.watcherExclude": {
+        "**/.git": true,
+        "**/node_modules": true,
+    },
+    "editor.detectIndentation": false,
+    "[markdown]": {
+        "editor.wordWrapColumn": 100,
+        "editor.wordWrap": "wordWrapColumn",
+        "editor.tabSize": 4
+    },
+    "cSpell.language": "en-GB,en-US",
+    "cSpell.words": [
+        "amazonwebservices",
+        "awscli",
+        "codetour",
+        "davidanson",
+        "dbaeumer",
+        "devcontainer",
+        "drawio",
+        "esbenp",
+        "ESBUILD",
+        "hediet",
+        "humao",
+        "Imdsv",
+        "nachocab",
+        "pkief",
+        "PTRACE",
+        "seccomp",
+        "sidp",
+        "uuidv"
+    ],
+}
