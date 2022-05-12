@@ -32,7 +32,7 @@ The compiler makes working with more complex types easier by checking what prope
 
 For example, accessing a property that the object doesn't have, gives a type error:
 ```
-let obj = {
+const obj = {
     name: "Test Object",
     age: 42
 };
@@ -49,13 +49,13 @@ function printSize(obj: {size: number}) {
     console.log(obj.size);
 }
 
-let x = { size: 10 };
+const x = { size: 10 };
 printSize(x); // 10
 
-let y = { size: "10" };
+const y = { size: "10" };
 printSize(y); // compile error: Type 'string' is not assignable to type 'number'.
 
-let z = { age: 42 };
+const z = { age: 42 };
 printSize(z); // compile error: Property 'size' is missing in type '{ age: number; }' but required in type '{ size: number; }'.
 ```
 
@@ -64,8 +64,8 @@ You can also use this to check the function properties an object has:
 function callSayHello(
     obj: {sayHello(name: string): string}
 ) {
-    let name: string = "world";
-    let greeting: string = obj.sayHello(name); // call function on the object
+    const name: string = "world";
+    const greeting: string = obj.sayHello(name); // call function on the object
     console.log(greeting);
 }
 
