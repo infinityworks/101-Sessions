@@ -9,3 +9,4 @@ dist
 snowsql_rt*
 all_transactions.json
 transactions/
+.idea
