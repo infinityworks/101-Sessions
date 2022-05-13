@@ -49,7 +49,7 @@ Note: `null` and `undefined` will not be factored into any type checks unless yo
 	- This is known as [type narrowing](https://www.typescriptlang.org/docs/handbook/2/narrowing.html)
 	- This is similar to `any`, as the value can be of any type but it is essentially safe by default
 - `object`
-	- Everything that isn’t a primitive type in TypeScript is a subclass of the object type. Examples are class, Interface, function, constructor, array, tuple, etc. We will cover these later.
+	- Everything that isn’t a primitive type in TypeScript is a subclass of the object type.
 		- i.e. anything that is not number, string, boolean, bigint, symbol, null, or undefined.
 - `array`
 	- TypeScript allows you to work with an array of values similar to JavaScript
