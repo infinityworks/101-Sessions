@@ -153,30 +153,30 @@ Setting up project without create-react-app (using EsBuild):
 
             export default App;
 
-  17. Additional Section for adding images
-      - Add file: `declarations.d.ts`
+  15. Additional Section for adding images
+        - Add file: `declarations.d.ts`
 
-             declare module '*.ico';
-             declare module '*.gif';
-             declare module '*.png';
-             declare module '*.jpg';
-             declare module '*.jpeg';
+               declare module '*.ico';
+               declare module '*.gif';
+               declare module '*.png';
+               declare module '*.jpg';
+               declare module '*.jpeg';
 
-      - Create folder `assets/images`, and copy file `image.jpg` into it.
+        - Create folder `assets/images`, and copy file `image.jpg` into it.
 
-      - Change the App.tsx
+        - Change the App.tsx
 
-            import React from 'react';
-            import './styles.css';
-            import image from '../assets/images/image.jpg';
+              import React from 'react';
+              import './styles.css';
+              import image from '../assets/images/image.jpg';
     
-            const App = () => (<>
-                <h1>React App</h1>
-                <img src={image}/>
-            </>);
+              const App = () => (<>
+                  <h1>React App</h1>
+                  <img src={image}/>
+              </>);
     
-            export default App;
+              export default App;
 
-  18. For svg's, Add in file `declarations.d.ts`:
+  16. For svg's, Add in file `declarations.d.ts`:
 
           declare module '*.svg'
