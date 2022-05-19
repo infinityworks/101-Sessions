@@ -8,7 +8,7 @@ import usersRouter from './routes/users';
 
 const app: Application = express();
 
-app.use(process.env.NODE_ENV === 'development' ? logger('dev') : logger('combined'));
+app.use((process.env.NODE_ENV === 'development') ? logger('dev') : logger('combined'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
