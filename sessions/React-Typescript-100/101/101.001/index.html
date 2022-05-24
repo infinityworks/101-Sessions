@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <title>Hello World</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  </head>
+
+  <body>
+    <div id="put-hello-here-please"></div>
+  </body>
+
+  <script type="text/javascript">
+
+    function Hello (props) {
+      return React.createElement('div', null, `Hello ${props.name}`);
+    };
+
+    // Using JSX:
+    // function HelloWorld() {
+    //   return (
+    //     <div>
+    //       Hello {this.props.name}
+    //     </div>
+    //   );
+    // }
+    
+    const element = React.createElement(Hello, {name: 'Mr Anderson'}, null);
+    // Using JSX:
+    // const element = (<HelloWorld name="Mr Anderson" />),
+    const target = document.getElementById('put-hello-here-please')
+    ReactDOM.render(element, target)
+  </script>
+
+  </body>
+</html>
