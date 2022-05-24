@@ -114,7 +114,7 @@ Setting up project without create-react-app (using EsBuild):
 
   12. Add following lines to `scripts` in `package.json`: 
       - ```
-        "start": "mkdir temp; cp public/index.html temp; node serve.js",
+        "start": "mkdir temp; cp public/index.html temp; node dev.js",
         "build": "node build.js; cp public/index.html build"
         ```
       - run the following commands in terminal, and both should work
