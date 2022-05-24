@@ -68,35 +68,33 @@ Setting up project without create-react-app (using EsBuild):
   11. EsBuild is the module bundler which will compile all the javascript files or modules into single file called as bundle.
          - Use terminal: `yarn add esbuild esbuild-plugin-inline-image esbuild-css-modules-plugin`
          - Use terminal: `yarn add -D live-server`
-         - Create file `serve.js`
+         - Create file `dev.js`
 
                const cssModulesPlugin = require("esbuild-css-modules-plugin");
                const inlineImage = require("esbuild-plugin-inline-image");
                const {build} = require("esbuild")
                const liveServer = require("live-server")
-    
-               ;(async () => {
-                   // `esbuild` bundler for JavaScript / TypeScript.
-                   await build({
-                       logLevel: "info",
-                       entryPoints: ["./src/index.tsx"],
-                       tsconfig: "tsconfig.json",
-                       bundle: true,
-                       outfile: "temp/bundle.js",
-                       target: ['chrome58', 'firefox57', 'safari11', 'edge16'],
-                       plugins: [inlineImage(), cssModulesPlugin()],
-                       watch: {
-                           onRebuild(err) {
-                               err ? error('× Failed') : log('✓ Updated');
-                           }
+
+               build({
+                   logLevel: "info",
+                   entryPoints: ["./src/index.tsx"],
+                   tsconfig: "tsconfig.json",
+                   bundle: true,
+                   outfile: "temp/bundle.js",
+                   target: ['chrome58', 'firefox57', 'safari11', 'edge16'],
+                   plugins: [inlineImage(), cssModulesPlugin()],
+                   watch: {
+                       onRebuild(err) {
+                           err ? console.error('× Failed') : console.log('✓ Updated');
                        }
-                   })
+                   }
+               }).then(() => {
                    liveServer.start({
                        open: true,
                        port: 3000,
                        root: "temp",
                    })
-               })()
+               });
 
       - Create file `build.js`
 
@@ -112,7 +110,7 @@ Setting up project without create-react-app (using EsBuild):
                 outfile: "build/bundle.js",
                 target: ['chrome58', 'firefox57', 'safari11', 'edge16'],
                 plugins: [inlineImage(), cssModulesPlugin()]
-            })           
+            });           
 
   12. Add following lines to `scripts` in `package.json`: 
       - ```
