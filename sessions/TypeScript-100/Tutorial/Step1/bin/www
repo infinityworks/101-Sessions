@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-var app = require("../dist/app");
+var app = require("../app");
 var debug = require("debug")("iw-ts101-api:server");
 var http = require("http");
 
