@@ -1,6 +1,6 @@
 # Introduction
 
-This tutorial serves as a step-by-step guide to building a Node.js API server using TypeScript.
+This tutorial serves as a step-by-step guide to building a Node.js API server using TypeScript. The idea is to 'learn by doing'. The tutorial is progessive so that each step provides the complete solution for the previous step.
 
 ## Step 1
 
