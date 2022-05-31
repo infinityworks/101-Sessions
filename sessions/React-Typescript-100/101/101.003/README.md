@@ -137,7 +137,7 @@ Setting up project without create-react-app (using EsBuild):
     StrictMode is a tool for highlighting potential problems in an application. Like Fragment, StrictMode does not render any visible UI. It activates additional checks and warnings for its descendants.
 
   14. Additional Section for adding css files
-      - Add file: `src/styles.css`
+      - Add file: `src/styles.module.css`
 
              h1 {
                  color: red;
@@ -145,7 +145,7 @@ Setting up project without create-react-app (using EsBuild):
       - Import css file to `App.tsx`
 
             import React from 'react';
-            import './styles.css';
+            import './styles.module.css';
       
             const App = () => (
                <h1>React App</h1>
@@ -167,7 +167,7 @@ Setting up project without create-react-app (using EsBuild):
         - Change the App.tsx
 
               import React from 'react';
-              import './styles.css';
+              import './styles.module.css';
               import image from '../assets/images/image.jpg';
     
               const App = () => (<>
