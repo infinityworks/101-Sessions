@@ -35,17 +35,28 @@ Setting up project without create-react-app (using EsBuild):
 
   8. Create new file: `tsconfig.json` (TODO: Look at the one created in typescript 101 sessions)
      
-         {
-           "include": [
-               "src/*",
-               "./declarations.d.ts"
-           ],
-           "compilerOptions": {
-               "target": "es5",
-               "jsx": "react",
-               "allowSyntheticDefaultImports": true
-           }
-         }
+    {
+        "include": [
+            "src",
+            "./declarations.d.ts"
+        ],
+        "compilerOptions": {
+            "lib": [
+                "es2021",
+                "DOM"
+            ],
+            "module": "commonjs",
+            "target": "es2021",
+            "strict": true,
+            "esModuleInterop": true,
+            "skipLibCheck": true,
+            "forceConsistentCasingInFileNames": true,
+            "jsx": "react",
+            "allowSyntheticDefaultImports": true,
+            "outDir": "dist",
+            "rootDir": "src",
+        }
+    }
 
   9. Create file: `src/App.tsx`
 
