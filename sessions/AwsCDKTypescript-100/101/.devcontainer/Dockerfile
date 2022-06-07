@@ -44,7 +44,7 @@ RUN apt-get update \
     # [Optional] For local testing instead of cloud shell
     # Install Docker CE CLI.
 RUN curl -fsSL https://download.docker.com/linux/$(lsb_release -is | tr '[:upper:]' '[:lower:]')/gpg | apt-key add - 2>/dev/null \
-    && add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/$(lsb_release -is | tr '[:upper:]' '[:lower:]') $(lsb_release -cs) stable" \
+    && add-apt-repository "deb [arch=$(dpkg --print-architecture)] https://download.docker.com/linux/$(lsb_release -is | tr '[:upper:]' '[:lower:]') $(lsb_release -cs) stable" \
     && apt-get update \
     && apt-get install -y docker-ce-cli
     #
@@ -52,7 +52,7 @@ RUN curl -fsSL https://download.docker.com/linux/$(lsb_release -is | tr '[:upper
     #
 RUN mkdir -p /tmp/aws \
     && cd /tmp/aws \
-    && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
+    && curl "https://awscli.amazonaws.com/awscli-exe-linux-$(uname -m).zip" -o "awscliv2.zip" \
     && unzip awscliv2.zip \
     && ./aws/install \
     && pip3 install git-remote-codecommit \
@@ -60,9 +60,10 @@ RUN mkdir -p /tmp/aws \
     # Support `cidr.py`
     && pip3 install tabulate \
     # Session manager plugin for SSHing etc
-    && curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb" -o "/tmp/session-manager-plugin.deb" \
+    # Determine the correct plugin for the CPU architecture https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html#install-plugin-debian
+    && [ "$(dpkg --print-architecture)" = "arm64" ] && arch="arm64" || arch="64bit" \
+    && curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_$arch/session-manager-plugin.deb" -o "/tmp/session-manager-plugin.deb" \
     && dpkg -i /tmp/session-manager-plugin.deb
-    #
     # Create a non-root user to use if preferred - see https://aka.ms/vscode-remote/containers/non-root-user.
     #
 RUN groupadd --gid $USER_GID $USERNAME \
@@ -81,7 +82,7 @@ RUN apt-get install -y sudo \
     #
     # GO - https://golang.org/doc/install
     #
-RUN curl -sL https://golang.org/dl/go1.15.3.linux-amd64.tar.gz | tar -xz -C /usr/local
+RUN curl -sL https://golang.org/dl/go1.15.3.linux-$(dpkg --print-architecture).tar.gz | tar -xz -C /usr/local
 ENV PATH=$PATH:/usr/local/go/bin
     #
     # Assume role
