@@ -9,7 +9,7 @@ export interface AppConfig {
     environmentName: string
 }
 
-const getConfig = () => {
+const getConfig = ():AppConfig => {
     switch (process.env.AWS_ENVIRONMENT) {
         case 'DEVELOPMENT':
         return {
