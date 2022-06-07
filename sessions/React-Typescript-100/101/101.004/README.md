@@ -46,5 +46,5 @@ IMPORTANT: Add to `eslintrc.json` in `parserOptions` - "project": "tsconfig.json
 This is to allow use of eslint in typescript files.
 
 To fix `index.tsx`
-const modalRoot = document.getElementById('#app') as HTMLElement;
+const modalRoot = document.getElementById('app') as HTMLElement;
 const root = ReactDOM.createRoot(modalRoot);
