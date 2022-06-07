@@ -1,5 +1,14 @@
 # Dev Container
 
+If you want to use the Devcontainer
+
+1. Check out the code from GitHub
+2. Make an empty `.aws` and `.ssh` folder in your home directory
+3. Install Docker
+4. Open the `101` folder in `VSCODE`
+5. Install the MS Remote Containers extension <https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers>
+6. Choose the Open in Container and let the Docker build (5-6 minutes)
+
 ## Mac Setup
 
 Prerequisites:
