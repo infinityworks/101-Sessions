@@ -177,3 +177,16 @@ Create file in `components/ContentWrapper/ContentWrapper.tsx`
     }
 
 Add to Footer and Main Page;
+
+Create Home page for next lesson
+    export default function Home() {
+        return (
+            <ContentWrapper>
+            <>
+                <Title pb="md" order={1}>Check the weather</Title>
+                <Text>Either login to check your saved locations or search below</Text>
+                <TextInput py="md" label="Location search" description="Enter a postcode or city name below" />
+            </>
+            </ContentWrapper>
+        );
+    }

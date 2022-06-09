@@ -10,7 +10,7 @@ export default function Home() {
       <>
         <Title pb="md" order={1}>Check the weather</Title>
         <Text>Either login to check your saved locations or search below</Text>
-        <TextInput py="md" label="Location search" description="Enter a postcode below" />
+        <TextInput py="md" label="Location search" description="Enter a postcode or city name below" />
       </>
     </ContentWrapper>
   );
