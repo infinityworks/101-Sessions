@@ -7,8 +7,12 @@ After slideshow introduction to react through HTML
 
 ## Session 2
 
-* API calls
+* Building React app with Babel and Webpack
 
 ## Session 3
 
-* Build a TODO app with React / Redux
+* Introducing ESbuild the quicker way to build React
+
+## Session 4
+
+* Adding Eslin to the project
