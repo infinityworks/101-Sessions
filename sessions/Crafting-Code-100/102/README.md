@@ -24,5 +24,5 @@ We'll enforce the last item on the task description above using the `test && com
 * Ensure your kata directory is initialised as a git repository
 * Copy and paste the `tcr.sh` file into the root of your kata directory
 * Ensure the `tcr.sh` script has execure permissions by running `chmod a+x tcr.sh`
-* Run the script `./tcr.sh`
+* Run the script `./tcr.sh 300` (the 300 corresponds to the number of seconds you have before it runs the test cycle)
 * Have fun!
