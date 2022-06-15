@@ -1,0 +1,22 @@
+{
+    "include": [
+        "src",
+        "./declarations.d.ts"
+    ],
+    "compilerOptions": {
+        "lib": [
+            "es2021",
+            "DOM"
+        ],
+        "module": "commonjs",
+        "target": "es2021",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "jsx": "react",
+        "allowSyntheticDefaultImports": true,
+        "outDir": "dist",
+        "rootDir": "src"
+    }
+}

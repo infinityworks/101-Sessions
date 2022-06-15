@@ -28,7 +28,6 @@ Update ``App.tsx` file:
         );
     }
 
-
 Using third party Libs - https://mantine.dev/getting-started/
 In the terminal `yarn add @mantine/hooks @mantine/core`
 
@@ -190,3 +189,4 @@ Create Home page for next lesson
             </ContentWrapper>
         );
     }
+    
