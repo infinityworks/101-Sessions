@@ -13,7 +13,6 @@ A collection of sessions to explore ways of improving the way we design and deli
 - CRC Cards
 - Mocking (don't mock all the things!)
 - Outside In/Inside Out
-- Constraints
 - SOLID (an awareness of)
 - OOP vs FP
 - CUPID
