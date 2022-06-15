@@ -34,27 +34,38 @@ Setting up project without create-react-app:
 
   8. Create new file: `tsconfig.json` (TODO: Look at the one created in typescript 101 sessions)
      
-         {
-           "include": [
-               "src/*",
-               "./declarations.d.ts"
-           ],
-           "compilerOptions": {
-               "target": "es5",
-               "jsx": "react",
-               "allowSyntheticDefaultImports": true
-           }
-         }
+    {
+        "include": [
+            "src",
+            "./declarations.d.ts"
+        ],
+        "compilerOptions": {
+            "lib": [
+                "es2021",
+                "DOM"
+            ],
+            "module": "commonjs",
+            "target": "es2021",
+            "strict": true,
+            "esModuleInterop": true,
+            "skipLibCheck": true,
+            "forceConsistentCasingInFileNames": true,
+            "jsx": "react",
+            "allowSyntheticDefaultImports": true,
+            "outDir": "dist",
+            "rootDir": "src"
+        }
+    }
 
   9. Create file: `src/App.tsx`
 
-         import React from 'react';
+        import React from 'react';
       
-         const App = () => (
-             <h1>React App</h1>
-         );
-      
-         export default App;
+        export default function App() {
+            return (
+                <h1>React App</h1>
+            );
+        } 
 
   10. Create new file: `src/index.tsx`
 
@@ -133,17 +144,18 @@ Setting up project without create-react-app:
         2. `npm start`: will run the development-server of webpack, which is used for live view of changes made during the application development 
   15. In `index.tsx`, Change `ReactDOM.render` into ` ReactDOM.createRoot` 
 
-          import React from 'react';
-          import * as ReactDOM from 'react-dom/client';
+        import React from 'react';
+        import * as ReactDOM from 'react-dom/client';
 
-          import App from './App';
-    
-          const root = ReactDOM.createRoot(document.getElementById("app"));
-          root.render(
-             <React.StrictMode>
-                 <App />
-             </React.StrictMode>
-          );
+        import App from './App';
+
+        const ele = document.getElementById("app") as HTMLElement;
+        const root = ReactDOM.createRoot(ele);
+        root.render(
+            <React.StrictMode>
+                <App />
+            </React.StrictMode>
+        );
 
   16. Additional Section for adding css files
       - Add file: `src/styles.css`
@@ -210,4 +222,4 @@ Setting up project without create-react-app:
           {
               test: /\.(woff(2)?|eot|ttf|otf|svg)$/,
               use: ['asset/inline']
-          }
+          } 
