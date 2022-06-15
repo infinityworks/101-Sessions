@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# run this script with `./tcr.sh`
+# it defaults to 1 minute test cycles
+# to amend this period run `./tcr.sh 300`, where 300 is the number of seconds before the tests run again 
+
+
 MSG_PAUSE_PERIOD_S=1
 MIN_LOOP_PAUSE_PERIOD_S=5
 SUCCESSFUL_LOOPS=0
