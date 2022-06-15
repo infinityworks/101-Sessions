@@ -22,5 +22,6 @@ A collection of sessions to explore ways of improving the way we design and deli
 
 ## Useful resources
 
+- [Scripts](./Resources/)
 - [Code Smells](https://refactoring.guru/refactoring/smells)
 - [Refactorings](https://refactoring.guru/refactoring/techniques)
