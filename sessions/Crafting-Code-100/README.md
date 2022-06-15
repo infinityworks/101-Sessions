@@ -19,6 +19,8 @@ A collection of sessions to explore ways of improving the way we design and deli
 - Tell, don't ask
 - no ifs (declarative, over imperative)
 - no keyboard (learn your IDE!)
+- golden master
+- saff-squeeze
 
 ## Useful resources
 
