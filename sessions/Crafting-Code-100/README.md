@@ -7,7 +7,6 @@ A collection of sessions to explore ways of improving the way we design and deli
 - [101 - About Code Katas and TDD](./101/)
 - [102 - TDD as if you meant it](./102/)
 
-<!--
 ## Potential Sessions
 
 - DDD
@@ -18,7 +17,9 @@ A collection of sessions to explore ways of improving the way we design and deli
 - SOLID (an awareness of)
 - OOP vs FP
 - CUPID
--->
+- Tell, don't ask
+- no ifs (declarative, over imperative)
+- no keyboard (learn your IDE!)
 
 ## Useful resources
 
