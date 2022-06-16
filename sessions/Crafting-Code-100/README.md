@@ -28,3 +28,7 @@ A collection of sessions to explore ways of improving the way we design and deli
 - [Scripts and Guides](./Resources/)
 - [Code Smells](https://refactoring.guru/refactoring/smells)
 - [Refactorings](https://refactoring.guru/refactoring/techniques)
+
+---
+
+Credit to everyone at XPManchester, where I learnt most of this content!
