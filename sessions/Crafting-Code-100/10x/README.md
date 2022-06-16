@@ -25,3 +25,7 @@ Things to do before starting
 ### Tips
 
 Any tips on navigating the task more easily
+
+### Resources
+
+* any links to helpful resources
