@@ -28,8 +28,8 @@ We'll use the [driver/navigator pairing style](../Resources/pairing-styles.md) t
 1. ...
 1. ~~Profit~~ Have fun!
 
-### Tips
+### Resources
 
-[Scoring in Tennis](https://en.wikipedia.org/wiki/Tennis_scoring_system)
-[Code Smells](https://refactoring.guru/refactoring/smells)
-[Refactorings](https://refactoring.guru/refactoring/techniques)
+- [Scoring in Tennis](https://en.wikipedia.org/wiki/Tennis_scoring_system)
+- [Code Smells](https://refactoring.guru/refactoring/smells)
+- [Refactorings](https://refactoring.guru/refactoring/techniques)
