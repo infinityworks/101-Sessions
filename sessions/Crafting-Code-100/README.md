@@ -41,4 +41,4 @@ Please feel free to [contribute](./CONTRIBUTING.md)!
 
 ## Credits
 
-Thanks to everyone at [XPManchester](https://xpmanchester.wordpress.com/), where I learnt most of this content!
+Thanks to everyone at [XPManchester](https://xpmanchester.wordpress.com/), where I learnt most of this initial content!
