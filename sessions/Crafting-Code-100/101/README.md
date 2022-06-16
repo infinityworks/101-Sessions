@@ -14,7 +14,28 @@ Writing code with TDD has us following these steps:
 
 Repeat these steps, until we have written enough tests to cover our requirements.
 
-### Key Points
+## What does "Good Code" look like?
+
+Sometimes it is difficult to describe what good looks like, but we can all identify when something is not right! 
+
+> Optional Exercise: get everyone to write post-its describing examples of bad code, group similarities and have a quick chat about each one.
+
+Some examples of bad code include:
+
+* difficult to read
+* over-commented code
+* components are tightly coupled - you can't change one without changing the other
+* really long classes/functions
+* brittle tests
+* poor naming
+* components do too much
+* ambiguous magic strings/numbers
+* too much abstraction
+* inconsistent abstraction
+* hidden side effects
+* code is too clever!
+
+## TDD Key Points
 
 * Write the simplest scenario to make your implementation code fail the tests. Calling the non-existent function that is being tested is a failing test! 
 * Only add enough complexity to pass the tests
@@ -29,7 +50,7 @@ Repeat these steps, until we have written enough tests to cover our requirements
 
 ## Katas
 
-"Kata" is a word from the Japanese language to describe a "form" or "pattern". It is probably most recognisable in relation to martial arts, where a kata is a sequence of moves and techniques. This sequence is practised repeatedly to attempt to achieve mastery in the individual techniques, as well as wider concepts.
+"Kata" is a word from the Japanese language to describe a "form" or "pattern". It is probably most recognisable in relation to [martial arts, where a kata is a sequence of moves and techniques](https://www.youtube.com/watch?v=YOcVfmmMBLY). This sequence is practised repeatedly to attempt to achieve mastery in the individual techniques, as well as wider concepts.
 
 In a software context, code katas describe a set of requirements around a particular domain eg a shopping basket, or card game. By practising a given kata repeatedly, we gain familiarity of the domain, and are then free to focus on improving the process of writing and designing our code.
 
