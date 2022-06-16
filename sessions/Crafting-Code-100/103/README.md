@@ -12,7 +12,7 @@ Faced with a mess of spaghetti code, it is often difficult to know where to star
 
 We'll work through [Emily Bache's Tennis Refactoring repo](https://github.com/emilybache/Tennis-Refactoring-Kata), to make one of the existing solutions easier to work with.
 
-We'll use the [driver/navigator pairing style](../Resources/pairing-styles.md) to refactor the chosen solution.
+We'll use the [driver/navigator collaboration style](../Resources/collaboration-styles.md) to refactor the chosen solution.
 
 * Select one of the 3 solution files in the directory
 * Run the tests so they run on saving the file

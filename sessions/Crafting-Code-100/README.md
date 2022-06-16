@@ -2,11 +2,13 @@
 
 A collection of sessions to explore ways of improving the way we design and deliver our code, to save our future selves from a headache.
 
-These sessions have been run previously over 2 hours, with a quick intro, 2 x pairing session and guidance, then ending with a quick debrief. They could be reduced down to an hour, or combined to make it an all-dayer/course. More suggestions in the [Facilitators readme](./Resources/facilitators-README.md).
+These sessions have been run previously over 2 hours, but can be easily adapted. More suggestions in the [Facilitators readme](./Resources/facilitators-README.md).
+
+The earlier sessions are loosely-linked, so with an inexperienced group, it is best to start at [101](./101). For more experienced groups, you can pick and choose, but make sure they are grounded in the core concepts outlined in the earlier sessions.
 
 ## Sessions
 
-- [101 - About Code Katas and TDD](./101/)
+<!-- - [101 - About Code Katas and TDD](./101/) -->
 - [102 - TDD as if you meant it](./102/)
 - [103 - Code Smells and Safe Refactorings](./103/)
 
@@ -33,4 +35,6 @@ These sessions have been run previously over 2 hours, with a quick intro, 2 x pa
 
 ---
 
-Credit to everyone at XPManchester, where I learnt most of this content!
+## Credits
+
+Thanks to everyone at [XPManchester](https://xpmanchester.wordpress.com/), where I learnt most of this content!
