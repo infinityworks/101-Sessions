@@ -31,3 +31,5 @@ We'll use the [driver/navigator pairing style](../Resources/pairing-styles.md) t
 ### Tips
 
 [Scoring in Tennis](https://en.wikipedia.org/wiki/Tennis_scoring_system)
+[Code Smells](https://refactoring.guru/refactoring/smells)
+[Refactorings](https://refactoring.guru/refactoring/techniques)
