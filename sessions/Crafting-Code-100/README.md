@@ -29,6 +29,8 @@ As always, this is a work in progress, please feel free to comment and contribut
 - golden master
 - saff-squeeze
 
+Please feel free to [contribute](./CONTRIBUTING.md)!
+
 ## Useful resources
 
 - [Scripts and Guides](./Resources/)
