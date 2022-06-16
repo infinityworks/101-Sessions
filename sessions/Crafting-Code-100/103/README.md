@@ -1,6 +1,6 @@
 # Code Smells and Safe Refactoring
 
-Faced with a mess of spaghetti code, it is often difficult to know where to start. Fortunately, there are a number of common issues or `smells` that we can identify, that can target to start making our code more readable and malleable. Having identified these `code smells` we can apply specific `refactorings` - often via our IDE - to safely change our code, ensuring we keep things working.
+Faced with a mess of spaghetti code, it is often difficult to know where to start. Fortunately, there are a number of common issues or `smells` that we can identify, and target to start making our code more readable and malleable. Having identified these `code smells` we can apply specific `refactorings` - often via our IDE - to safely change our code, ensuring we keep things working.
 
 ## Benefits of the approach
 
