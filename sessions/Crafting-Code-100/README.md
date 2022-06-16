@@ -6,6 +6,7 @@ A collection of sessions to explore ways of improving the way we design and deli
 
 - [101 - About Code Katas and TDD](./101/)
 - [102 - TDD as if you meant it](./102/)
+- [103 - Code Smells and Safe Refactorings](./103/)
 
 ## Potential Sessions
 
@@ -24,6 +25,6 @@ A collection of sessions to explore ways of improving the way we design and deli
 
 ## Useful resources
 
-- [Scripts](./Resources/)
+- [Scripts and Guides](./Resources/)
 - [Code Smells](https://refactoring.guru/refactoring/smells)
 - [Refactorings](https://refactoring.guru/refactoring/techniques)
