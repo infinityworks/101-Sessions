@@ -27,3 +27,7 @@ We'll use the [driver/navigator pairing style](../Resources/pairing-styles.md) t
 1. Install any dependencies]
 1. ...
 1. ~~Profit~~ Have fun!
+
+### Tips
+
+[Scoring in Tennis](https://en.wikipedia.org/wiki/Tennis_scoring_system)
