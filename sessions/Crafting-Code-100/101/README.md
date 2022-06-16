@@ -62,7 +62,7 @@ In a software context, code katas describe a set of requirements around a partic
 ## Task
 
 1. Choose a simple kata (eg FizzBuzz or Checkout)
-1. Follow the TDD process to move towards satisfying all of the requirements in the problem, whilst avoiding the traits of bad code identified earlier
+1. Follow the [Ping Pong collaboration method](../Resources/collaboration-styles.md) to move towards satisfying all of the requirements in the problem, whilst avoiding the traits of bad code identified earlier
 1. ...
 1. ~~Profit~~ Have fun!
 
