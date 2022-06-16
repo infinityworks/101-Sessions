@@ -8,4 +8,4 @@ To contribute to these sessions, please:
 1. create a new branch
 1. when you are happy with your changes raise a PR
 1. notify the #101-session-admin channel in slack
-1. when the PR is approved, squash and merge it into main
+1. when the PR is approved, squash and merge it into master
