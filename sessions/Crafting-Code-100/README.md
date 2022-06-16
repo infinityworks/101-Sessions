@@ -6,6 +6,8 @@ These sessions have been run previously over 2 hours, but can be easily adapted.
 
 The earlier sessions are loosely-linked, so with an inexperienced group, it is best to start at [101](./101). For more experienced groups, you can pick and choose, but make sure they are grounded in the core concepts outlined in the earlier sessions.
 
+As always, this is a work in progress, please feel free to comment and contribute!
+
 ## Sessions
 
 - [101 - About Code Katas and TDD](./101/)
