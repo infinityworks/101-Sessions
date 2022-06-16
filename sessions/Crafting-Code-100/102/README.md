@@ -15,7 +15,7 @@ This session seeks to keep that temptation in check by adding the `TDD as if you
 1. Perform a kata of your choice
 1. In the green phase, be conscious of only writing enough code to pass the tests
 1. Refactor as you like, but do not inadvertently add extra complexity eg an extra `if` clause
-1. If your tests are red, be conscious of the amount of time they are red. If they red after 5-10 minutes, revert your changes, comment out the last test, and see if there are any refactorings you can make that gets you closer to passing that last test
+1. If your tests are red, be conscious of the amount of time they are red. If they are red after 5-10 minutes, revert your changes, comment out the last test, and see if there are any refactorings you can make that gets you closer to passing that last test
 
 ### Getting Started
 
