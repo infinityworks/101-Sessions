@@ -4,7 +4,7 @@ This first session serves as an introduction to practising our software delivery
 
 ## TDD
 
-The premise of Test Driven Development is to write our tests before the implementation code, as opposed to writing the tests after we have written the implementation code.
+The premise of Test Driven Development is to write our tests before the implementation code, as opposed to writing the tests after we have written the implementation code (or not at all!).
 
 Writing code with TDD has us following these steps:
 
