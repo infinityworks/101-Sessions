@@ -8,7 +8,7 @@ The earlier sessions are loosely-linked, so with an inexperienced group, it is b
 
 ## Sessions
 
-<!-- - [101 - About Code Katas and TDD](./101/) -->
+- [101 - About Code Katas and TDD](./101/)
 - [102 - TDD as if you meant it](./102/)
 - [103 - Code Smells and Safe Refactorings](./103/)
 
