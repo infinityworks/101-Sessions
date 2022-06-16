@@ -24,7 +24,7 @@ We'll use the [driver/navigator pairing style](../Resources/pairing-styles.md) t
 1. Find a partner to pair with
 1. Pull down [Emily Bache's Tennis Refactoring repo](https://github.com/emilybache/Tennis-Refactoring-Kata)
 1. Navigate into the directory with the language of your choice
-1. Install any dependencies]
+1. Install any dependencies
 1. ...
 1. ~~Profit~~ Have fun!
 
