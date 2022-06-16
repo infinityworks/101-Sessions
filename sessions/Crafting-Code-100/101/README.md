@@ -23,7 +23,7 @@ Sometimes it is difficult to describe what good looks like, but we can all ident
 Some examples of bad code include:
 
 * difficult to read
-* over-commented code
+* over-commented code/out of date comments!
 * components are tightly coupled - you can't change one without changing the other
 * really long classes/functions
 * brittle tests
