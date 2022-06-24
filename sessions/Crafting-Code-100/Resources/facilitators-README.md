@@ -5,7 +5,7 @@ Here are some tips to keep the session running smoothly.
 
 ## Kata Choice
 
-Some sessions lend themselves towards particular katas. Although it is nice to tackle different puzzles, keep in mind that keeping the kata static, allows participants to focus on practicing the particular focus of the session. 
+Some sessions lend themselves towards particular katas. Although it is nice to tackle different puzzles, keep in mind that by keeping the kata static, the participants can focus on practicing the particular theme of the session. 
 
 As such, with a consistent group, try to repeat the same problem a number of times, so they become comfortable with the domain, and focus on improving their process.
 
