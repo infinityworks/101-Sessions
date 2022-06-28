@@ -19,15 +19,26 @@ const addPostcode = (req, res) => {
 const deletePostcode = (req, res) => {
     const userId = req.body.userId || 'No ID provided';
     const postcode = req.body.postcode || 'No postcode';
-
+    
     const response = res.status(200).send({message: 'Post Code Deleted'});
+    
+    return response;
+}
+
+const createUser = (req, res) => {
+    const username = req.body.userName || 'Cherise';
+    const password = req.body.password;
+
+    const userId = req.body.userId || 'No ID provided';
+
+    const response = res.status(200).send({ message: 'React 101 login', userId: userId });
 
     return response;
 }
 
-
 module.exports = { 
     getLogin, 
     addPostcode,
-    deletePostcode
+    deletePostcode, 
+    createUser
 };

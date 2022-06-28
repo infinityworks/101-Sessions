@@ -1,4 +1,4 @@
-const  {getLogin, addPostcode, deletePostcode} = require('./data');
+const  {getLogin, addPostcode, deletePostcode, createUser} = require('./data');
 
 const express = require('express');
 const cors = require('cors');
@@ -21,4 +21,5 @@ app.get('/', (req, res) => {
 app.get('/login', getLogin);
 app.post('/add-postcode', addPostcode);
 app.delete('/delete-postcode', deletePostcode);
+app.post('/create-user', createUser);
 
