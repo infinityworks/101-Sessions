@@ -7,4 +7,16 @@ const getLogin = (req, res) => {
     return response;
 }
 
-module.exports = getLogin;
+const addPostcode = (req, res) => {
+    const userId = req.body.userId || 'No ID provided';
+    const postcode = req.body.postcode || 'No postcode';
+
+    const response = res.status(200).send({message: 'Success'});
+
+    return response;
+}
+
+module.exports = { 
+    getLogin, 
+    addPostcode
+};

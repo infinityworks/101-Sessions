@@ -1,4 +1,4 @@
-const  getLogin = require('./data');
+const  {getLogin, addPostcode} = require('./data');
 
 const express = require('express');
 
@@ -17,4 +17,5 @@ app.get('/', (req, res) => {
 });
 
 app.get('/login', getLogin);
+app.get('/add-postcode', addPostcode);
 
