@@ -1,8 +1,10 @@
-const  {getLogin, addPostcode} = require('./data');
+const  {getLogin, addPostcode, deletePostcode} = require('./data');
 
 const express = require('express');
+const cors = require('cors');
 
 const app = express();
+app.use(cors());
 
 app.use(express.json());
 
@@ -17,5 +19,6 @@ app.get('/', (req, res) => {
 });
 
 app.get('/login', getLogin);
-app.get('/add-postcode', addPostcode);
+app.post('/add-postcode', addPostcode);
+app.delete('/delete-postcode', deletePostcode);
 

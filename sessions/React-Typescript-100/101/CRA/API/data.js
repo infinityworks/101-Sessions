@@ -11,12 +11,23 @@ const addPostcode = (req, res) => {
     const userId = req.body.userId || 'No ID provided';
     const postcode = req.body.postcode || 'No postcode';
 
-    const response = res.status(200).send({message: 'Success'});
+    const response = res.status(200).send({message: 'Post Code Added'});
 
     return response;
 }
 
+const deletePostcode = (req, res) => {
+    const userId = req.body.userId || 'No ID provided';
+    const postcode = req.body.postcode || 'No postcode';
+
+    const response = res.status(200).send({message: 'Post Code Deleted'});
+
+    return response;
+}
+
+
 module.exports = { 
     getLogin, 
-    addPostcode
+    addPostcode,
+    deletePostcode
 };
