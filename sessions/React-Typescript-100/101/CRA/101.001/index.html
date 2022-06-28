@@ -11,22 +11,15 @@
 
   <script type="text/javascript">
 
-    function Hello (props) {
-      return React.createElement('div', null, `Hello ${props.name}`);
-    };
 
     // Using JSX:
-    // function HelloWorld() {
-    //   return (
-    //     <div>
-    //       Hello {this.props.name}
-    //     </div>
-    //   );
-    // }
+    function Hello(props) {
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Hello ", props.name), /*#__PURE__*/React.createElement("p", null, "dshfgdskgj djkfhdskjfhdk dkjsfh jksdf")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Hello ", props.name), /*#__PURE__*/React.createElement("p", null, "dshfgdskgj djkfhdskjfhdk dkjsfh jksdf")));
+}
     
     const element = React.createElement(Hello, {name: 'Mr Anderson'}, null);
     // Using JSX:
-    // const element = (<HelloWorld name="Mr Anderson" />),
+    // const element = (<HelloWorld name="Mr Anderson" />)
     const target = document.getElementById('put-hello-here-please')
     ReactDOM.render(element, target)
   </script>

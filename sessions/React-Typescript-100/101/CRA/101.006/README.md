@@ -34,7 +34,7 @@ Add new file `components/Navbar/Navbar.tsx`
                 <Box>
                     <Anchor
                     component={Link}
-                    to="/log-in"
+                    to="/login"
                     sx={{ color: 'white', height: '100%' }}
                     >
                     Log in

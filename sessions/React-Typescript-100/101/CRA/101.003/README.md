@@ -1,6 +1,6 @@
 Using Create react app with typescript
 
-In the terminal: `yarn create react-app weather-app --template typescript`;
+In the terminal: `npx create-react-app weather-app --template typescript`;
 Cd into the new folder: `cd weather-app`;
 
 Look at the index.html in the public folder and explain
@@ -77,4 +77,5 @@ In the terminal: `yarn`
 
 Lets fix those 4 issues in index.tsx and App.tsx
 
+Install eslint extension for vs code 
 If the errors don't show in the file. Open VS shell (Shift + cmd + p) and type Eslint: Restart Eslint Server;

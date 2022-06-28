@@ -22,8 +22,8 @@ Add component to `App.tsx`
     export default function App() {
         return (
             <>
-            <Header />
-            <h1>React App</h1>
+                <Header />
+                <h1>React App</h1>
             </>
 
         );
