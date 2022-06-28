@@ -1,0 +1,7 @@
+{
+  "license": "UNLICENSED",
+  "dependencies": {
+    "express": "^4.18.1",
+    "yarn": "^1.22.19"
+  }
+}
