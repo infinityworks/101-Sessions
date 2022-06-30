@@ -1,5 +1,10 @@
-const  {getLogin, addPostcode, deletePostcode, createUser} = require('./data');
-
+const {
+  getRoute,
+  getLogin,
+  addPostcode,
+  deletePostcode,
+  createUser,
+} = require('./data');
 const express = require('express');
 const cors = require('cors');
 
@@ -14,12 +19,8 @@ app.listen(port, () =>
   console.log(`React 101 server Listening on port ${port}`)
 );
 
-app.get('/', (req, res) => {
-  res.status(200).send({ message: 'React 101 Route' });
-});
-
+app.get('/', getRoute);
 app.get('/login', getLogin);
 app.post('/add-postcode', addPostcode);
 app.delete('/delete-postcode', deletePostcode);
 app.post('/create-user', createUser);
-
