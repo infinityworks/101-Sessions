@@ -14,7 +14,7 @@ At this point, we know that we need a new function/class to take care of this. T
 
 ## A Very Brief History of the TDD Wars
 
-"Mockist" refers to one of two supposed schools of TDD, where the other was "Classicist". These two approaches may also be referred to London (Mockist) and Detroit (Classicist). Like all differing approaches, warring tribes formed on both sides, friends were lost, whilst the core ideals of the thing under contention [were forgotten](https://vimeo.com/68375232).
+"Mockist" refers to one of two supposed schools of TDD - the other being the "Classicist" school (they may also be referred to London (Mockist) and Detroit (Classicist)). Like all differing approaches, warring tribes formed on both sides, friends were lost, whilst the core ideals of the thing under contention [were forgotten](https://vimeo.com/68375232).
 
 ## Benefits of the approach
 
