@@ -1,0 +1,54 @@
+// For format details, see https://aka.ms/vscode-remote/devcontainer.json or this file's README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.112.0/containers/azure-terraform-0.12
+{
+    "name": "101 AWS CDK Typescript Container",
+    "dockerFile": "Dockerfile",
+    // When we have a lot of files in a project (npm creates a lot of files in node_modules)
+    // Disk performance will get slower on Windows and OSX, Microsoft recommend changing the consistency to delegated
+    // see <https://code.visualstudio.com/docs/remote/containers-advanced>
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=delegated",
+    "workspaceFolder": "/workspace",
+    "mounts": [
+        "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind",
+        "source=101_node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume",
+        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.aws,target=/home/vscode/.aws,type=bind,consistency=cached",
+        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached",
+    ],
+    // Set *default* container specific settings.json values on container create.
+    "settings": {
+        "terminal.integrated.profiles.linux": {
+            "Bash": {
+                "path": "/bin/bash",
+            }
+        },
+        "terminal.integrated.defaultProfile.windows": "Bash",
+    },
+    // Add the IDs of extensions you want installed when the container is created.
+    "extensions": [
+        "vsls-contrib.codetour",
+        "davidanson.vscode-markdownlint",
+        "xyz.local-history",
+        "sidp.strict-whitespace",
+        "streetsidesoftware.code-spell-checker",
+        "ms-vsliveshare.vsliveshare",
+        "humao.rest-client",
+        "pkief.material-icon-theme",
+        "amazonwebservices.aws-toolkit-vscode",
+        "ms-python.python",
+        "hediet.vscode-drawio",
+        "editorconfig.editorconfig",
+        "nachocab.highlight-dodgy-characters",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+    ],
+    // Use 'forwardPorts' to make a list of ports inside the container available locally.
+    "forwardPorts": [
+        3000
+    ],
+    // Use 'postCreateCommand' to run commands after the container is created.
+    "postCreateCommand": "sudo chown vscode:vscode node_modules",
+    // Uncomment when using a ptrace-based debugger like C++, Go, and Rust
+    // "runArgs": [ "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined" ],
+    // Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
+    "remoteUser": "vscode",
+}
