@@ -39,7 +39,7 @@ At this point, we know that we need a new function/class to take care of this. T
 
 This session is best done on a kata the group have already completed a few times, so as to have them comfortable on how to solve, or at least make good progress in, the kata.
 
-The kata should have sufficient complexity where two or more algorithms to be created.
+The kata should have sufficient complexity where two or more algorithms to be created. I would suggest the Game of Life or Mars Rover kata for this session.
 
 Be sure you are comfortable with how create and use mocks in your chosen language. 
 

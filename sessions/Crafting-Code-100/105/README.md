@@ -1,35 +1,29 @@
-# Evolution of Design
+# Inside Out
 
-In this session, we'll be tackling the Game of Life kata: https://codingdojo.org/kata/GameOfLife/, and using it as a base to explore two different approaches to designing our solution:
-
-## Outside-In
-* Inside-Out
+Having tried using an [Outside In](../104/) approach, this session with tackle the problem from the other direction, focussing on the smallest type/class in the kata, and exploring its behaviour, before working our way out towards the end solution.
 
 ## Benefits of the approach
 
-* ???
+* Establishes core responsibilities early
+
+## Downsides of the approach
+
+* We don't get any shippable software until the end! 
 
 ## Sessions Objectives
 
-* ???
+* Understand 
 
 ## Task
 
-This session has 2 distinct parts (plus an initial task of understanding the kata, if it is a new one)
-
-1. ???
+1. 
 
 ### Getting Started
 
-Things to do before starting
-
-* ???
-* ...
-* ~~Profit~~ Have fun!
-
+* NA
 ### Tips
 
-* NA
+This session may lend itself well to an OOP approach, or after doing the CRC session. 
 
 ### Resources
 
