@@ -45,7 +45,7 @@ Be sure you are comfortable with how create and use mocks in your chosen languag
 
 ### Tips
 
-You may find that is appropriate to keep the mocks, and write tests around the mocked function. A situation where this is appropriate is when the mocked function may be replaced with different version eg an algorithm that works for a 2D grid, may be replaced with one that works for a 3D grid.
+You may find that it is appropriate to keep the mocks, and write tests around the mocked function. A situation where this is appropriate is when the mocked function may be replaced with different version eg an algorithm that works for a 2D grid, may be replaced with one that works for a 3D grid. See [Strategy Pattern](https://refactoring.guru/design-patterns/strategy)
 
 ### Resources
 
