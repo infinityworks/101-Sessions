@@ -1,0 +1,24 @@
+{
+  "name": "aws-cdk-typescript",
+  "version": "1.0.0",
+  "bin": {
+    "101-aws-cdk-typescript": "bin/aws-cdk-typescript.js"
+  },
+  "scripts": {
+    "postinstall": "(cd lambdas && npm install);",
+    "cdk": "cdk"
+  },
+  "devDependencies": {
+    "@types/node": "10.17.27",
+    "aws-cdk": "2.23.0",
+    "esbuild": "*",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.6.3"
+  },
+  "dependencies": {
+    "aws-cdk-lib": "2.23.0",
+    "aws-sdk": "^2.1127.0",
+    "constructs": "^10.0.0",
+    "source-map-support": "^0.5.16"
+  }
+}

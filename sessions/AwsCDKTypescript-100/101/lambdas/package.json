@@ -1,0 +1,14 @@
+{
+  "name": "lambdas-aws-cdk-typescript",
+  "version": "1.0.0",
+  "description": "Lambdas for the cdk example",
+  "private": true,
+  "devDependencies": {
+    "@types/node": "*",
+    "@types/uuid": "*"
+  },
+  "dependencies": {
+    "aws-sdk": "*",
+    "uuid": "*"
+  }
+}

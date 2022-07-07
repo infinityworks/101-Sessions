@@ -1,0 +1,12 @@
+{
+    "recommendations": [
+        "ms-vscode-remote.remote-containers",
+        "streetsidesoftware.code-spell-checker",
+        "hediet.vscode-drawio",
+        "editorconfig.editorconfig",
+        "davidanson.vscode-markdownlint",
+        "nachocab.highlight-dodgy-characters",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+    ]
+}
