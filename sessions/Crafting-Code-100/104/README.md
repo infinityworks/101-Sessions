@@ -14,7 +14,7 @@ At this point, we know that we need a new function/class to take care of this. T
 
 ## A Very Brief History of the TDD Wars
 
-"Mockist" refers to one of two supposed schools of TDD - the other being the "Classicist" school (they may also be referred to London (Mockist) and Detroit (Classicist)). Like all differing approaches, warring tribes formed on both sides, friends were lost, whilst the core ideals of the thing under contention [were forgotten](https://vimeo.com/68375232).
+"Mockist" refers to one of two supposed schools of TDD - the other being the "Classicist" school (they may also be referred to London (Mockist) and Detroit (Classicist)). Like all differing approaches towards the same goal, warring tribes formed on both sides, friends were lost, whilst the core ideals of the thing under contention [were forgotten](https://vimeo.com/68375232).
 
 ## Benefits of the approach
 
@@ -37,9 +37,9 @@ At this point, we know that we need a new function/class to take care of this. T
 
 ### Getting Started
 
-This session is best done on a kata the group have already completed a few times, so as to have them comfortable on how to solve, or at least make good progress in, the kata.
+This session is best done on a kata the group have already completed a few times, so as to have them comfortable on how to solve - or at least make good progress in - the kata.
 
-The kata should have sufficient complexity where two or more algorithms to be created. I would suggest the Game of Life or Mars Rover kata for this session.
+The kata should have sufficient complexity where two or more algorithms need to be created. I would suggest the Game of Life or Mars Rover kata for this session.
 
 Be sure you are comfortable with how create and use mocks in your chosen language. 
 

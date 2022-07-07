@@ -24,18 +24,20 @@ As we refactor the code, we can compare the old output (the Golden Master) with 
 
 ## Task
 
-1. ???
+We're going to help out the [Gilded Rose](https://github.com/seppevs/gildedrose-js/tree/master) shop expand their product range.
+
+> Note: The initial test output has the new item in it, but it behaves as if it were a standard item
+
+1. Take baby steps and refactor the code, ensuring the latest output matches the original output ie the Shop is behaving as it should be.
+1. Once you are happy with the refactored code, update the original output to reflect how the new item should behave, and implement the new feature.
+
+The Golden Master is a great tool to give us that safety net to refactor legacy code. However, it is too slow for a good CI/CD pipeline. We should be good scouts and leave a comprehensive suite of tests behind, documenting the code and describing its behaviour.
 
 ### Getting Started
 
 Pull down the kata files, and ensure you can run the Golden Master test.
 
-
-
-### Tips
-
-Any tips on navigating the task more easily
-
 ### Resources
 
-* any links to helpful resources
+* [The original Gilded Rose kata in C#](https://github.com/NotMyself/GildedRose)
+* Emily Bache has [translated the kata into a lots of different languages](https://github.com/emilybache/GildedRose-Refactoring-Kata/), but the Golden Master is written to stdout, rather than a text file
