@@ -13,20 +13,23 @@ As always, this is a work in progress, please feel free to comment and contribut
 - [101 - About Code Katas and TDD](./101/)
 - [102 - TDD as if you meant it](./102/)
 - [103 - Code Smells and Safe Refactorings](./103/)
+- [104 - Outside In/A Mockist Approach](./104/)
+- [104 - Inside Out](./105/)
+- [106 - Dealing with no Tests](./106/)
+
+Note: It's particularly good to use the same kata for session 104 and 105, so we can focus on how the approaches differ.
 
 ## Potential Sessions
 
 - DDD
 - CRC Cards
 - Mocking (don't mock all the things!)
-- Outside In/Inside Out
 - SOLID (an awareness of)
 - OOP vs FP
 - CUPID
 - Tell, don't ask
 - no ifs (declarative, over imperative)
 - no keyboard (learn your IDE!)
-- golden master
 - saff-squeeze
 
 Please feel free to [contribute](./CONTRIBUTING.md)!
