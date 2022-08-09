@@ -14,7 +14,7 @@ As always, this is a work in progress, please feel free to comment and contribut
 - [102 - TDD as if you meant it](./102/)
 - [103 - Code Smells and Safe Refactorings](./103/)
 - [104 - Outside In/A Mockist Approach](./104/)
-- [104 - Inside Out](./105/)
+- [105 - Inside Out](./105/)
 - [106 - Dealing with no Tests](./106/)
 
 Note: It's particularly good to use the same kata for session 104 and 105, so we can focus on how the approaches differ.
