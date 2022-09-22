@@ -1,0 +1,6 @@
+@import "njacademy.scss";
+
+/* Used to get rid of the nav bar for converting to PDF */
+#toggle-chalkboard, #toggle-notes, .progress, .controls, .slide-menu-button, footer {
+  display: none !important;
+}
