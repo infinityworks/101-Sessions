@@ -2,15 +2,14 @@
 import 'source-map-support/register'
 import { App } from 'aws-cdk-lib'
 import { AwsCdkTypescriptStack } from '../lib/aws-cdk-typescript-empty-stack'
+import * as environments from  '../lib/aws-environments'
 
 function getAccount(): string {
     switch (process.env.AWS_ENVIRONMENT) {
         case 'DEVELOPMENT':
-            return '123451234512'
-        case 'TESTING':
-            return '0123456788'
+            return environments.AWS_ENV_DEV
         case 'PRODUCTION':
-            return '0123456789'
+            return environments.AWS_ENV_PROD
     }
     throw new Error('unknown environment')
 }

@@ -18,10 +18,10 @@
     "settings": {
         "terminal.integrated.profiles.linux": {
             "Bash": {
-                "path": "/bin/bash",
+                "path": "/bin/bash"
             }
         },
-        "terminal.integrated.defaultProfile.windows": "Bash",
+        "terminal.integrated.defaultProfile.windows": "Bash"
     },
     // Add the IDs of extensions you want installed when the container is created.
     "extensions": [
@@ -37,18 +37,17 @@
         "ms-python.python",
         "hediet.vscode-drawio",
         "editorconfig.editorconfig",
-        "nachocab.highlight-dodgy-characters",
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode"
     ],
     // Use 'forwardPorts' to make a list of ports inside the container available locally.
-    "forwardPorts": [
-        3000
-    ],
+    // "forwardPorts": [
+    //     3000
+    // ],
     // Use 'postCreateCommand' to run commands after the container is created.
     "postCreateCommand": "sudo chown vscode:vscode node_modules",
     // Uncomment when using a ptrace-based debugger like C++, Go, and Rust
     // "runArgs": [ "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined" ],
     // Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
-    "remoteUser": "vscode",
+    "remoteUser": "vscode"
 }

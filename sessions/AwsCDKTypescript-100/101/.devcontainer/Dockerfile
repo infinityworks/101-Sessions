@@ -111,7 +111,7 @@ RUN mkdir /usr/local/nvm \
     && curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | NVM_DIR=/usr/local/nvm bash \
     && export NVM_DIR="/usr/local/nvm" \
     && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" \
-    && nvm install 14.19.1 \
+    && nvm install 18.9.1 \
     && echo 'export NVM_DIR="/usr/local/nvm"' >> /home/$USERNAME/.bashrc \
     && echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> /home/$USERNAME/.bashrc
     #

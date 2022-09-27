@@ -12,12 +12,13 @@ AWS keep the CDK up-to-date with latest new products and features, it is a first
 
 * How to setup a new project
 * Step 1 - Build the project
-* Step 2 - Deploy the Stack into AWS
-* Step 3 - Improve config and multi environments
-* Step 4 - Pass configuration into the stack
-* Step 5 - Deploy a lambda
-* Step 6 - Give the Lambda access to a DynamoDB table
-* Step 7 - Clean up
+* Step 2 - Authenticate into AWS and run CDK Bootstrap
+* Step 3 - Deploy the Stack into AWS
+* Step 4 - Improve config and multi environments
+* Step 5 - Pass configuration into the stack
+* Step 6 - Deploy a lambda
+* Step 7 - Give the Lambda access to a DynamoDB table
+* Step 8 - Clean up
 
 ## How to setup a new project
 
@@ -25,9 +26,9 @@ There is a provided `VSCode Devcontainer` that allows you to run the whole envir
 
 The versions in this are:
 
-* node v14.19.1
-* npm v6.14.16
-* awscli v2.6.0
+* node v18.9.1
+* npm v8.19.1
+* awscli v2.7.7
 * Python v.3.9.11
 
 ```shell
@@ -90,9 +91,9 @@ The starting minimal file in [bin/aws-cdk-typescript.ts](bin/aws-cdk-typescript.
 * TESTING
 * PRODUCTION
 
-These environments are designed to be dropped into specific `aws accounts` the expected account number is configured in this file.
+These environments are designed to be dropped into specific `aws accounts` the expected account number is configured in the file [lib/aws-environments.ts](lib/aws-environments.ts).
 
-Other configuration can be loaded here.
+> Update your Account numbers here now.
 
 A CDK project can make multiple stacks, in this example we start with a single `Cloudfront Stack` called `AwsCdkTypescriptStack`.
 
@@ -109,7 +110,7 @@ export class AwsCdkTypescriptStack extends Stack {
 }
 ```
 
-## Step 2 - Deploy the Stack into AWS
+## Step 2 - Authenticate into AWS and run CDK Bootstrap
 
 For this step you will need to setup your `AWS CLI` profile using whatever mechanism you have chosen to authenticate.
 
@@ -123,6 +124,21 @@ aws sts get-caller-identity
 ```
 
 If this works, you should see the `AWS Role` that is active.
+
+We can now run the CDK Bootstrap, which creates a Cloudformation stack that is required by CDK.
+
+```shell
+export AWS_ENVIRONMENT=DEVELOPMENT
+npx cdk bootstrap
+```
+
+Now in the `AWS Console` in the `N.Virginia` region you should see the new Stack `CDKToolkit`
+
+<https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks>
+
+![img/aws-empty-stack.png](img/aws-bootstrap.png)
+
+## Step 3 - Deploy the Stack into AWS
 
 We can now deploy the empty stack with:
 
@@ -139,7 +155,7 @@ Now in the `AWS Console` in the `N.Virginia` region you should see the new Stack
 
 ![img/aws-empty-stack.png](img/aws-empty-stack.png)
 
-## Step 3 - Improve config and multi environments
+## Step 4 - Improve config and multi environments
 
 We are now going to make the example more useful.
 
@@ -178,7 +194,7 @@ npx cdk deploy
 
 Now lets delete the first stack we made called `AwsCdkTypescriptStack` in the `AWS Console`
 
-## Step 4 - Pass configuration into the stack
+## Step 5 - Pass configuration into the stack
 
 Now we are going to pass this config into the stack.
 
@@ -220,7 +236,7 @@ This results in `no changes` (which is good)
 
 ![img/aws-no-changes.png](img/aws-no-changes.png)
 
-## Step 5 - Deploy a lambda
+## Step 6 - Deploy a lambda
 
 This step will actually add an `AWS Lambda` to the stack.
 
@@ -232,7 +248,7 @@ This code creates a `Lambda` and exposes it using the `Lambda URL` feature.
 
 ```ts
 const helloWorld = new NodejsFunction(this, 'HelloWorldHandler', {
-    runtime: Runtime.NODEJS_14_X,
+    runtime: Runtime.NODEJS_16_X,
     entry: join(__dirname, '../', 'lambdas', 'hello-world.ts'),
     depsLockFilePath: join(__dirname, '../', 'lambdas', 'package-lock.json'),
     memorySize: 1024,
@@ -360,7 +376,7 @@ The dynamic parts of the response have been pulled from the `event` object, here
 }
 ```
 
-## Step 6 - Give the Lambda access to a DynamoDB table
+## Step 7 - Give the Lambda access to a DynamoDB table
 
 In this step we will add a `DynamoDB table` and grant the lambda access to write to it.
 
@@ -452,7 +468,7 @@ We can see the new entries appearing in the AWS Console <https://us-east-1.conso
 
 ![img/aws-dynamo.png](img/aws-dynamo.png)
 
-## Step 7 - Clean up
+## Step 8 - Clean up
 
 Lets destroy the stack:
 
