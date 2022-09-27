@@ -2,6 +2,7 @@
 import 'source-map-support/register'
 import { App } from 'aws-cdk-lib'
 import { AwsCdkTypescriptStack } from '../lib/aws-cdk-typescript-lambda-stack'
+import * as environments from  '../lib/aws-environments'
 
 export interface AppConfig {
     awsAccountNumber: string
@@ -14,14 +15,14 @@ const getConfig = ():AppConfig => {
         case 'DEVELOPMENT':
         return {
             environmentName: 'Dev',
-            awsAccountNumber: '123451234512',
+            awsAccountNumber: environments.AWS_ENV_DEV,
             mainRegion: 'us-east-1',
         }
 
         case 'PRODUCTION':
         return {
             environmentName: 'Prod',
-            awsAccountNumber: '123451234512',
+            awsAccountNumber: environments.AWS_ENV_PROD,
             mainRegion: 'eu-central-1',
         }
     }

@@ -13,10 +13,12 @@
     "cSpell.language": "en-GB,en-US",
     "cSpell.words": [
         "amazonwebservices",
+        "avif",
         "awscli",
         "codetour",
         "davidanson",
         "dbaeumer",
+        "deps",
         "devcontainer",
         "drawio",
         "esbenp",
@@ -24,11 +26,14 @@
         "hediet",
         "humao",
         "Imdsv",
+        "KHTML",
         "nachocab",
         "pkief",
         "PTRACE",
         "seccomp",
         "sidp",
-        "uuidv"
+        "usermod",
+        "uuidv",
+        "webp"
     ],
 }
