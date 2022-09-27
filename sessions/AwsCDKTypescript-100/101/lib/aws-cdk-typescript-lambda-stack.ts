@@ -14,7 +14,7 @@ export class AwsCdkTypescriptStack extends Stack {
         super(scope, id, props)
 
         const helloWorld = new NodejsFunction(this, 'HelloWorldHandler', {
-            runtime: Runtime.NODEJS_14_X,
+            runtime: Runtime.NODEJS_16_X,
             entry: join(__dirname, '../', 'lambdas', 'hello-world.ts'),
             depsLockFilePath: join(__dirname, '../', 'lambdas', 'package-lock.json'),
             memorySize: 1024,
