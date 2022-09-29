@@ -38,8 +38,8 @@ export class AwsCdkTypescriptStack extends Stack {
                 ],
             },
             environment: {
-                ENV_NAME : props.environmentName,
-                STORE_TABLE_NAME : table.tableName,
+                ENV_NAME: props.environmentName,
+                STORE_TABLE_NAME: table.tableName,
             }
         })
 
