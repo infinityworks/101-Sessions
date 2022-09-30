@@ -2,7 +2,7 @@
 import 'source-map-support/register'
 import { App } from 'aws-cdk-lib'
 import { AwsCdkTypescriptStack } from '../lib/aws-cdk-typescript-empty-stack'
-import * as environments from  '../lib/aws-environments'
+import * as environments from '../lib/aws-environments'
 
 function getAccount(): string {
     switch (process.env.AWS_ENVIRONMENT) {
