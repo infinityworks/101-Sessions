@@ -1,4 +1,4 @@
-@hostname = gz35gityuve3my64zwqypdfznq0bcuwk.lambda-url.us-east-1.on.aws
+@hostname = 7iijlejteoyjdw5rqb5swjhiiu0bsduf.lambda-url.us-east-1.on.aws
 
 ### example Get
 GET https://{{hostname}}/ HTTP/1.1

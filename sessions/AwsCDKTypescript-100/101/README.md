@@ -61,7 +61,7 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 ## Step 1 - Build the project
 
 ```shell
-npm i
+npm ci
 export AWS_ENVIRONMENT=DEVELOPMENT
 npx cdk synth
 ```

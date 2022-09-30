@@ -1,12 +1,12 @@
-import { APIGatewayEvent, APIGatewayProxyResult } from "aws-lambda"
+import { APIGatewayProxyEventV2, APIGatewayProxyResultV2 } from 'aws-lambda';
 
 const environmentName = process.env.ENV_NAME
 
-export const handler = async (event: APIGatewayEvent): Promise<APIGatewayProxyResult> => {
+export const handler = async (event: APIGatewayProxyEventV2): Promise<APIGatewayProxyResultV2> => {
     try {
-        const method = event.httpMethod
-        const path = event.path
-        const forwardedForHeader = (event.headers || {})["X-Forwarded-For"] || "not found"
+        const method = event.requestContext.http.method
+        const path = event.requestContext.http.path
+        const forwardedForHeader = (event.headers || {})["X-Forwarded-For"] || event.requestContext.http.sourceIp
         const sourceIp = forwardedForHeader.split(', ')[0]
 
         if (method === "GET") {

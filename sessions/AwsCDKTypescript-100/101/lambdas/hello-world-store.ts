@@ -1,16 +1,16 @@
 import * as AWS from 'aws-sdk';
 import { v4 as uuidv4 } from 'uuid';
-import { APIGatewayProxyResult, APIGatewayEvent } from 'aws-lambda';
+import { APIGatewayProxyEventV2, APIGatewayProxyResultV2 } from 'aws-lambda';
 
 const environmentName = process.env.ENV_NAME
 const storeTableName = process.env.STORE_TABLE_NAME || ''
 const docClient = new AWS.DynamoDB.DocumentClient();
 
-export const handler = async (event: APIGatewayEvent): Promise<APIGatewayProxyResult> => {
+export const handler = async (event: APIGatewayProxyEventV2): Promise<APIGatewayProxyResultV2> => {
     try {
-        const method = event.httpMethod
-        const path = event.path
-        const forwardedForHeader = (event.headers || {})["X-Forwarded-For"] || "not found"
+        const method = event.requestContext.http.method
+        const path = event.requestContext.http.path
+        const forwardedForHeader = (event.headers || {})["X-Forwarded-For"] || event.requestContext.http.sourceIp
         const sourceIp = forwardedForHeader.split(', ')[0]
 
         if (method === "GET") {
