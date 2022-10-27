@@ -1,62 +1,36 @@
-import * as AWS from 'aws-sdk';
-import { v4 as uuidv4 } from 'uuid';
-import { APIGatewayProxyEventV2, APIGatewayProxyResultV2 } from 'aws-lambda';
+import { APIGatewayProxyEventV2, APIGatewayProxyResultV2 } from 'aws-lambda'
+import * as db from './db'
 
 const environmentName = process.env.ENV_NAME
-const storeTableName = process.env.STORE_TABLE_NAME || ''
-const docClient = new AWS.DynamoDB.DocumentClient();
 
-export const handler = async (event: APIGatewayProxyEventV2): Promise<APIGatewayProxyResultV2> => {
+interface Message {
+    message: string
+}
+
+export const handler = async (event: APIGatewayProxyEventV2): Promise<APIGatewayProxyResultV2<Message>> => {
     try {
-        const method = event.requestContext.http.method
-        const path = event.requestContext.http.path
         const forwardedForHeader = (event.headers || {})["X-Forwarded-For"] || event.requestContext.http.sourceIp
         const sourceIp = forwardedForHeader.split(', ')[0]
 
-        if (method === "GET") {
-            if (path === "/") {
-                var body = {
+        switch (event.requestContext.http.method) {
+            case "GET":
+                return {
                     message: `hello ${sourceIp} from ${environmentName}`
                 }
+            case "POST":
+                await db.storeIpAddress(sourceIp)
                 return {
-                    statusCode: 200,
-                    headers: {},
-                    body: JSON.stringify(body)
+                    message: `Stored ${sourceIp} in DynamoDB`
                 }
-            }
         }
 
-        if (method === "POST") {
-            const params = {
-                TableName: storeTableName,
-                Item: {
-                    id: `${uuidv4()}`,
-                    ipAddress: `${sourceIp}`
-                }
-            }
-
-            await docClient.put(params).promise()
-
-            var body = {
-                message: `Stored ${sourceIp} in ${storeTableName}`
-            }
-            return {
-                statusCode: 200,
-                headers: {},
-                body: JSON.stringify(body)
-            }
-        }
-
-        // Only accept GET or POST for now.
         return {
             statusCode: 400,
-            headers: {},
-            body: `We only accept GET or POST / <br>received event ${JSON.stringify(event)}`
+            body: `We only accept GET or POST / received event: ${JSON.stringify(event)}`
         }
     } catch (error) {
         return {
-            statusCode: 400,
-            headers: {},
+            statusCode: 500,
             body: JSON.stringify(JSON.stringify(error, null, 2))
         }
     }
