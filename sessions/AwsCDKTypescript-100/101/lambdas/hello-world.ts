@@ -2,7 +2,11 @@ import { APIGatewayProxyEventV2, APIGatewayProxyResultV2 } from 'aws-lambda';
 
 const environmentName = process.env.ENV_NAME
 
-export const handler = async (event: APIGatewayProxyEventV2): Promise<APIGatewayProxyResultV2> => {
+interface Message {
+    message: string
+}
+
+export const handler = async (event: APIGatewayProxyEventV2): Promise<APIGatewayProxyResultV2<Message>> => {
     try {
         const method = event.requestContext.http.method
         const path = event.requestContext.http.path
@@ -11,13 +15,8 @@ export const handler = async (event: APIGatewayProxyEventV2): Promise<APIGateway
 
         if (method === "GET") {
             if (path === "/") {
-                var body = {
-                    message: `hello ${sourceIp} from ${environmentName}`
-                }
                 return {
-                    statusCode: 200,
-                    headers: {},
-                    body: JSON.stringify(body)
+                    message: `hello ${sourceIp} from ${environmentName}`
                 }
             }
         }
@@ -25,13 +24,11 @@ export const handler = async (event: APIGatewayProxyEventV2): Promise<APIGateway
         // Only accept GET for now.
         return {
             statusCode: 400,
-            headers: {},
-            body: `We only accept GET / <br>received event ${JSON.stringify(event)}`
+            body: `We only accept GET - received event: ${JSON.stringify(event)}`
         }
     } catch (error) {
         return {
-            statusCode: 400,
-            headers: {},
+            statusCode: 500,
             body: JSON.stringify(JSON.stringify(error, null, 2))
         }
     }

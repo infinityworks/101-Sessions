@@ -1,12 +1,27 @@
-# 101 AWS CDK Typescript - Infinity Works
+# 101 AWS CDK TypeScript - Infinity Works
 
-This is the 101 on AWS CDK written in Typescript, it will introduce you to AWS CDK and some of the features.
+This is the 101 on AWS CDK written in TypeScript, it will introduce you to AWS CDK and some of the features.
 
-CDK allows you to control infrastructure as code in AWS, it allows you to do this in many supported languages.  In this session we will be using Typescript.
+CDK allows you to control infrastructure as code in AWS, it allows you to do this in many supported languages. In this session we will be using TypeScript.
 
-CDK Generates Cloudformation, that is then pushed out as stacks in the targetted AWS Account.
+CDK Generates CloudFormation, that is then pushed out as stacks in the targetted AWS Account.
 
 AWS keep the CDK up-to-date with latest new products and features, it is a first class citizen in the AWS ecosystem.
+
+## Prerequisites
+
+You'll need an AWS account to deploy your resources to. This 101 Session won't use anything that doesn't fit in the free tier of usage, so you shouldn't expect a large AWS bill or anything.
+
+This session ships with a VS Code Dev Container which contains all prerequisites. This requires Docker, and VS Code.
+
+* Docker Desktop - <https://www.docker.com/products/docker-desktop/>
+* VS Code - <https://code.visualstudio.com/download>
+
+However, if you prefer to run directly on your machine, you'll need to have:
+
+* Node.js - <https://nodejs.org/en/download/>
+* AWS CDK - Run `npm install -g aws-cdk` after the Node.js install completes
+* AWS CLI - <https://aws.amazon.com/cli/>
 
 ## Outline
 
@@ -22,7 +37,7 @@ AWS keep the CDK up-to-date with latest new products and features, it is a first
 
 ## How to setup a new project
 
-There is a provided `VSCode Devcontainer` that allows you to run the whole environment in `Docker`.
+There is a provided `VSCode Dev Container` that allows you to run the whole environment in `Docker`.
 
 The versions in this are:
 
@@ -31,19 +46,45 @@ The versions in this are:
 * awscli v2.7.7
 * Python v.3.9.11
 
+### Log in to the AWS CLI
+
+If you're using an organsiation's account that uses AWS SSO, follow their instructions.
+
+Otherwise, you might find the AWS documentation helpful: <https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html>
+
+The following command will print out your user name once you've logged in:
+
 ```shell
+aws sts get-caller-identity
+```
+
+### Create the project
+
+```shell
+# Initialize the project.
 npx cdk init --language=typescript
-# Add as a runtime
-npm i -D @aws-cdk/aws-lambda-node-js
-# ESBUILD
-npm i -D esbuild
-# SDK
-npm i aws-sdk
-# Add Typescript
-npm i -d typescript
-## Bootstrap
+# Install esbuild to optimise build times.
+# Without esbuild, CDK uses Docker to build TypeScript Lambda functions.
+npm install --save-dev esbuild
+```
+
+### Bootstrap
+
+Bootstrapping configures your AWS environment to support CDK operations.
+
+```shell
 npx cdk bootstrap
-## Deploy
+```
+
+If you're not logged in to AWS, you'll get the error:
+
+```shell
+Unable to resolve AWS account to use. It must be either configured when you define your CDK Stack, or through the environment
+```
+
+### Deploy
+
+```shell
 npx cdk deploy --all
 ```
 
@@ -83,7 +124,7 @@ Here we can see that the entrypoint will be `bin/aws-cdk-typescript.js`
   },
 ```
 
-### Environmental config & Stack
+### Environment config and Stack
 
 The starting minimal file in [bin/aws-cdk-typescript.ts](bin/aws-cdk-typescript.ts) looks for the system environment `AWS_ENVIRONMENT` it expects one of three values
 
@@ -95,7 +136,7 @@ These environments are designed to be dropped into specific `aws accounts` the e
 
 > Update your Account numbers here now.
 
-A CDK project can make multiple stacks, in this example we start with a single `Cloudfront Stack` called `AwsCdkTypescriptStack`.
+A CDK project can make multiple stacks, in this example we start with a single `CloudFront Stack` called `AwsCdkTypescriptStack`.
 
 If you look at the lib file [lib/aws-cdk-typescript-empty-stack.ts](lib/aws-cdk-typescript-empty-stack.ts) you can see that this will be an empty stack.
 
@@ -114,7 +155,7 @@ export class AwsCdkTypescriptStack extends Stack {
 
 For this step you will need to setup your `AWS CLI` profile using whatever mechanism you have chosen to authenticate.
 
-You should be-able to export a `profile` and then use the standard aws cli to make api calls into your AWS Account.
+You should be-able to export a `profile` and then use the standard AWS CLI to make api calls into your AWS Account.
 
 > This is normally configured in a file in your home directory `~/.aws/config`
 
@@ -125,7 +166,7 @@ aws sts get-caller-identity
 
 If this works, you should see the `AWS Role` that is active.
 
-We can now run the CDK Bootstrap, which creates a Cloudformation stack that is required by CDK.
+We can now run the CDK Bootstrap, which creates a CloudFormation stack that is required by CDK.
 
 ```shell
 export AWS_ENVIRONMENT=DEVELOPMENT
@@ -139,6 +180,14 @@ Now in the `AWS Console` in the `N.Virginia` region you should see the new Stack
 ![img/aws-empty-stack.png](img/aws-bootstrap.png)
 
 ## Step 3 - Deploy the Stack into AWS
+
+Change the `AWS_ENV_DEV` variable in the `./lib/aws-environments.ts` file so that the value is the account ID of the AWS account that you want to use.
+
+You can get the account ID of the AWS account you're currently logged into by using the following command:
+
+```shell
+aws sts get-caller-identity
+```
 
 We can now deploy the empty stack with:
 
@@ -216,7 +265,7 @@ export class AwsCdkTypescriptStack extends Stack {
 }
 ```
 
-So the main code, needs to adhere to this new custom interface:
+So the props that are passed in to the stack need to match the shape of this new custom interface:
 
 ```ts
 new AwsCdkTypescriptStack(app, `AwsCdkTypescriptStack${currentConfig.environmentName}`, {
@@ -238,7 +287,7 @@ This results in `no changes` (which is good)
 
 ## Step 6 - Deploy a lambda
 
-This step will actually add an `AWS Lambda` to the stack.
+This step will add an `AWS Lambda` function to the stack.
 
 Copy the contents of the [examples/3_add_lambda_aws-cdk-typescript.ts](examples/3_add_lambda_aws-cdk-typescript.ts) file into [bin/aws-cdk-typescript.ts](bin/aws-cdk-typescript.ts)
 
@@ -250,22 +299,14 @@ This code creates a `Lambda` and exposes it using the `Lambda URL` feature.
 const helloWorld = new NodejsFunction(this, 'HelloWorldHandler', {
     runtime: Runtime.NODEJS_16_X,
     entry: join(__dirname, '../', 'lambdas', 'hello-world.ts'),
-    depsLockFilePath: join(__dirname, '../', 'lambdas', 'package-lock.json'),
     memorySize: 1024,
-    bundling: {
-        externalModules: [
-            'aws-sdk', // Use the 'aws-sdk' available in the Lambda runtime
-        ],
-    },
     environment: {
-        ENV_NAME : props.environmentName,
+        ENV_NAME: props.environmentName,
     }
 })
 
-const helloWorldUrl = new FunctionUrl(this, 'HelloWorldUrl', {
-    function: helloWorld,
-    authType: FunctionUrlAuthType.NONE,
-})
+const helloWorldUrl = helloWorld.addFunctionUrl({ authType: FunctionUrlAuthType.NONE })
+new CfnOutput(this, 'Url', { value: helloWorldUrl.url })
 ```
 
 CDK builds the lambda from the code in the file [lambdas/hello-world.ts](lambda/hello-world.ts).
@@ -279,9 +320,15 @@ This is done using `esbuild`. In the main [package.json](package.json) the `post
   },
 ```
 
-The CDK passes the Environment name into the Lambda, so it can use this to dynamically write its message.
+The CDK passes the Environment name into the Lambda Function as an Environment Variable.
+
+The code can collect the value and use it to dynamically create a message.
 
 > note that the Lambda code is using the `AWS SDK` not the `AWS CDK`
+
+With API Gateway V2, if a Lambda function returns a JavaScript object that doesn't have a `statusCode` key, it's returned as a JSON string, with HTTP status code of 200.
+
+So code that looks like this:
 
 ```ts
 var body = {
@@ -291,6 +338,14 @@ return {
     statusCode: 200,
     headers: {},
     body: JSON.stringify(body)
+}
+```
+
+Can be simplified to:
+
+```ts
+return {
+    message: `hello ${sourceIp} from ${environmentName}`
 }
 ```
 
@@ -411,13 +466,13 @@ environment: {
 }
 ```
 
-A new lambda script is being used [lambdas/hello-world-store.ts](lambdas/hello-world-store.ts).
+New Lambda function code is being used to integrate with DynamoDB: [lambdas/hello-world-store.ts](lambdas/hello-world-store.ts).
 
 ```ts
 entry: join(__dirname, '../', 'lambdas', 'hello-world-store.ts'),
 ```
 
-In this script, when a `POST` is received, it writes a new entry with the requestors IpAddress into the table:
+In this script, when a `POST` is received, it writes a new entry with the requestor's IpAddress into the table:
 
 ```ts
 const params = {
@@ -427,11 +482,14 @@ const params = {
         ipAddress: `${sourceIp}`
     }
 }
-
 await docClient.put(params).promise()
 ```
 
-Finally we then grant the lambda write access to the table:
+In CDK, resources have helper functions on them to use to assign access.
+
+In our case, we need to give the Lambda function write access to the table, so we use the table's `grantWriteData` method and pass it the `helloWorld` Lambda Function.
+
+CDK then updates the IAM role assigned to the Lambda Function to give it the appropriate permissions to write (not read) to the table. This simplifies working with IAM for many use cases.
 
 ```ts
 table.grantWriteData(helloWorld)
@@ -444,7 +502,7 @@ export AWS_ENVIRONMENT=DEVELOPMENT
 npx cdk deploy
 ```
 
-During deployment you will get prompted for the extra permissions.
+During deployment you will be prompted to approve changes to IAM roles (permissions).
 
 ![img/aws-lambda-dynamo-stack.png](img/aws-lambda-dynamo-stack.png)
 
@@ -464,7 +522,7 @@ X-Amzn-Trace-Id: root=1-627a5c2b-258ba70a668b14354c7f4aa3;sampled=0
 }
 ```
 
-We can see the new entries appearing in the AWS Console <https://us-east-1.console.aws.amazon.com/dynamodbv2/home?region=us-east-1#tables>
+We can see the new entries appearing in the database using the AWS Console <https://us-east-1.console.aws.amazon.com/dynamodbv2/home?region=us-east-1#tables>
 
 ![img/aws-dynamo.png](img/aws-dynamo.png)
 
@@ -476,5 +534,3 @@ Lets destroy the stack:
 export AWS_ENVIRONMENT=DEVELOPMENT
 npx cdk destroy
 ```
-
-![img/aws-destroy.png](img/aws-destroy.png)
