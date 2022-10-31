@@ -32,7 +32,7 @@ const getConfig = (): AppConfig => {
 const currentConfig = getConfig()
 
 const app = new App()
-new AwsCdkTypescriptStack(app, `AwsCdkTypescriptStack${currentConfig.environmentName}`, {
+new AwsCdkTypescriptStack(app, `AwsCdkTypescriptStack${currentConfig.environmentName}-${process.env.STACK_SUFFIX}`, {
     env: { account: currentConfig.awsAccountNumber, region: currentConfig.mainRegion },
     environmentName: currentConfig.environmentName,
 })

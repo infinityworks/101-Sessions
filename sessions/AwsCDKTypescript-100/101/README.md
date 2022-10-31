@@ -104,6 +104,7 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 ```shell
 npm ci
 export AWS_ENVIRONMENT=DEVELOPMENT
+export STACK_SUFFIX=YOURSUFFIX
 npx cdk synth
 ```
 
@@ -136,7 +137,9 @@ These environments are designed to be dropped into specific `aws accounts` the e
 
 > Update your Account numbers here now.
 
-A CDK project can make multiple stacks, in this example we start with a single `CloudFront Stack` called `AwsCdkTypescriptStack`.
+We plan to allow everyone to deploy this same application into a single AWS Account, to make this possible we will supply a system environment `STACK_SUFFIX` which will be used to make the Stack name unique.
+
+A CDK project can make multiple stacks, in this example we start with a single `CloudFront Stack` called `AwsCdkTypescriptStack-YOURSUFFIX`.
 
 If you look at the lib file [lib/aws-cdk-typescript-empty-stack.ts](lib/aws-cdk-typescript-empty-stack.ts) you can see that this will be an empty stack.
 
@@ -170,6 +173,7 @@ We can now run the CDK Bootstrap, which creates a CloudFormation stack that is r
 
 ```shell
 export AWS_ENVIRONMENT=DEVELOPMENT
+export STACK_SUFFIX=YOURSUFFIX
 npx cdk bootstrap
 ```
 
@@ -193,6 +197,7 @@ We can now deploy the empty stack with:
 
 ```shell
 export AWS_ENVIRONMENT=DEVELOPMENT
+export STACK_SUFFIX=YOURSUFFIX
 npx cdk deploy
 ```
 
@@ -227,15 +232,16 @@ export interface AppConfig {
 The stack name is now `Dynamic` depending on the Environment Name.
 
 ```ts
-new AwsCdkTypescriptStack(app, `AwsCdkTypescriptStack${currentConfig.environmentName}`, {
+new AwsCdkTypescriptStack(app, `AwsCdkTypescriptStack${currentConfig.environmentName}-${process.env.STACK_SUFFIX}`, {
     env: { account: currentConfig.awsAccountNumber, region: currentConfig.mainRegion },
 })
 ```
 
-Lets deploy these changes; this will make a new stack called `AwsCdkTypescriptStackDev`
+Lets deploy these changes; this will make a new stack called `AwsCdkTypescriptStackDev-YOURSUFFIX`
 
 ```shell
 export AWS_ENVIRONMENT=DEVELOPMENT
+export STACK_SUFFIX=YOURSUFFIX
 npx cdk deploy
 ```
 
@@ -268,7 +274,7 @@ export class AwsCdkTypescriptStack extends Stack {
 So the props that are passed in to the stack need to match the shape of this new custom interface:
 
 ```ts
-new AwsCdkTypescriptStack(app, `AwsCdkTypescriptStack${currentConfig.environmentName}`, {
+new AwsCdkTypescriptStack(app, `AwsCdkTypescriptStack${currentConfig.environmentName}-${process.env.STACK_SUFFIX}`, {
     env: { account: currentConfig.awsAccountNumber, region: currentConfig.mainRegion },
     environmentName: currentConfig.environmentName,
 })
@@ -278,6 +284,7 @@ Lets deploy these changes:
 
 ```shell
 export AWS_ENVIRONMENT=DEVELOPMENT
+export STACK_SUFFIX=YOURSUFFIX
 npx cdk deploy
 ```
 
@@ -359,6 +366,7 @@ Lets deploy these changes:
 
 ```shell
 export AWS_ENVIRONMENT=DEVELOPMENT
+export STACK_SUFFIX=YOURSUFFIX
 npx cdk deploy
 ```
 
@@ -499,6 +507,7 @@ Lets deploy these changes:
 
 ```shell
 export AWS_ENVIRONMENT=DEVELOPMENT
+export STACK_SUFFIX=YOURSUFFIX
 npx cdk deploy
 ```
 
@@ -532,5 +541,6 @@ Lets destroy the stack:
 
 ```shell
 export AWS_ENVIRONMENT=DEVELOPMENT
+export STACK_SUFFIX=YOURSUFFIX
 npx cdk destroy
 ```
