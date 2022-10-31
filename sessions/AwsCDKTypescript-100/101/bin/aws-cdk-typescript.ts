@@ -15,6 +15,6 @@ function getAccount(): string {
 }
 
 const app = new App()
-new AwsCdkTypescriptStack(app, 'AwsCdkTypescriptStack', {
+new AwsCdkTypescriptStack(app, `AwsCdkTypescriptStack-${process.env.STACK_SUFFIX}`, {
     env: { account: getAccount(), region: 'us-east-1' },
 })
