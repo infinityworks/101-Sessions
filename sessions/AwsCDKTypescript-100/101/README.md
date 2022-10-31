@@ -14,14 +14,14 @@ You'll need an AWS account to deploy your resources to. This 101 Session won't u
 
 This session ships with a VS Code Dev Container which contains all prerequisites. This requires Docker, and VS Code.
 
-* Docker Desktop - https://www.docker.com/products/docker-desktop/
-* VS Code - https://code.visualstudio.com/download
+* Docker Desktop - <https://www.docker.com/products/docker-desktop/>
+* VS Code - <https://code.visualstudio.com/download>
 
 However, if you prefer to run directly on your machine, you'll need to have:
 
-* Node.js - https://nodejs.org/en/download/
+* Node.js - <https://nodejs.org/en/download/>
 * AWS CDK - Run `npm install -g aws-cdk` after the Node.js install completes
-* AWS CLI - https://aws.amazon.com/cli/
+* AWS CLI - <https://aws.amazon.com/cli/>
 
 ## Outline
 
@@ -50,7 +50,7 @@ The versions in this are:
 
 If you're using an organsiation's account that uses AWS SSO, follow their instructions.
 
-Otherwise, you might find the AWS documentation helpful: https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html
+Otherwise, you might find the AWS documentation helpful: <https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html>
 
 The following command will print out your user name once you've logged in:
 
@@ -78,7 +78,7 @@ npx cdk bootstrap
 
 If you're not logged in to AWS, you'll get the error:
 
-```
+```shell
 Unable to resolve AWS account to use. It must be either configured when you define your CDK Stack, or through the environment
 ```
 
