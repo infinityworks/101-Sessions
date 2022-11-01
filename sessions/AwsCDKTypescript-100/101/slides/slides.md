@@ -84,8 +84,105 @@ layout: four-cols-header
 
 ---
 
+# Notable mentions
+
+* Ansible
+* Chef
+* Puppet
+* Vagrant
+
+---
+layout: two-cols-header
+---
+
+# Why CDK
+
+::left::
+
+![Local Image](aws-cdk.png)
+
+::right::
+
+* Not YAML or Json
+* Choose a language
+* AWS supported
+
+---
+layout: two-cols-header
+---
+
+# Where CDK fits in
+
+::left::
+
+![Local Image](cdk-fits.png)
+
+---
+layout: two-cols-header
+---
+
+# App / Stacks / Constructs
+
+::left::
+
+![Local Image](constructs.png)
+
+::right::
+
+App
+* All stacks for the Application
+
+Stacks
+* Units of deployment
+
+Constructs
+* The AWS Resources
+
+---
+
+# CDK Levels
+
+1. Level 1 - **Cfnxxx** - Direct AWS Resources
+2. Level 2 - **Preferred level** - S3Bucket / Lambda
+3. Level 3 - **Higher Constructs** - LambdaNodeJS / LoadBalancedFargateApp
+
+---
+
+# Session 1
+
+* How to setup a new project
+* Step 1 - Build the project
+* Step 2 - Authenticate into AWS and run CDK Bootstrap
+* Step 3 - Deploy the Stack into AWS
+* Step 4 - Improve config and multi environments
+* Step 5 - Pass configuration into the stack
+* Step 6 - Deploy a lambda
+* Step 7 - Give the Lambda access to a DynamoDB table
+* Step 8 - Clean up
+
+---
+
+# Code Time
+
+---
+
+# Discussion points
+
+* What to do next?
+* How to pipeline
+* CDK and serverless
+* Production ready?
+
+---
+layout: two-cols-header
+---
+
 # Code
 
+::left::
+
 https://github.com/infinityworks/101-Sessions
+
+::right::
 
 ![Local Image](qr-code.png)
