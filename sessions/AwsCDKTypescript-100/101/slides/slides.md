@@ -1,8 +1,36 @@
-# AWS CDK Typescript
+# WIFI
+
+*wifi-guest*
+
+1. Click on **create guest account**
+2. Sponsors Email : `lilian.umeakunne@accenture.com`
+3. Fill out the form
+
+There is an *approval step*
+
+You will receive an email with your password
+
+Please clone the repo
+
+```shell
+git clone https://github.com/infinityworks/101-Sessions
+```
+
+---
+
+# AWS CDK in TypeScript
 
 Steven Harper & Adrian Hesketh
 
 https://infinityworks.com
+
+---
+
+# CDK? TypeScript?
+
+CDK is infrastructure as code (IAC)
+
+Typescript is the language that we are going to be writing in
 
 ---
 
@@ -33,7 +61,7 @@ layout: two-cols-header
 * AWS Console
 * APIs
 * AWS CLI
-* Cloud Formation
+* CloudFormation
 
 ---
 layout: two-cols
@@ -43,33 +71,34 @@ layout: two-cols
 
 * Terraform (2014)
   * <mdi-check-circle class="text-green-400" /> Uses AWS SDK directly
-  * <mdi-check-circle class="text-green-400" /> Written in Go
   * <mdi-check-circle class="text-green-400" /> Module ecosystem
   * <mdi-check-circle class="text-green-400" /> Build for GCP, Azure, AWS and more
+
 * Serverless Framework (2015)
   * <mdi-check-circle class="text-green-400" /> Based on CloudFormation
-  * <mdi-check-circle class="text-green-400" /> Written in JavaScript
   * <mdi-check-circle class="text-green-400" /> Plugin ecosystem
+
 * AWS SAM (2016)
   * <mdi-check-circle class="text-green-400" /> Based on CloudFormation
   * <mdi-check-circle class="text-green-400" /> Extends CloudFormation
-  * <mdi-check-circle class="text-green-400" /> Written in Python
 
 ::right::
 
 * Pulumi (2018)
   * <mdi-check-circle class="text-green-400" /> Same as CDK
   * <mdi-check-circle class="text-green-400" /> Build for GCP, Azure, AWS
+
 * AWS CDK (2019)
   * <mdi-check-circle class="text-green-400" /> TypeScript / Go / Node.js / etc.
   * <mdi-check-circle class="text-green-400" /> Based on CloudFormation
   * <mdi-check-circle class="text-green-400" /> High level abstractions
   * <mdi-check-circle class="text-green-400" /> Suitable for infrastructure projects too
+
 * CDKTF (2020)
   * <mdi-check-circle class="text-green-400" /> TypeScript / Go / Node.js / etc.
   * <mdi-check-circle class="text-green-400" /> Based on Terraform
   * <mdi-check-circle class="text-green-400" /> Use Terraform modules
-  * <mdi-check-circle class="text-green-400" /> Build for GCP, Azure, AWS, and more
+  * <mdi-check-circle class="text-green-400" /> Supports GCP, Azure, AWS, and more
 
 ---
 layout: four-cols-header
@@ -125,7 +154,7 @@ layout: four-cols-header
 
 # Notable mentions
 
-Prior to serverless, your infrastructure changed less often.
+Previously your infrastructure changed less often.
 
 * Ansible
 * Chef
@@ -145,9 +174,9 @@ layout: two-cols-header
 
 ::right::
 
-* Not YAML or Json
-* Choose a language
-* AWS supported
+* Not YAML or JSON templates
+* You get to choose a language
+* AWS supported, first class citizen
 
 ---
 layout: two-cols-header
@@ -190,6 +219,11 @@ Constructs
   * **Preferred level** - S3Bucket / Lambda
 * Level 3
   * **Higher Constructs** - LambdaNodeJS / LoadBalancedFargateApp
+
+---
+
+# Any Questions?
+
 
 ---
 
