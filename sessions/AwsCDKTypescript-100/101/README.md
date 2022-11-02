@@ -48,7 +48,7 @@ The versions in this are:
 
 ### Log in to the AWS CLI
 
-If you're using an organsiation's account that uses AWS SSO, follow their instructions.
+If you're using an organisation's account that uses AWS SSO, follow their instructions.
 
 Otherwise, you might find the AWS documentation helpful: <https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html>
 
@@ -73,6 +73,8 @@ npm install --save-dev esbuild
 Bootstrapping configures your AWS environment to support CDK operations.
 
 ```shell
+export AWS_ENVIRONMENT=DEVELOPMENT
+export STACK_SUFFIX=YOURSUFFIX
 npx cdk bootstrap
 ```
 
