@@ -9,15 +9,20 @@ https://infinityworks.com
 # What is Infrastructure as Code (IAC)
 
 * <mdi-check-circle class="text-green-400" /> Express environments & resources in “code”
+  * S3 Buckets, EC2 Instances, Database Servers, Lambda Functions
 * <mdi-check-circle class="text-green-400" /> Repeatable outcomes, when creating resources
+  * Desired state vs Imperative
+  * *"There should be a database server"* vs *"Create a database server"*
 * <mdi-check-circle class="text-green-400" /> Reduce human error when making changes
+  * Allows automation via CI/CD
 * <mdi-check-circle class="text-green-400" /> Allows versioning, and rollback
+  * It is just text in a git repository
 
 ---
 layout: two-cols-header
 ---
 
-# What came before CDK
+# Early AWS
 
 ::left::
 
@@ -29,10 +34,42 @@ layout: two-cols-header
 * APIs
 * AWS CLI
 * Cloud Formation
-* Serverless Framework
-* Serverless.com
-* Terraform
-* Cloud Shell
+
+---
+layout: two-cols
+---
+
+# Time to get cloudy
+
+* Terraform (2014)
+  * <mdi-check-circle class="text-green-400" /> Uses AWS SDK directly
+  * <mdi-check-circle class="text-green-400" /> Written in Go
+  * <mdi-check-circle class="text-green-400" /> Module ecosystem
+  * <mdi-check-circle class="text-green-400" /> Build for GCP, Azure, AWS and more
+* Serverless Framework (2015)
+  * <mdi-check-circle class="text-green-400" /> Based on CloudFormation
+  * <mdi-check-circle class="text-green-400" /> Written in JavaScript
+  * <mdi-check-circle class="text-green-400" /> Plugin ecosystem
+* AWS SAM (2016)
+  * <mdi-check-circle class="text-green-400" /> Based on CloudFormation
+  * <mdi-check-circle class="text-green-400" /> Extends CloudFormation
+  * <mdi-check-circle class="text-green-400" /> Written in Python
+
+::right::
+
+* Pulumi (2018)
+  * <mdi-check-circle class="text-green-400" /> Same as CDK
+  * <mdi-check-circle class="text-green-400" /> Build for GCP, Azure, AWS
+* AWS CDK (2019)
+  * <mdi-check-circle class="text-green-400" /> TypeScript / Go / Node.js / etc.
+  * <mdi-check-circle class="text-green-400" /> Based on CloudFormation
+  * <mdi-check-circle class="text-green-400" /> High level abstractions
+  * <mdi-check-circle class="text-green-400" /> Suitable for infrastructure projects too
+* CDKTF (2020)
+  * <mdi-check-circle class="text-green-400" /> TypeScript / Go / Node.js / etc.
+  * <mdi-check-circle class="text-green-400" /> Based on Terraform
+  * <mdi-check-circle class="text-green-400" /> Use Terraform modules
+  * <mdi-check-circle class="text-green-400" /> Build for GCP, Azure, AWS, and more
 
 ---
 layout: four-cols-header
@@ -51,8 +88,7 @@ layout: four-cols-header
 * Cloud Formation
 * Serverless
 * Terraform
-* CDK TF
-* CDK
+* CDK TF & CDK
 
 ::two::
 
@@ -65,6 +101,7 @@ layout: four-cols-header
 * Terraform
 * ARM templates
 * Blueprints
+* CDK TF
 
 ::three::
 
@@ -74,6 +111,7 @@ layout: four-cols-header
 * Cloud Shell
 * Google Cloud Deployment Manager
 * Terraform
+* CDK TF
 
 ::four::
 
@@ -81,15 +119,19 @@ layout: four-cols-header
 
 * Snowflake Portal
 * Terraform
+* CDK TF
 
 ---
 
 # Notable mentions
 
+Prior to serverless, your infrastructure changed less often.
+
 * Ansible
 * Chef
 * Puppet
 * Vagrant
+* Salt stack
 
 ---
 layout: two-cols-header
@@ -142,9 +184,12 @@ Constructs
 
 # CDK Levels
 
-1. Level 1 - **Cfnxxx** - Direct AWS Resources
-2. Level 2 - **Preferred level** - S3Bucket / Lambda
-3. Level 3 - **Higher Constructs** - LambdaNodeJS / LoadBalancedFargateApp
+* Level 1
+  * **Cfnxxx** - Direct AWS Resources
+* Level 2
+  * **Preferred level** - S3Bucket / Lambda
+* Level 3
+  * **Higher Constructs** - LambdaNodeJS / LoadBalancedFargateApp
 
 ---
 
@@ -156,22 +201,31 @@ Constructs
 * Step 3 - Deploy the Stack into AWS
 * Step 4 - Improve config and multi environments
 * Step 5 - Pass configuration into the stack
-* Step 6 - Deploy a lambda
-* Step 7 - Give the Lambda access to a DynamoDB table
+* Step 6 - Deploy a Lambda Function
+* Step 7 - Give the Lambda Function access to a DynamoDB table
 * Step 8 - Clean up
 
+---
+layout: two-cols-header
 ---
 
 # Code Time
 
+::left::
+
+https://github.com/infinityworks/101-Sessions
+
+You can get help from the helpers around the room
+
+::right::
+
+![Local Image](qr-code.png)
+
 ---
 
-# Discussion points
+# Lean Coffee
 
-* What to do next?
-* How to pipeline
-* CDK and serverless
-* Production ready?
+* Lets vote on what to chat about
 
 ---
 layout: two-cols-header
