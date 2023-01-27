@@ -4,7 +4,7 @@
   "description": "This is the 101 on Step Functions, this course will introduce you to step functions and some of the features that make them so great.",
   "main": "index.js",
   "dependencies": {
-    "serverless": "^1.57.0",
+    "serverless": "^3.27.0",
     "serverless-step-functions": "^2.11.0"
   },
   "devDependencies": {},
