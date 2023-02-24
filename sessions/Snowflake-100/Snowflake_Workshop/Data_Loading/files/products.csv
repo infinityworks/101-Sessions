@@ -1,0 +1,151 @@
+product_id| product_name| subcategory_id| price
+1| Semi Skimmed Milk 4 pint| 1| 1.65
+2| Semi Skimmed Milk 2 pint| 1| 1.30
+3| Semi Skimmed Milk 6 milk| 1| 2.35
+4| Whole Milk 4 pint| 1| 1.65
+5| Whole Milk 2 pint| 1| 1.30
+6| Whole Milk 6 pint| 1| 2.35
+7| Skimmed Milk 4 pint| 1| 1.65
+8| Skimmed Milk 2 pint| 1| 1.30
+9| Skimmed Milk 1 pint| 1| 0.95
+10| Tanqueray London Dry Gin 1L| 2| 22.00
+11| Absolut Blue Original Swedish Vodka 70 cl| 2| 16.00
+12| Jack Daniel's Tennessee Whiskey 1L| 2| 25.00
+13| Gordon's London Dry Gin 1L| 2| 22.50
+14| The Famous Grouse Finest Blended Scotch Whisky 1L| 2| 17.00
+15| Smimoff Red Label Vodka 1L| 2| 22.50
+16| Bacardi Carta Blanca Rum 1L| 2| 18.00
+17| Bartinet VSOP Brandy 1L| 2| 19.00
+18| Napoleon Brandy VSOP 35cl| 2| 6.25
+19| Three Barrels VSOP Brandy 1L| 2| 17.00
+20| Budweiser Lager Beer Bottles 20x300ml| 2| 12.00
+21| Chargrilled British Chicken Breast Slices 160g| 3| 2.90
+22| Kansas City BBQ Cooked British Chicken Wings 525g| 3| 3.70
+23| British Fresh Chicken Breast Fillets Skinless & Boneless 300g| 3| 2.50
+24| British Fresh Chicken Skin on Thighs 1kg| 3| 2.69
+25| British Fresh Diced Chicken Breast 410g| 3| 3.85
+26| British Fresh Chicken Skin on Drumsticks 1kg| 3| 2.49
+27| British Fresh Small Whole Chicken 1.35kg| 3| 3.50
+28| British Fresh Large Whole Chicken 1.9kg| 3| 4.99
+29| Free Range British Chicken Thigh Fillets 360g| 3| 5.18
+30| Brownie Slices x4| 4| 1.20
+31| Flapjack Bites x20| 4| 2.25
+32| Mr Kipling Cherry Bakewell Cakes x6| 4| 2.35
+33| Cadbury Milk Chocolate Mini Rolls Cakes x5| 4| 2.25
+34| McVitie's Jaffa Cakes x10 122g| 4| 1.25
+35| Real Lancashire Eccles Cakes x4| 4| 2.30
+36| Marvel Avengers Celebration Cake 859g| 4| 14.00
+37| Oscar the Bear Chocolate Cake 780g| 4| 11.00
+38| Cupcakes x12 516g| 4| 6.00
+39| Happy Birthday Madeira Cake 1.26kg (Serves 18)| 4| 12.00
+40| Cadbury Flake Chocolate Cake 960g (Serves 12)| 4| 14.15
+41| Kingsmill Medium Sliced 50/50 Bread 800g| 5| 1.40
+42| Hovis Soft Medium Sliced White Bread 800g| 5| 1.40
+43| Hovis Medium Sliced Wholemeal Bread 800g| 5| 1.45
+44| Garlic Baguette x2 410g| 5| 1.50
+45| Crusty White Baguette 400g| 5| 1.05
+46| All Butter Croissants x4| 5| 1.30
+47| Kelderman Stone Baked Rye Bread 500g| 5| 1.80
+48| Warburtons Hotdog Rolls x6 340g| 5| 1.40
+49| British Free Range Eggs Large x12| 6| 2.55
+50| British Free Range Eggs Large x6| 6| 1.75
+51| British Free Range Eggs Medium x12| 6| 2.40
+52| British Free Range Eggs Medium x6| 6| 1.40
+53| Woodland Free Range Large Eggs| SO Organic x6| 6| 2.80
+54| Free Range British Eggs Medium x15| 6| 2.60
+55| The Happy Egg Co. Free Range Mixed Weight x10 497g| 6| 2.90
+56| Magnum Double Raspberry Ice Cream 3x88ml| 7| 3.00
+57| Young's Breaded Cod Fillets x4 440g| 7| 5.00
+58| Birds Eye Garden Peas 800g| 7| 2.00
+59| Broccoli Florets 900g| 7| 1.30
+60| French Fries 900g| 7| 1.50
+61| Goodfella's Stonebaked Thin Pepperoni Pizza 332g| 7| 3.00
+62| Goodfella's Stonebaked Thin Margherita Pizza 345g| 7| 3.00
+63| Mixed Vegetables 1kg| 7| 1.30
+64| Birds Eye Chicken Dippers x38 697g| 7| 4.00
+65| Birds Eye Chicken Quarter Pounders x2 227g| 7| 2.50
+66| Aunt Bessie's Honey Glazed Parsnips 500g| 7| 2.60
+67| Cadbury Flake 99 Ice Cream Cones x4 125ml| 7| 4.00
+68| Young's Scampi 220g| 7| 2.50
+69| Seasoned Curly Fries 700g| 7| 1.80
+70| Birds Eye Southern Fried Chicken Grills x2 180g| 7| 2.25
+71| No.1 Living Immune Kombucha Shot 60ml| 8| 2.00
+72| 100% Pressed Apple Juice| Not From Concentrate 1L| 8| 1.70
+73| Tropicana 100% Pure Pressed Smooth Orange Juice| Not From Concentrate 900ml| 8| 2.75
+74| 100% Pure Squeezed Pineapple Juice| Not From Concentrate 1L| 8| 1.70
+75| Actimel Strawberry Yogurt Drinks 12x100g| 8| 4.25
+76| Happy Monkey Strawberry & Banana Kids Smoothie 4x180ml| 8| 2.30
+77| Copella Apple & Elderflower Juice 1.35L| 8| 3.00
+78| British or New Zealand 20% Fat Lamb Mince 500g| 9| 5.10
+79| British or New Zealand Lamb Liver (Approx. 450g)| 9| 2.19
+80| British or New Zealand Whole Leg Of Lamb (Approx. 2.3kg)| 9| 45.50
+81| British or New Zealand Diced Lamb Shoulder 400g| 9| 6.25
+82| Slow Cooked Lamb Shoulder with a Redcurrant| Honey & Rosemary Glaze 400g (serves x2)| 9| 5.00
+83| Aunty Noray's Lamb Rashers 100g| 9| 2.25
+84| Tariq Halal Lamb Chops 340g| 9| 7.00
+85| Charlie Bigham's Moussaka Meals 655g| 9| 9.95
+86| Slow Cooked Shredded Lamb Shawarma 400g (serves x2)| 9| 5.50
+87| British or Irish 5% Fat Beef Mince 500g| 10| 3.20
+88| British or Irish 21 Day Matured Rump Steak 225g| 10| 3.19
+89| British Beef steak Burgers| 10| 3.00
+90| British or Irish 21 Day Matured Sirloin Steak 22| 10| 4.30
+91| British or Irish 10% Fat 12 Beef Meatballs 350g| 10| 2.25
+92| British or Irish Extra Lean Diced Beef 500g| 10| 4.74
+93| British Carrots 1kg| 11| 0.50
+94| British Maris Piper Potatoes 2.5kg| 11| 1.59
+95| Leeks SO Organic 400g| 11| 2.00
+96| Strawberries 250g| 11| 2.37
+97| Whole Cucumber| 11| 0.75
+98| Sweet Peppers x3| 11| 1.50
+99| Closed Cup White Mushrooms 300g| 11| 0.94
+100| Spring Onions Bunch 100g| 11| 0.50
+101| Fine Green Beans 200g| 11| 1.25
+102| Garlic| 11| 0.24
+103| Brown Onions x3| 11| 1.10
+104| Cherry Tomatoes 500g| 11| 1.35
+105| Sweetcorn Cobettes x4| 11| 1.30
+106| Classic Round Tomatoes x6| 11| 0.85
+107| Mixed Grapes 900g| 12| 3.75
+108| Fairtrade Bananas| 12| 0.78
+109| Easy Peelers| 12| 2.00
+110| Royal Gala Apples x6| 12| 1.70
+111| Honeydew Melon| 12| 1.69
+112| Pineapple| 12| 0.95
+113| Watermelon| 12| 3.09
+114| Pomegranate| 12| 1.25
+115| Lanson Le Rosé 75cl| 13| 40.00
+116| Mionetto Orange Label Prosecco 75cl| 13| 11.00
+117| Moët & Chandon Brut Imperial 75cl| 13| 39.00
+118| Blason Macon Villages 75cl| 13| 11.00
+119| Silver Moki Merlot 75cl| 13| 7.50
+120| British Mature Cheddar Cheese 400g| 14| 3.20
+121| Greek Feta Cheese 200g| 14| 2.10
+122| Cypriot Halloumi Cheese 225g| 14| 2.30
+123| Grated Mozzarella Cheese 250g| 14| 2.65
+124| Grana Padano Cheese 200g| 14| 2.19
+125| French Mild Brie Cheese 200g| 14| 1.69
+126| Double Gloucester Cheese 250g| 14| 2.75
+127| Dairylea Cheese Slices 8x20.5g| 14| 1.3
+128| Activia Grains & Nuts Walnut & Oats Yogurt 4x120g| 15| 2.35
+129| Yeo Valley Organic Kefir Strawberry Yogurt 4x100g| 15| 2.50
+130| FAGE Total 5% Fat Natural Greek Recipe Strained Yoghurt 450g| 15| 3.50
+131| Onken Natural Set Yogurt 500g| 15| 2.00
+132| Onken Mango Papaya & Passionfruit Biopot Yogurt 450g| 15| 2.25
+133| Yeo Valley Kefir Mango & Passion Fruit Organic Yogurt 350g| 15| 2.00
+134| Onken Natural Set Yogurt 1kg| 15| 3.50
+135| Mowi Scottish Salmon Fillets 230g| 16| 5.00
+136| Sea Bass Fillets ASC 180g| 16| 4.00
+137| British Smoked Boneless Mackerel| 16| 3.38
+138| Fisherman King Prawns 140g| 16| 2.32
+139| Sweet Chilli ASC Scottish Salmon Portions x2 180g (Ready to eat)| 16| 4.75
+140| Raw King Prawns ASC 165g| 16| 3.25
+141| British Mackerel Fillets x2 180g| 16| 2.25
+142| Coldwater Prawn Cocktail MSC 170g| 16| 2.50
+143| Breaded Plaice Fillets x2 300g| 16| 3.50
+144| Fresh Packed Bunch Coriander 30g| 17| 0.52
+145| Fresh Living Basil Pot| 17| 1.50
+146| Fresh Curly Parsley 30g| 17| 0.60
+147| Little Gem Lettuce x2| 17| 0.85
+148| Curly Leaf Lettuce 200g| 17| 0.70
+149| Baby Leaf Spinach 100g| 17| 1.10
+150| Young Spinach 260g| 17| 1.50
