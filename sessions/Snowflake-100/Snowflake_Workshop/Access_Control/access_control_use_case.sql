@@ -1,3 +1,4 @@
+use role accountadmin;
 -- STEP 1 create roles
 use role securityadmin;
 
@@ -6,7 +7,7 @@ create role data_owner;
 create role deployer;
 -- functional roles
 create role loader;
-create role data_engineer;
+create role transformer;
 create role tester;
 create role reporter;
 -- access roles
@@ -22,17 +23,17 @@ use role securityadmin;
 grant role data_owner to role sysadmin;
 grant role deployer to role data_owner;
 grant role loader to role data_owner;
-grant role data_engineer to role data_owner;
+grant role transformer to role data_owner;
 grant role tester to role data_owner;
 grant role reporter to role data_owner;
 
 grant role analytics_reader to role analytics_writer;
 grant role analytics_reader to role reporter;
 grant role analytics_reader to role tester;
-grant role analytics_writer to role data_engineer;
+grant role analytics_writer to role transformer;
 
 grant role raw_reader to role raw_writer;
-grant role raw_reader to role data_engineer;
+grant role raw_reader to role transformer;
 grant role raw_reader to role tester;
 grant role raw_writer to role loader;
 ---------------------------------------------------------------------------------------------------
@@ -42,6 +43,7 @@ use role accountadmin;
 -- grant create databse and warehouse to master role
 grant create database on account to role deployer;
 grant create warehouse on account to role deployer;
+-- grant CREATE STAGE, FILE FORMAT on account to role deployer;
 -- create databases
 use role deployer;
 
@@ -67,26 +69,26 @@ warehouse_size = 'medium'
 warehouse_type = 'standard'
 auto_suspend = 60
 auto_resume = true;
-create warehouse reporter_wh 
+create warehouse reporter_wh
 warehouse_size = 'xsmall'
 warehouse_type = 'standard'
 min_cluster_count = 2
 max_cluster_count = 4
 auto_suspend = 600
 auto_resume = true;
-create warehouse transformer_xs_wh 
+create warehouse transformer_xs_wh
 warehouse_size = 'xsmall'
 warehouse_type = 'standard'
 min_cluster_count = 1
 max_cluster_count = 5
 auto_suspend = 60
 auto_resume = true;
-create warehouse transformer_xl_wh 
+create warehouse transformer_xl_wh
 warehouse_size = 'xlarge'
 warehouse_type = 'standard'
 auto_suspend = 60
 auto_resume = true;
-create warehouse tester_wh 
+create warehouse tester_wh
 warehouse_size = 'xsmall'
 warehouse_type = 'standard'
 auto_suspend = 60
@@ -125,43 +127,38 @@ show grants on database analytics;
 -- grant usage on warehouse my_wh
 -------------------------------------------------------------------------------------------------
 grant usage on warehouse loader_wh to role loader;
-grant usage on warehouse transformer_xs_wh to role data_engineer;
-grant usage on warehouse transformer_xl_wh to role data_engineer;
+grant usage on warehouse transformer_xs_wh to role transformer;
+grant usage on warehouse transformer_xl_wh to role transformer;
 grant usage on warehouse reporter_wh to role reporter;
 grant usage on warehouse tester_wh to role tester;
 ---------------------------------------------------------------------------------------------------
---STEP 5 create users and assing roles 
+--STEP 5 create users and assingn roles
 use role useradmin;
 
 create user do_1
-password = 'rome123' 
-default_role = data_engineer 
+password = 'rome123'
+default_role = transformer
 must_change_password = false;
-create user de_1 
-password = 'rome123' 
-default_role = data_engineer 
+create user de_1
+password = 'rome123'
+default_role = transformer
 must_change_password = false;
-create user tester_1 
-password = 'rome123' 
-default_role = tester 
+create user tester_1
+password = 'rome123'
+default_role = tester
 must_change_password = false;
-create user reporter_1 
-password = 'rome123' 
-default_role = data_engineer 
+create user reporter_1
+password = 'rome123'
+default_role = transformer
 must_change_password = false;
-create user loader_1 
-password = 'rome123' 
-default_role = loader 
+create user loader_1
+password = 'rome123'
+default_role = loader
 must_change_password = false;
 
 use role securityadmin;
 grant role data_owner to user do_1;
-grant role data_engineer to user de_1;
+grant role transformer to user de_1;
 grant role tester to user tester_1;
 grant role reporter to user reporter_1;
 grant role loader to user loader_1;
-
-
-
-
-
