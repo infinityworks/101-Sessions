@@ -24,15 +24,21 @@ Then once it has instantiated, open your browser and enter:
 
  ![](./assets/metabase-language.png)
 
- ![](./assets/metabase-details.png)
+For the following screen where you're asked for connection details, you'll need to know your Snowflake Account Id. You can find that in the Classic Console UI as the identifier in bold in the middle of this drop-down menu.
 
- ![](./assets/metabase-details2.png)
+ ![](./assets/snowflake-accountid.png)
+
+IMPORTANT: The naming convention for Account Name is very particular [(see this table for more details)](https://docs.snowflake.com/en/user-guide/admin-account-identifier.html#non-vps-account-locator-formats-by-cloud-platform-and-region)
+
+If you have any other issues with this config, see the [Metabase docs for Snowflake](https://www.metabase.com/docs/latest/administration-guide/databases/snowflake.html) for further support
+
+ ![](./assets/metabase-details.png)
 
  ![](./assets/metabase-complete.png)
 
  ![](./assets/metabase-dashboard.png)
 
- ![](./assets/metabase-nav.png)
+From this dashboard select New -> SQL Query, and pick the name you gave to your Snowflake integration.
 
  Run a query:
 
@@ -44,5 +50,7 @@ Then once it has instantiated, open your browser and enter:
       ORDER BY FREQUENCY DESC
       
  ![](./assets/metabase-query.png)
+
+ Select the "Visualization" button at the bottom left, and select "Pie" from the left to visualise the result set as a Pie Chart.
 
  ![](./assets/metabase-piechart.png)

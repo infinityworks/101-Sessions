@@ -1,5 +1,8 @@
 # Loading data via the Snowflake UI [[docs](https://docs.snowflake.com/en/user-guide/data-load-web-ui.html)]
 
+This requires reverting back from the Snowsight UI to the Classic Web Interface. You can do this by selecting the "Classic Console" link in the bottom left of the screen. You'll need to provide your credentials again when switching interfaces.
+
+![Classic Console link](./assets/classic_console_link.png "Classic Console link")
 
 ## The Snowflake Load Data Wizard
 
@@ -71,7 +74,3 @@ Once you have created the `FILE_FORMAT` and clicked `Finish`, it should automati
 You can now navigate back to a worksheet and run queries on the data.
 
 ![Select transactions](./assets/select_all.png "Select transactions")
-
-To retrieve all existing file formats run:
-
-    SHOW FILE FORMATS;
