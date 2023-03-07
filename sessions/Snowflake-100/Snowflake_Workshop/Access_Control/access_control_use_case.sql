@@ -1,6 +1,5 @@
-use role accountadmin;
 -- STEP 1 create roles
-use role securityadmin;
+use role useradmin;
 
 -- main roles
 create role data_owner;
@@ -8,7 +7,7 @@ create role deployer;
 -- functional roles
 create role loader;
 create role transformer;
-create role tester;
+-- create role tester;
 create role reporter;
 -- access roles
 create role analytics_reader;
@@ -24,17 +23,14 @@ grant role data_owner to role sysadmin;
 grant role deployer to role data_owner;
 grant role loader to role data_owner;
 grant role transformer to role data_owner;
-grant role tester to role data_owner;
 grant role reporter to role data_owner;
 
 grant role analytics_reader to role analytics_writer;
 grant role analytics_reader to role reporter;
-grant role analytics_reader to role tester;
 grant role analytics_writer to role transformer;
 
 grant role raw_reader to role raw_writer;
 grant role raw_reader to role transformer;
-grant role raw_reader to role tester;
 grant role raw_writer to role loader;
 ---------------------------------------------------------------------------------------------------
 -- STEP 3 create objects
@@ -43,7 +39,7 @@ use role accountadmin;
 -- grant create databse and warehouse to master role
 grant create database on account to role deployer;
 grant create warehouse on account to role deployer;
--- grant CREATE STAGE, FILE FORMAT on account to role deployer;
+
 -- create databases
 use role deployer;
 
@@ -88,12 +84,7 @@ warehouse_size = 'xlarge'
 warehouse_type = 'standard'
 auto_suspend = 60
 auto_resume = true;
-create warehouse tester_wh
-warehouse_size = 'xsmall'
-warehouse_type = 'standard'
-auto_suspend = 60
-auto_resume = true;
-show warehouses;
+
 ---------------------------------------------------------------------------------------------------
 -- STEP 4 grant privileges on securable objects to roles
 use role deployer;
@@ -130,7 +121,7 @@ grant usage on warehouse loader_wh to role loader;
 grant usage on warehouse transformer_xs_wh to role transformer;
 grant usage on warehouse transformer_xl_wh to role transformer;
 grant usage on warehouse reporter_wh to role reporter;
-grant usage on warehouse tester_wh to role tester;
+-- grant usage on warehouse tester_wh to role tester;
 ---------------------------------------------------------------------------------------------------
 --STEP 5 create users and assingn roles
 use role useradmin;
@@ -143,10 +134,7 @@ create user de_1
 password = 'rome123'
 default_role = transformer
 must_change_password = false;
-create user tester_1
-password = 'rome123'
-default_role = tester
-must_change_password = false;
+
 create user reporter_1
 password = 'rome123'
 default_role = transformer
@@ -159,6 +147,5 @@ must_change_password = false;
 use role securityadmin;
 grant role data_owner to user do_1;
 grant role transformer to user de_1;
-grant role tester to user tester_1;
 grant role reporter to user reporter_1;
 grant role loader to user loader_1;
