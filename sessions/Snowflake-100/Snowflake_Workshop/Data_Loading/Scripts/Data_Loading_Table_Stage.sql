@@ -8,7 +8,7 @@
 --Login to Loader user
 --Execute the scripts in the below order.
 --Statements to set the context for this worksheet
-USE ROLE DEPLOYER;
+USE ROLE LOADER;
 
 USE DATABASE RAW;
 USE SCHEMA RETAIL;
@@ -19,6 +19,8 @@ CREATE FILE FORMAT CSV_WITH_COMMAS
 	TYPE = CSV
     SKIP_HEADER = 1
     COMPRESSION = gzip;
+
+
 
 --Query to see contents of the table stage    
 SELECT * FROM @%CATEGORY;

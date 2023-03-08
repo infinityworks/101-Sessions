@@ -51,7 +51,7 @@ product_id| product_name| subcategory_id| price
 50| British Free Range Eggs Large x6| 6| 1.75
 51| British Free Range Eggs Medium x12| 6| 2.40
 52| British Free Range Eggs Medium x6| 6| 1.40
-53| Woodland Free Range Large Eggs| SO Organic x6| 6| 2.80
+53| Woodland Free Range Large Eggs SO Organic x6| 6| 2.80
 54| Free Range British Eggs Medium x15| 6| 2.60
 55| The Happy Egg Co. Free Range Mixed Weight x10 497g| 6| 2.90
 56| Magnum Double Raspberry Ice Cream 3x88ml| 7| 3.00
@@ -70,9 +70,9 @@ product_id| product_name| subcategory_id| price
 69| Seasoned Curly Fries 700g| 7| 1.80
 70| Birds Eye Southern Fried Chicken Grills x2 180g| 7| 2.25
 71| No.1 Living Immune Kombucha Shot 60ml| 8| 2.00
-72| 100% Pressed Apple Juice| Not From Concentrate 1L| 8| 1.70
-73| Tropicana 100% Pure Pressed Smooth Orange Juice| Not From Concentrate 900ml| 8| 2.75
-74| 100% Pure Squeezed Pineapple Juice| Not From Concentrate 1L| 8| 1.70
+72| 100% Pressed Apple Juice Not From Concentrate 1L| 8| 1.70
+73| Tropicana 100% Pure Pressed Smooth Orange Juice Not From Concentrate 900ml| 8| 2.75
+74| 100% Pure Squeezed Pineapple Juice Not From Concentrate 1L| 8| 1.70
 75| Actimel Strawberry Yogurt Drinks 12x100g| 8| 4.25
 76| Happy Monkey Strawberry & Banana Kids Smoothie 4x180ml| 8| 2.30
 77| Copella Apple & Elderflower Juice 1.35L| 8| 3.00
@@ -80,7 +80,7 @@ product_id| product_name| subcategory_id| price
 79| British or New Zealand Lamb Liver (Approx. 450g)| 9| 2.19
 80| British or New Zealand Whole Leg Of Lamb (Approx. 2.3kg)| 9| 45.50
 81| British or New Zealand Diced Lamb Shoulder 400g| 9| 6.25
-82| Slow Cooked Lamb Shoulder with a Redcurrant| Honey & Rosemary Glaze 400g (serves x2)| 9| 5.00
+82| Slow Cooked Lamb Shoulder with a Redcurrant Honey & Rosemary Glaze 400g (serves x2)| 9| 5.00
 83| Aunty Noray's Lamb Rashers 100g| 9| 2.25
 84| Tariq Halal Lamb Chops 340g| 9| 7.00
 85| Charlie Bigham's Moussaka Meals 655g| 9| 9.95
