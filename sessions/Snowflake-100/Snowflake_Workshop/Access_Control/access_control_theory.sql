@@ -127,3 +127,9 @@ grant role role1 to role sysadmin;
 use role sysadmin;
 show tables like 'table%';
 show grants on role role1;
+
+-- CLen-Up
+use role accountadmin;
+drop role role1;
+drop user user1;
+drop warehouse wh1;
