@@ -128,7 +128,7 @@ use role sysadmin;
 show tables like 'table%';
 show grants on role role1;
 
--- CLen-Up
+-- Clean-Up
 use role accountadmin;
 drop role role1;
 drop user user1;
