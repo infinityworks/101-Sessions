@@ -1,0 +1,78 @@
+[
+    {
+        "Transaction_Date":"2023-03-16"
+        , "Transaction_Time":"09:00:01"
+        , "Transaction_Id":1
+        , "Store_id":4
+        , "Items":[
+                {
+                    "Product_Id":2
+                    , "Product_Qty":3
+                },
+                {
+                    "Product_Id":10
+                    , "Product_Qty":1
+                },
+                {
+                    "Product_Id":5
+                    , "Product_Qty":1
+                },
+                {
+                    "Product_Id":88
+                    , "Product_Qty":2
+                },
+                {
+                    "Product_Id":121
+                    , "Product_Qty":1
+                }
+        ]
+    },
+    {
+        "Transaction_Date":"2023-03-16"
+        , "Transaction_Time":"09:01:21"
+        , "Transaction_Id":2
+        , "Store_id":5
+        , "Items":[
+                {
+                    "Product_Id":22
+                    , "Product_Qty":4
+                },
+                {
+                    "Product_Id":101
+                    , "Product_Qty":8
+                },
+                {
+                    "Product_Id":144
+                    , "Product_Qty":4
+                },
+                {
+                    "Product_Id":55
+                    , "Product_Qty":1
+                },
+                {
+                    "Product_Id":66
+                    , "Product_Qty":3
+                }
+        ]
+    },
+    {
+        "Transaction_Date":"2023-03-16"
+        , "Transaction_Time":"09:05:56"
+        , "Transaction_Id":3
+        , "Store_id":8
+        , "Items":[
+                {
+                    "Product_Id":66
+                    , "Product_Qty":3
+                },
+                {
+                    "Product_Id":43
+                    , "Product_Qty":1
+                },
+                {
+                    "Product_Id":96
+                    , "Product_Qty":1
+                }
+        ]
+    }
+]
