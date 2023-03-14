@@ -33,7 +33,8 @@ FROM VALUES
       "name": "Greg Northrup"
     },
     "customer" : [
-      {"name": "Bradley Greenbloom", "phone": "12127593751", "address": "New York, NY"}
+      {"name": "Bradley Greenbloom", "phone": "12127593751", "address": "New York, NY"},
+      {"name": "Alan Russell", "phone": "15227496751", "address": "Los Angels, CA"}
     ],
     "vehicle" : [
       {"make": "Toyota", "model": "Camry", "year": "2017", "price": "23500", "extras":["ext warranty", "rust proofing", "fabric protection"]}
@@ -43,31 +44,33 @@ FROM VALUES
 select * from parsing_semi_structured.parsing_semi_structured.car_sales;
 
 --you can get any first level element inserting a colon between the VARIANT column and the first element <column>:<level1_element>
-select src:dealership from parsing_semi_structured.parsing_semi_structured.car_sales;
+select src:dealership, src from parsing_semi_structured.parsing_semi_structured.car_sales;
 
 -- you can traverse the path of a semi-structured object using the dot notation
-select src:salesperson.name from parsing_semi_structured.parsing_semi_structured.car_sales;
+select src:salesperson.name, src from parsing_semi_structured.parsing_semi_structured.car_sales;
 
 -- you can achieve the same using the bracket notation
-select src['salesperson']['name'] from parsing_semi_structured.parsing_semi_structured.car_sales;
+select src['salesperson']['name'], src from parsing_semi_structured.parsing_semi_structured.car_sales;
 
 -- retrieve a single instance of a repeating element
-select src:customer[0].name, src:vehicle[0] from parsing_semi_structured.parsing_semi_structured.car_sales;
+select src:customer[0], src:vehicle[0], src from parsing_semi_structured.parsing_semi_structured.car_sales;
 
 -- you can further traverse the path and the price value. Note that the price is a STRING
-select src:customer[0].name, src:vehicle[0].price from parsing_semi_structured.parsing_semi_structured.car_sales;
+select src:customer[0].name, src:vehicle[0].price, src from parsing_semi_structured.parsing_semi_structured.car_sales;
 
 -- values in a VARIANT column are by default surrounded by double quotes. Using a double colon :: you can cast these values
-select src:customer[0].name, src:vehicle[0].price::NUMBER from parsing_semi_structured.parsing_semi_structured.car_sales;
+select src:customer[0].name::string, src:vehicle[0].price::number, src from parsing_semi_structured.parsing_semi_structured.car_sales;
 
 
--- you can produce a laterla view of a VARIANT column with the FLATTEN function. The function returns a row for each object, and the LATERAL modifier joins the data with any information outside of the object.
+-- you can produce a lateral view of a VARIANT column with the FLATTEN function. The function returns a row for each object, and the LATERAL modifier joins the data with any information outside of the object.
 SELECT
-  value:name::string as "Customer Name",
-  value:address::string as "Address"
+  src:salesperson.name::string,
+  c.value:name::string as "Customer Name",
+  c.value:address::string as "Address"
+  ,* -- show all columns
   FROM
     parsing_semi_structured.parsing_semi_structured.car_sales
-  , LATERAL FLATTEN(INPUT => SRC:customer);
+  , LATERAL FLATTEN(INPUT => SRC:customer)c;
 
 -- you can nest the FLATTEN function to access deeper elements
 SELECT
@@ -173,4 +176,5 @@ FROM VALUES
   v;
 
 -- start here:
+
 
