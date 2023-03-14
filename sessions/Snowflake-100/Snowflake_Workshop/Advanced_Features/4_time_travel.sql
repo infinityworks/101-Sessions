@@ -115,16 +115,10 @@ updated_at timestamp
 );
 
 insert into time_travel.time_travel.item_price (item_id, price, updated_at) values(1, 9.99, current_timestamp),(2, 4.99, current_timestamp);
-update item_price set price=(CASE WHEN item_id = 1 THEN 7.99 ELSE 2.99 END), updated_at=current_timestamp ;
-update item_price set price=(CASE WHEN item_id = 1 THEN 8.99 ELSE 4.99 END), updated_at=current_timestamp ;
-update item_price set price=(CASE WHEN item_id = 1 THEN 12.99 ELSE 8.99 END), updated_at=current_timestamp ;
+update time_travel.time_travel.item_price set price=(CASE WHEN item_id = 1 THEN 7.99 ELSE 2.99 END), updated_at=current_timestamp ;
+update time_travel.time_travel.item_price set price=(CASE WHEN item_id = 1 THEN 8.99 ELSE 4.99 END), updated_at=current_timestamp ;
+update time_travel.time_travel.item_price set price=(CASE WHEN item_id = 1 THEN 12.99 ELSE 8.99 END), updated_at=current_timestamp ;
 select * from time_travel.time_travel.item_price;
-
--- you can look at the query id using this
-select *
-from table(information_schema.query_history())
-where end_time > current_time() -INTERVAL '5 minutes'order by start_time desc;
 
 -- start here
 -- hint: use union all
-
