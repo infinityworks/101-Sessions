@@ -24,5 +24,5 @@ ALTER SHARE SF_WORKSHOP ADD ACCOUNTS = "CT90700";
 
 -- Clean-Up
 drop share if exists SF_WORKSHOP;
-drop database if existsshare_db;
+drop database if exists share_db;
 
