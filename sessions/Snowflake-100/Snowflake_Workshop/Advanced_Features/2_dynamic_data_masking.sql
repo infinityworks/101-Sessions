@@ -33,7 +33,7 @@ grant usage on database masking to role ANALYST;
 grant usage on schema masking.masking to role ANALYST;
 grant usage on warehouse compute_Wh to role ANALYST;
 grant select on table masking.masking.customers to role ANALYST;
-grant role ANALYST to user andrea;
+grant role ANALYST to user admin;
 
 -- analyst role will see the email hashed
 use role ANALYST;
@@ -71,28 +71,28 @@ grant select on table masking.masking.customers to role north_analyst;
 grant usage on database masking to role north_analyst;
 grant usage on schema masking.masking to role north_analyst;
 grant usage on warehouse compute_Wh to role north_analyst;
-grant role north_analyst to user andrea;
+grant role north_analyst to user admin;
 
 create role if not exists south_analyst;
 grant usage on database masking to role south_analyst;
 grant usage on schema masking.masking to role south_analyst;
 grant usage on warehouse compute_Wh to role south_analyst;
 grant select on table masking.masking.customers to role south_analyst;
-grant role south_analyst to user andrea;
+grant role south_analyst to user admin;
 
 create role if not exists east_analyst;
 grant usage on database masking to role east_analyst;
 grant usage on schema masking.masking to role east_analyst;
 grant usage on warehouse compute_Wh to role east_analyst;
 grant select on table masking.masking.customers to role east_analyst;
-grant role east_analyst to user andrea;
+grant role east_analyst to user admin;
 
 create role if not exists west_analyst;
 grant usage on database masking to role west_analyst;
 grant usage on schema masking.masking to role west_analyst;
 grant usage on warehouse compute_Wh to role west_analyst;
 grant select on table masking.masking.customers to role west_analyst;
-grant role west_analyst to user andrea;
+grant role west_analyst to user admin;
 
 -- check what rows they can see
 select * from masking.masking.customers ;
@@ -107,7 +107,7 @@ select * from masking.masking.customers ;
 
 
 
--- Exercise
+-- Excercise
 -- create sample data
 use role accountadmin;
 create or replace table masking.masking.customer_exercise like SNOWFLAKE_SAMPLE_DATA.TPCDS_SF10TCL.CUSTOMER;
@@ -116,11 +116,14 @@ insert into masking.masking.customer_exercise select * from SNOWFLAKE_SAMPLE_DAT
 grant select on table masking.masking.customer_exercise to role analyst;
 select * from masking.masking.customer_exercise;
 
+
 -- Mask all PII data in the table "masking.masking.customer_exercise" for the role ANALYST.
 -- start here:
 
 
--- let the analyst role to only see customers born in the UK
+
+
+-- Let the analyst role to only see customers born in the UK
 use role accountadmin;
 -- start here:
 
