@@ -1,57 +1,69 @@
 -- ROLES AND USERS
 
 -- Creation of a role:
-use role securityadmin; -- By default, only accountadmin and securityadmin can create roles. Securityadmin is the recommended role to be used to create roles
+-- Useradmin has the privileges to create roles
+use role useradmin;
 create role role1;
-grant role role1 to user andrea;
+-- as the owner of the role, it can grant the role to users
+grant role role1 to user admin;
 
-use role sysadmin; -- Trying creating a role with sysadmin will trigger an error i.e. Insufficient privileges to operate on account
-create role role1;
-
+-- Trying creating a role with sysadmin will trigger an error i.e. Insufficient privileges to operate on account
+use role sysadmin;
+create role role2;
 
 -- Creation of a user
-use role useradmin; -- USERADMIN is the recommended role to be used to create users
+-- USERADMIN is the recommended role to be used to create users
+use role useradmin;
 create user user1;
 
-grant role role1 to user user1; -- the below won't work as USERADMIN does not have privileges over role1. Grant not executed: Insufficient privileges.
-
-use role securityadmin; -- need to switch back to SECURITYADMIN again
+-- I can also use the role SECURITYADMIN to manage grants
+use role securityadmin;
 grant role role1 to user user1;
 
-
 -- Let's check what we have:
-show roles like 'role1'; -- role1 existes and is owned by SECURITYADMIN. The OWNERSHIP privilege is granted to and by SECURITYADMIN
+-- role1 existes and is owned by SECURITYADMIN. The OWNERSHIP privilege is granted to and by SECURITYADMIN
+show roles like 'role1';
 show grants on role role1;
 
-show users like 'user1'; -- user1 exists and is owned by USERADMIN. The OWNERSHIP privilege is granted to and by USERADMIN
+-- user1 exists and is owned by USERADMIN. The OWNERSHIP privilege is granted to and by USERADMIN
+show users like 'user1';
 show grants on user user1;
 
-show grants of role role1; -- role1 has been granted to a user i.e. user1
+-- role1 has been granted to a user i.e. user1
+show grants of role role1;
 
-show grants to user user1; -- user1 has the grant to role1
+-- user1 has the grant to role1
+show grants to user user1;
 
 
 
 -- SECURABLE OBJECTS
 
 -- Create Objects
-use role sysadmin; -- SYSADMIN is the default role to use to create objects
+-- SYSADMIN is the default role to use to create objects
+use role sysadmin;
 create database db1;
 
-use role securityadmin; -- the below won't work as SECURITYADMIN does not have privileges to create databses
-create database db1;
+-- the below won't work as SECURITYADMIN does not have privileges to create databses
+use role securityadmin;
+create database db2;
 
-show databases like 'db1'; -- let's check what we have. The owner of the object is SYSADMIN. Note, there is no show grants to database as "grants to" is for roles and users
+-- let's check what we have. The owner of the object is SYSADMIN. Note, there is no show grants to database as "grants to" is for roles and users
+show databases like 'db1';
 show grants on database db1;
 
-grant ownership on database db1 to role role1; -- Let's change the ownership of the database
-show databases like 'db1'; -- this will produce no result as SYSADMIN has lost ownership of that database
-
+-- Let's change the ownership of the database
+grant ownership on database db1 to role role1;
+-- this will produce no result as SYSADMIN has lost ownership of that database.
+show databases like 'db1';
 use role role1;
 show databases like 'db1';
-grant ownership on database db1 to role sysadmin; -- granting back the ownership to SYSADMIN will make it visible again.
-show databases like 'db1';
 
+-- granting back the ownership to SYSADMIN will make it visible again to SYSADMIN and not visible to role1.
+grant ownership on database db1 to role sysadmin;
+show databases like 'db1';
+use role sysadmin;
+show databases like 'db1';
 
 
 -- PRIVILEGES
@@ -130,6 +142,7 @@ show grants on role role1;
 
 -- Clean-Up
 use role accountadmin;
-drop role role1;
-drop user user1;
-drop warehouse wh1;
+drop database if exists  db1;
+drop role if exists role1;
+drop user if exists user1;
+drop warehouse if exists wh1;

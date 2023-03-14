@@ -9,8 +9,8 @@ create role if not exists deployer;
 -- functional roles
 create role if not exists loader;
 create role if not exists transformer;
--- create role tester;
 create role if not exists reporter;
+
 -- access roles
 create role if not exists analytics_reader;
 create role if not exists analytics_writer;
@@ -38,7 +38,7 @@ grant role raw_writer to role loader;
 -- STEP 3 create objects
 use role accountadmin;
 
--- grant create databse and warehouse to master role
+-- grant create databse and warehouse to deployer role
 grant create database on account to role deployer;
 grant create warehouse on account to role deployer;
 
@@ -123,7 +123,6 @@ grant usage on warehouse loader_wh to role loader;
 grant usage on warehouse transformer_xs_wh to role transformer;
 grant usage on warehouse transformer_xl_wh to role transformer;
 grant usage on warehouse reporter_wh to role reporter;
--- grant usage on warehouse tester_wh to role tester;
 ---------------------------------------------------------------------------------------------------
 --STEP 5 create users and assingn roles
 use role useradmin;
