@@ -30,11 +30,6 @@ select * from ZCC.information_schema.tables where table_name ='ORDERS';
 delete from ZCC.ZCC.orders where orderkey <= 100000;
 select * from ZCC.information_schema.tables where table_name ='ORDERS';
 
--- let's update some rows in the cloned table
-update ZCC.ZCC_clone.orders set orderpriority = '1-URGENT' where orderkey < 100 and orderpriority <> '1-URGENT';
-
--- let's check the active bytes. NOTE this table will refresh only every 90 minutes
-select * from snowflake.account_usage.table_storage_metrics where table_catalog = 'ZCC' and table_name = 'ORDERS';
 
 -- let's see how it behaves with transient tables
 create transient table ZCC.ZCC.transient_table (col int);
