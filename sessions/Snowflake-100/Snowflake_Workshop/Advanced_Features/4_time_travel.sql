@@ -74,7 +74,7 @@ where end_time > current_time() -INTERVAL '5 minutes'order by start_time desc;
 select count(*) from orders_3_day at(offset => -300);
 
 -- The following query selects historical data from a table as of the date and time represented by the specified timestamp:
-select count(*) from orders_3_day at(timestamp => 'Thu, 9 Mar 2023 01:33:03.389 -0800'::timestamp_tz); -- 100000
+select count(*) from orders_3_day at(timestamp => 'Thu, 9 Mar 2023 01:33:03.389 -0800'::timestamp_tz);
 
 -- with time travel you can also "undrop" tables
 drop table orders_3_day;
