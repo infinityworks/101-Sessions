@@ -6,6 +6,8 @@ use role useradmin;
 create role role1;
 -- as the owner of the role, it can grant the role to users
 grant role role1 to user admin;
+show roles like 'role1';
+show grants on role role1;
 
 -- Trying creating a role with sysadmin will trigger an error i.e. Insufficient privileges to operate on account
 use role sysadmin;
@@ -15,25 +17,20 @@ create role role2;
 -- USERADMIN is the recommended role to be used to create users
 use role useradmin;
 create user user1;
+show users like 'user1';
+show grants on user user1;
 
 -- I can also use the role SECURITYADMIN to manage grants
 use role securityadmin;
 grant role role1 to user user1;
 
 -- Let's check what we have:
--- role1 existes and is owned by SECURITYADMIN. The OWNERSHIP privilege is granted to and by SECURITYADMIN
-show roles like 'role1';
-show grants on role role1;
-
--- user1 exists and is owned by USERADMIN. The OWNERSHIP privilege is granted to and by USERADMIN
-show users like 'user1';
-show grants on user user1;
-
--- role1 has been granted to a user i.e. user1
+-- role1 has been granted to two users i.e. user1, admin
 show grants of role role1;
 
--- user1 has the grant to role1
+-- user1 has the grant to role1, admin has many grants
 show grants to user user1;
+show grants to user admin;
 
 
 
@@ -81,10 +78,15 @@ show warehouses like 'wh1';
 
 -- Grant usage privileges on objects to roles
 use role role1; -- switching role I lose access to all the previous objctes
-use role sysadmin;
+show schemas like 'schema1';
+show tables like 'table1';
+show warehouses like 'wh1';
 
+-- I can use either securityadmin, role that can manage all grants, or the role used to create these objects which has the OWNERSHIP privilege. In this case, sysadmin.
+use role securityadmin;
 grant usage on database db1 to role role1;
 grant usage on warehouse wh1 to role role1;
+use role sysadmin;
 grant usage on schema db1.schema1 to role role1;
 grant select on table db1.schema1.table1 to role role1;
 
