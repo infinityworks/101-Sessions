@@ -153,6 +153,12 @@ grant role transformer to user de_1;
 grant role reporter to user reporter_1;
 grant role loader to user loader_1;
 
+-- grant all the roles to yourself
+grant role data_owner to user admin;
+grant role transformer to user admin;
+grant role reporter to user admin;
+grant role loader to user admin;
+
 --Exercise
 -- Add to the RBAC created above a role "QA" able to read both the raw and analytics database.
 -- Create also a QA warehouse granted to this role and a QA user
