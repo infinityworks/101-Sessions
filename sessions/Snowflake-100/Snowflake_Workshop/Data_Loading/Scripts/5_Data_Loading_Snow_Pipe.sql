@@ -9,7 +9,7 @@ CREATE FILE FORMAT JSON_FILE
 --Creating the Sales Stage
 CREATE OR REPLACE STAGE sales_stage
   STORAGE_INTEGRATION=s3_int
-  URL = 's3://bala-snowflake-workshop-20230307/Sales/'
+  URL = 's3://bala-workshop-20230316/Sales/'
   FILE_FORMAT = JSON_FILE;
 
 --Creating the Sales Table for this Example
