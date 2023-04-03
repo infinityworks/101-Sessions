@@ -10,7 +10,7 @@ create schema dbt_workshop_raw.stripe;
 
 create database dbt_workshop_analytics;
 
--- Create and populate orders table
+-- Create and populate customers table
 create table dbt_workshop_raw.jaffle_shop.customers (
     id integer,
     first_name varchar,
