@@ -32,7 +32,7 @@ select * from jaffle_payment_data
 - `dbt compile` command
 - how is it stored in Snowflake
 - how to configure the incremental table - using the config block
-- he order precedence in the config lookup this_model.sql takes precedence over the dbt_project.yaml
+- the config block in this_model.sql takes precedence over the dbt_project.yaml
 - the main goal `dbt run` command and see it in snowflake
 
 ## dbt Code vs Stored Procedures
