@@ -178,3 +178,9 @@ FROM VALUES
 -- start here:
 
 
+select
+src:order_id::integer as order_id,
+items.value:product_name::string as product_name,
+-- {add the remaining columns using the same pattern as the above} -- <- SECOND parse the columns
+from parsing_semi_structured.parsing_semi_structured.orders
+-- , LATERAL FLATTEN(INPUT => SRC:{add the items column here}) items; -- <- FIRST add the array column

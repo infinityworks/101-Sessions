@@ -121,4 +121,19 @@ update time_travel.time_travel.item_price set price=(CASE WHEN item_id = 1 THEN 
 select * from time_travel.time_travel.item_price;
 
 -- start here
--- hint: use union all
+
+-- Look at previous query ids with
+-- select *
+-- from table(information_schema.query_history())
+-- where end_time > current_time() -INTERVAL '5 minutes'order by start_time desc;
+
+
+-- replace {query_id} with the query id string
+select * from time_travel.time_travel.item_price at(statement => {query_id})
+union all
+select * from time_travel.time_travel.item_price at(statement => {query_id})
+union all
+select * from time_travel.time_travel.item_price at(statement => {query_id})
+union all
+select * from time_travel.time_travel.item_price at(statement => {query_id})
+order by item_id, updated_at;
