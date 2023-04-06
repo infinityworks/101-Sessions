@@ -30,6 +30,7 @@ select * from ZCC.information_schema.tables where table_name ='ORDERS';
 delete from ZCC.ZCC.orders where orderkey <= 100000;
 select * from ZCC.information_schema.tables where table_name ='ORDERS';
 
+
 -- let's see how it behaves with transient tables
 create transient table ZCC.ZCC.transient_table (col int);
 -- creating a permanent table from a transient table won't work
