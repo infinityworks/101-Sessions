@@ -107,7 +107,7 @@ select * from masking.masking.customers ;
 
 
 
--- Excercise
+-- Exercise
 -- create sample data
 use role accountadmin;
 create or replace table masking.masking.customer_exercise like SNOWFLAKE_SAMPLE_DATA.TPCDS_SF10TCL.CUSTOMER;
@@ -117,13 +117,36 @@ grant select on table masking.masking.customer_exercise to role analyst;
 select * from masking.masking.customer_exercise;
 
 
--- Mask all PII data in the table "masking.masking.customer_exercise" for the role ANALYST.
+-- EXERCISE 1 Mask all PII data in the table "masking.masking.customer_exercise" for the role ANALYST.
 -- start here:
 
+alter table  masking.masking.customer_exercise modify column c_first_name set masking policy masking.masking.hashing_for_analyst_role; -- apply the masking policy to a column
+-- apply the msame masking policy to the other columns
+
+-- verify if it works
+use role analyst;
+select * from masking.masking.customer_exercise;
 
 
 
--- Let the analyst role to only see customers born in the UK
+
+
+-- EXERCISE 2 Let the analyst role to only see customers born in the UK
 use role accountadmin;
 -- start here:
 
+CREATE OR REPLACE TABLE masking.masking.country_lookup (role string, country_name string);
+
+INSERT INTO masking.masking.country_lookup VALUES ('ANALYST', 'UNITED KINGDOM');
+select * from masking.masking.country_lookup;
+
+
+create or replace row access policy masking.masking.country_level_access as (country varchar) returns boolean ->
+--{look at the row level policy created earlier}
+
+
+ALTER TABLE masking.masking.customer_exercise ADD ROW ACCESS POLICY masking.masking.country_level_access ON (c_birth_country);
+
+-- verify if it works
+use role analyst;
+select * from masking.masking.customer_exercise;
