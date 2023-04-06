@@ -129,7 +129,7 @@ use role useradmin;
 
 create user if not exists do_1
 password = 'password123'
-default_role = transformer
+default_role = data_owner
 must_change_password = false;
 
 create user if not exists de_1
@@ -139,7 +139,7 @@ must_change_password = false;
 
 create user if not exists reporter_1
 password = 'password123'
-default_role = transformer
+default_role = reporter
 must_change_password = false;
 
 create user if not exists loader_1
