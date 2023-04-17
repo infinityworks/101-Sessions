@@ -29,7 +29,7 @@ CREATE FILE FORMAT FILE_FORMATS.CSV_PIPE_DELIMITED
 
 -- Create External Stage
 CREATE OR REPLACE STAGE PRODUCT_STAGE
-    URL = 'azure://snowflakeworkshop.blob.core.windows.net/snowflakeworkshopfiles/load/products/'
+    URL = 'azure://snowflakeworkshop1804.blob.core.windows.net/snowflakeworkshop1804/load/products/'
     CREDENTIALS =(azure_sas_token='REPLACE_WITH_SAS_TOKEN_PROVIDED_BY_INSTRUCTOR')
     FILE_FORMAT = FILE_FORMATS.CSV_PIPE_DELIMITED;
 

@@ -13,6 +13,8 @@ COPY INTO @PRODUCT_UNLOAD_STAGE/unload/ FROM PRODUCTS;
 LIST @PRODUCT_UNLOAD_STAGE;
 
 --Login to snowflake using "snowsql -a <snowflake-account> -u <username>"
---Use the below command to get the contents of the stage into your local system
+--Use below commands:
+---- Mac/Linux: GET @mystage/unload/data_0_0_0.csv.gz file:///data/unload;
+---- Windows: GET @mystage/unload/data_0_0_0.csv.gz file://C:\data\unload;
 
 GET @product_unload_stage/unload/data_0_0_0.csv.gz file://Documents;

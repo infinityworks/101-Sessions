@@ -9,7 +9,7 @@ USE SCHEMA EXTERNAL_STAGES;
 
 --Create a stage to unload a file. you dont need separate stage if you want to paste in sub folders you can use existing one
 CREATE OR REPLACE STAGE AZURE_UNLOAD_STAGE
-    URL = 'azure://snowflakeworkshop.blob.core.windows.net/snowflakeworkshopfiles/unload/products/'
+    URL = 'azure://snowflakeworkshop1804.blob.core.windows.net/snowflakeworkshop1804/unload/products/'
     CREDENTIALS =(azure_sas_token='REPLACE_WITH_SAS_TOKEN_PROVIDED_BY_INSTRUCTOR')
     FILE_FORMAT = FILE_FORMATS.CSV_PIPE_DELIMITED;
 
