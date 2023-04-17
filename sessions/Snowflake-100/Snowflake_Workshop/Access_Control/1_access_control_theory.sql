@@ -17,7 +17,6 @@ create role role2;
 -- USERADMIN is the recommended role to be used to create users
 use role useradmin;
 create user user1;
-show users like 'user1';
 show grants on user user1;
 
 -- I can also use the role SECURITYADMIN to manage grants
