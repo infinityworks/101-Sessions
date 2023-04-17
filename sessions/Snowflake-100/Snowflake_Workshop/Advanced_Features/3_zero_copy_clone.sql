@@ -43,7 +43,7 @@ create temporary table ZCC.ZCC.temporary_table (col int);
 -- creating a permanent table from a temporary table won't work
 create table ZCC.ZCC.temporary_table_clone clone ZCC.ZCC.temporary_table;
 -- it can be created as a transient table
-create transient table ZCC.ZCC.transient_table_clone clone ZCC.ZCC.transient_table;
+create transient table ZCC.ZCC.transient_table_clone2 clone ZCC.ZCC.temporary_table;
 
 
 -- Clean-Up
