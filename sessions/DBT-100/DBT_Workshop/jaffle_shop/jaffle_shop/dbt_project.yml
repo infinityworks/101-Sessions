@@ -7,7 +7,11 @@ profile: 'jaffle_shop'
 
 
 models:
-  +materialized: view
   jaffle_shop:
+    +database: dbt_workshop
     staging:
+      +schema: staging
+      +materialized: view
     mart:
+      +schema: mart
+      +materialized: table

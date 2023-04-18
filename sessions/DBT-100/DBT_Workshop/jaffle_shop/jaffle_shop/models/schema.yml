@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: stg_orders
+    description: "{{ doc('stg_models') }}"
+    columns:
+      - name: order_id
+        description: "The id of the order after normalisation from raw to staging"
+        tests:
+          - unique
+          - not_null

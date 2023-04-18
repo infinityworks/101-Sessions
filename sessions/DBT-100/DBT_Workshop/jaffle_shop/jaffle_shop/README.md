@@ -69,6 +69,432 @@ dbt debug
 
 ## The Jaffle Shop
 
+### Business Understanding
+
+Jaffle Shop sells stuff and want to understand their customer purchase behaviours.
+
+### Data Understanding
+
 ### Entity Relationship Diagram (ERD)
 
 ![jaffle shop ERD](./assets/jaffle_shop_erd.png)
+
+### Data Engineering and Analytics
+
+#### Step 1: Data exploration
+
+```sql
+select * from dbt_workshop.raw.customers;
+
+select * from dbt_workshop.raw.orders;
+
+select * from dbt_workshop.raw.payments;
+```
+
+#### Step 2: Populating the staging schema
+
+Content of `models/stg_customers.sql` file
+
+```sql
+with raw_customer as (
+     select * from dbt_workshop.raw.customers
+),
+transformed_customer as (
+    select
+        id as customer_id,
+        first_name,
+        last_name
+    from raw_customer
+)
+select * from transformed_customer
+```
+
+**notes:**
+
+1. The default db and schema comes from the `profile.yml`
+2. We need to configure this in the dbt_project.yml
+
+The models portion of dbt_project.yml file
+
+```yml
+models:
+  jaffle_shop:
+    +database: dbt_workshop
+    staging:
+      +schema: staging
+```
+
+Notes:
+
+- This creates a schema named PUBLIC_staging. Because I have PUBLIC as the default schema
+- (Optional) Lets fix this by overwriting the default macro. Covered later in this session
+- Create folder named `macros` and place the following code in `macros/generate_schema_name.sql`
+
+```yaml
+{% macro generate_schema_name(custom_schema_name, node) -%}
+
+    {%- set default_schema = target.schema -%}
+    {%- if custom_schema_name is none -%}
+
+        {{ default_schema }}
+
+    {%- else -%}
+
+        {{ custom_schema_name | trim }}
+
+    {%- endif -%}
+
+{%- endmacro %}
+```
+
+### Modularisation
+
+Lets now start modularising by adding the sources file. Why:
+
+- Makes it DRY (Don't Repeat Yourself)
+- We can share the same definition of sources to all models by calling the **source()** function
+- Later we'll see how we can extend the sources for testing and documentation
+
+Content of the `models/sources.yml` file
+
+```yaml
+version: 2
+
+sources:
+  - name: jaffle_shop
+    database: dbt_workshop  
+    schema: raw  
+    tables:
+      - name: customers
+```
+
+With that let's refactor the customer model we've just created
+
+```sql
+with raw_customer as (
+    select * from {{ source('jaffle_shop', 'customers') }}
+),
+transformed_customer as (
+    select
+        id as customer_id,
+        first_name,
+        last_name
+    from
+        raw_customer
+)
+select * from transformed_customer
+```
+
+Putting it all together, lets create the stg_orders model by following the steps bellow
+**Alert**: An exercise is coming
+
+1. Add `orders` to `models/sources.yml` file
+2. Create the `models/staging/stg_orders.sql` and apply the following transformation:
+    - rename `id` to `order_id`
+    - rename `user_id` to `customer_id`
+
+```yaml
+version: 2
+
+sources:
+  - name: jaffle_shop
+    database: dbt_workshop  
+    schema: raw  
+    tables:
+      - name: customers
+      - name: orders
+```
+
+```sql
+with raw_orders as (
+    select * from  {{ source('jaffle_shop', 'orders') }}
+),
+transformed_orders as (
+    select
+        id as order_id,
+        user_id as customer_id,
+        order_date,
+        status
+    from
+        raw_orders
+)
+select * from transformed_orders
+```
+
+**Exercise:**
+Now using the same steps lets create the `models/staging/stg_payments.sql`
+
+1. Add `payments` to `models/sources.yml`
+2. Create the `models/staging/stg_payments.sql` and apply the following transformation
+    - rename `id` to `payment_id`
+    - rename `orderid` to `order_id` for consistency
+
+Content of `sources.yml`
+
+```yml
+version: 2
+
+sources:
+  - name: jaffle_shop
+    database: dbt_workshop  
+    schema: raw  
+    tables:
+      - name: customers
+      - name: orders
+      - name: payments
+```
+
+Content of `models/staging/stg_payments.sql`
+
+```sql
+with raw_payments as (
+    select * from {{ source('jaffle_shop', 'payments') }}
+),
+transformed_payments as (
+    select
+        id as payment_id,
+        orderid as order_id,
+        paymentmethod,
+        status,
+        amount,
+        created
+    from
+          raw_payments
+)
+select * from transformed_payments
+```
+
+#### Step 3: Populating the mart/warehouse
+
+Now that we have out data prepared let's create the data warehouse/mart layer
+This is where the Analytics Engineering role enters
+This layer also know the presentation layer will be used to serve the BI/Reporting tools to be able to fulfil reporting requirements
+
+Question: I want to know the top N customers based on purchase habit
+
+**Building the Mart**
+Lets build the mart/warehouse to answer to this and possibly other business question
+
+Content of `models/mart/dim_customer.sql`
+
+- Seems daunting but lets break it down
+
+```sql
+with customers as (
+    select
+        customer_id,
+        first_name,
+        last_name
+    from DBT_WORKSHOP.STAGING.STG_CUSTOMERS
+),
+orders as (
+    select
+        order_id,
+        customer_id,
+        order_date,
+        status
+    from DBT_WORKSHOP.STAGING.STG_ORDERS
+),
+customer_orders as (
+    select
+        customer_id,
+        min(order_date) as first_order_date,
+        max(order_date) as most_recent_order_date,
+        count(order_id) as number_of_orders
+    from orders
+    group by 1
+),
+final as (
+    select
+        customers.customer_id,
+        customers.first_name,
+        customers.last_name,
+        customer_orders.first_order_date,
+        customer_orders.most_recent_order_date,
+        coalesce(customer_orders.number_of_orders, 0) as number_of_orders
+    from customers
+    left join customer_orders using (customer_id)
+)
+select * from final
+```
+
+##### Modularity Revisited
+
+As with sources we also want to make models modular so we can reuse them elsewhere following:
+
+- the DRY principle
+- documentation
+- testing
+- lineage, we'll revisit this in the documentation section
+
+**The ref() function**
+
+Instead of hardcoding the fqn of tables, let's refer to them in dbt by using the `ref()` function
+
+```sql
+with customers as (
+    select
+        customer_id,
+        first_name,
+        last_name
+    from {{ ref('stg_customers') }}
+),
+orders as (
+    select
+        order_id,
+        customer_id,
+        order_date,
+        status
+    from {{ ref('stg_orders') }}
+),
+...
+...
+...
+```
+
+#### Recap
+
+So far:
+
+- We've create the staging layer
+- We've created the mart layer
+- We've applied modularisation
+- What's next?
+  - Materialisation
+  - Testing
+  - Documentation
+
+## Materialisation
+
+Materialisation determines how data is persisted:
+
+- View (the default)
+- Table
+- Incremental Table
+- Ephemeral (no covered here)
+
+So far all our model have been materialised as `views`
+The recommended approach is to leave them as views until we start noticing performance degradation, then table then Incremental Table.
+
+There are 2 places where we can configure materialisation
+
+1. The `dbt_project.yml` from a broader configuration
+2. Individual model for a more granular configuration
+
+Example 1 - using the config file
+
+```yml
+models:
+  jaffle_shop:
+    +database: dbt_workshop
+    staging:
+      +schema: staging
+      +materialized: view
+    mart:
+      +schema: mart
+      +materialized: table
+```
+
+Example 2 - using the config block
+Add the config block to the `models/mart/dim_customer.sql`
+
+```sql
+{{
+    config(materialized='table')
+}}
+
+with customers as (
+    select
+        customer_id,
+        first_name,
+        last_name
+    from {{ ref('stg_customers') }}
+),
+...
+```
+
+```sql
+Placeholder for incremental materialisation if we have time
+- config block
+- - unique_key
+- - date column
+- evaluating the is_incremental() macro
+```
+
+## Testing
+
+  > Tests are assertions you make about your models and other resources in your dbt project
+
+Let's add some generic tests by creating the following `models/schema.yml`
+
+```yml
+version: 2
+
+models:
+  - name: stg_orders
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+```
+
+We can also add singular tests in the `tests` directory
+How does ths work?
+
+```sql
+-- if this query returns values, i.e. is not an empty set the test will fail
+with result as (
+    select 123 as col
+)
+-- fail
+select * from result
+-- the next line (uncomment) will make it pass because the result set will be empty
+-- where col > 123   -- pass
+```
+
+## Documentation
+
+Why documenting:
+
+- Information about your project
+- Information about your data warehouse:
+
+There are 2 ways to add documentation to you dbt project
+
+1. By adding the `description` key and directly documenting the model
+2. By using the `{{doc('key')}}`and pulling the actual doc from the configured location
+
+```yml
+version: 2
+
+models:
+  - name: stg_orders
+    description: "{{ doc('stg_models') }}"
+    columns:
+      - name: order_id
+        description: "The id of the order after normalisation from raw to staging"
+        tests:
+          - unique
+          - not_null
+```
+
+Content of `models/docs.md`
+
+```sql
+{% docs stg_models %}
+# Staged orders table
+The `stg_orders` model is a populated from the raw `orders` table.
+
+The following transformation are applied:
+- `orderid` column reneamed to `order_id`
+{% enddocs %}
+```
+
+Now that we've added all the documentation we can run the following self explanaory commands
+
+```bash
+dbt docs generate
+dbt docs serve
+```
+

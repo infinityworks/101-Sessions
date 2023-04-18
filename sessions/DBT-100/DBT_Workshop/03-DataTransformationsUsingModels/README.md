@@ -5,7 +5,7 @@
 
 ```sql
 with jaffle_payment_data as (
-    select paymentmethod, sum(amount) from DBT_WORKSHOP_RAW.STRIPE.PAYMENT group by 1;
+    select paymentmethod, sum(amount) from DBT_WORKSHOP_RAW.STRIPE.PAYMENT group by 1
 )
 select * from jaffle_payment_data
 ```
