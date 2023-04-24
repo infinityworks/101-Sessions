@@ -48,13 +48,13 @@ dbt init
 
 ```bash
 Project: jaffleshop
-Database: snowflake
+Database: DBT_WORKSHOP
 Account: INFINITYWORKSPARTNER.eu-west-1
 User: <your snowflake username>
 Authentication Type: password
 Password: <your snowflake password>
-role: SYSADMIN
-warehouse: LOAD_WH
+role: DBT_WORKSHOP_ROLE
+warehouse: TRANSFORMER
 Default database: DBT_WORKSHOP_ANALYTICS
 Default schema: PUBLIC
 threads: 1
