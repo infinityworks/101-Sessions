@@ -55,8 +55,8 @@ Authentication Type: password
 Password: <your snowflake password>
 role: DBT_WORKSHOP_ROLE
 warehouse: TRANSFORMER
-Default database: DBT_WORKSHOP_ANALYTICS
-Default schema: PUBLIC
+Default database: DBT_WORKSHOP
+Default schema: ANALYTICS_<YOUR NAME>
 threads: 1
 Happy modeling!
 ```
@@ -93,7 +93,7 @@ select * from dbt_workshop.raw.payments;
 
 #### Step 2: Populating the staging schema
 
-Content of `models/stg_customers.sql` file
+Content of `models/staging/stg_customers.sql` file
 
 ```sql
 with raw_customer as (
@@ -126,25 +126,9 @@ models:
 
 Notes:
 
-- This creates a schema named PUBLIC_staging. Because I have PUBLIC as the default schema
-- (Optional) Lets fix this by overwriting the default macro. Covered later in this session
-- Create folder named `macros` and place the following code in `macros/generate_schema_name.sql`
-
-```yaml
-{% macro generate_schema_name(custom_schema_name, node) -%}
-
-    {%- set default_schema = target.schema -%}
-    {%- if custom_schema_name is none -%}
-
-        {{ default_schema }}
-
-    {%- else -%}
-
-        {{ custom_schema_name | trim }}
-
-    {%- endif -%}
-
-{%- endmacro %}
+- This creates a schema named `ANALYTICS_<YOUR NAME>` staging. Because we have `ANALYTICS_<YOUR NAME>` as the default schema
+- This behaviour works well in development environments, to ensure each user has their own schema (and optionally own database etc) that they're working. 
+- This behaviour can be adjused using macros, to better suit production environments, different development patterns etc.
 ```
 
 ### Modularisation
