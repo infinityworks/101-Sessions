@@ -1,0 +1,9 @@
+models:
+  - name: total_sales_per_customer
+    columns:
+      - name: CustomerID
+        tests:
+          - not_null
+          - unique
+
+

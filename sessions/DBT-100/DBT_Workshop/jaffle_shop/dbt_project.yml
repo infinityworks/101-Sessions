@@ -1,0 +1,17 @@
+
+name: 'jaffle_shop'
+version: '1.0.0'
+config-version: 2
+
+profile: 'jaffle_shop'
+
+
+models:
+  jaffle_shop:
+    +database: dbt_workshop
+    staging:
+      +schema: staging
+      +materialized: view
+    mart:
+      +schema: mart
+      +materialized: table
