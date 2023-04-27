@@ -355,7 +355,7 @@ Materialisation determines how data is persisted:
 - View (the default)
 - Table
 - Incremental Table
-- Ephemeral (no covered here)
+- Ephemeral - Not directly built into the database; Used to reduce clutter in models
 
 So far all our model have been materialised as `views`
 The recommended approach is to leave them as views until we start noticing performance degradation, then table then Incremental Table.
@@ -437,6 +437,71 @@ select * from result
 -- where col > 123   -- pass
 ```
 
+### Exercise
+
+Let's complete `models/schema.yml`:
+
+1. Add the following generic tests fixing any failing tests
+
+```yml
+      - name: status
+        tests:
+          - accepted_values:
+              values: ['shipped', 'completed', 'return_pending', 'returned']
+      - name: customer_id
+        tests:
+          - relationships:
+              to: ref('stg_customers')
+              field: id
+```
+
+2. Add the following singular test fixing any failing tests
+
+```sql
+-- sum(number_of_orders) should not be negative
+select
+    customer_id,
+    sum(number_of_orders) as number_of_orders
+from {{ ref('dim_customer' )}}
+group by 1
+having sum(number_of_orders) > 0
+```
+
+3. Add a test to the `stg_orders` model table checking that the date is greater than 2017
+
+### Source Freshness
+
+DBT allows us to check the freshness of the data sources.
+This allows us to identify if the ingestion pipeline has failed
+We can make sure that the freshness checks pass before we build the models preventing stale models
+
+#### Exercise
+To configure source freshness you need to update `models/sources.yml` with the following code
+
+```yml
+version: 2
+
+sources:
+  - name: jaffle_shop
+    database: dbt_workshop
+    schema: raw
+    tables:
+      - name: customers
+      - name: orders
+        freshness:
+          warn_after: {count: 6, period: hour}
+        loaded_at_field: _etl_loaded_at
+
+      - name: payments
+```
+
+Now run the command `dbt source freshness` to check source freshness
+
+#### Exercise
+
+1. Turn this into an error and fix it so that it passes
+Hint: The period can be `minute`, `hour` or `day`
+
 ## Documentation
 
 Why documenting:
@@ -481,4 +546,3 @@ Now that we've added all the documentation we can run the following self explana
 dbt docs generate
 dbt docs serve
 ```
-
