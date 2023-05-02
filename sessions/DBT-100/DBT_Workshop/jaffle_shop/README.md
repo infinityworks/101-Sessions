@@ -90,7 +90,7 @@ select * from transformed_customer
 
 Notes: The default db and schema comes from the `profile.yml`
 
-The models portion of dbt_project.yml file
+Adjust the models portion of `dbt_project.yml` file so it looks as below:
 
 ```yml
 models:
@@ -99,6 +99,14 @@ models:
     staging:
       +schema: staging
 ```
+
+Now time to run the model. In the terminal do 
+`dbt run -s stg_customers`.
+
+This runs the selected model.
+
+To view what is actually run in snowflake, navigate to `target/run/jaffleshop/models/staging/stg_customers.sql`. Note the DDL that has been added to the top of the input.
+
 
 Notes:
 
@@ -143,6 +151,8 @@ transformed_customer as (
 )
 select * from transformed_customer
 ```
+
+Notice how the compiled sql output hasn't changed!
 
 Putting it all together, lets create the stg_orders model by following the steps bellow
 
@@ -311,7 +321,7 @@ As with sources we also want to make models modular so we can reuse them elsewhe
 
 ### The ref() function
 
-Instead of hardcoding the fqn of tables, let's refer to them in dbt by using the `ref()` function
+Instead of hardcoding the fully qualified name of the tables, let's refer to them in dbt by using the `ref()` function
 
 ```sql
 with customers as (
@@ -417,7 +427,7 @@ Modify your dbt project and make sure the following materialisation rules are ap
 
   > Tests are assertions you make about your models and other resources in your dbt project
 
-Let's add some generic tests by creating the following `models/schema.yml`
+Let's add some generic tests by creating the following `models/staging/schema.yml` file
 
 ```yml
 version: 2
@@ -447,7 +457,7 @@ select * from result
 
 ### Exercise 4
 
-Let's complete `models/schema.yml`:
+Let's complete `models/staging/schema.yml`:
 
 1. Add the following generic tests fixing any failing tests
 
@@ -485,7 +495,7 @@ having sum(number_of_orders) > 0
 
 #### Exercise 5
 
-To configure source freshness you need to update `models/sources.yml` with the following code
+To configure source freshness you need to update `models/staging/sources.yml` with the following code
 
 ```yml
 version: 2
@@ -523,7 +533,7 @@ There are 2 ways to add documentation to you dbt project
 1. By adding the `description` key and directly documenting the model
 2. By using the `{{doc('key')}}`and pulling the actual doc from the configured location
 
-Content of `models/schema.yml`
+Content of `models/staging/schema.yml`
 ```yml
 version: 2
 
@@ -538,7 +548,7 @@ models:
           - not_null
 ```
 
-Content of `models/docs.md`
+Content of `models/staging/docs.md`
 
 ```sql
 {% docs stg_models %}
