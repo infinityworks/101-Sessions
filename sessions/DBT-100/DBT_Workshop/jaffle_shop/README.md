@@ -122,7 +122,7 @@ Lets now start modularising by adding the sources file. Why:
 - We can share the same definition of sources to all models by calling the **source()** function
 - Later we'll see how we can extend the sources for testing and documentation
 
-Content of the `models/sources.yml` file
+Content of the `models/staging/sources.yml` file
 
 ```yaml
 version: 2
@@ -156,7 +156,7 @@ Notice how the compiled sql output hasn't changed!
 
 Putting it all together, lets create the stg_orders model by following the steps bellow
 
-1. Add `orders` to `models/sources.yml` file
+1. Add `orders` to `models/staging/sources.yml` file
 2. Create the `models/staging/stg_orders.sql` and apply the following transformation:
     - rename `id` to `order_id`
     - rename `user_id` to `customer_id`
@@ -193,7 +193,7 @@ select * from transformed_orders
 
 Now using the same steps lets create the `models/staging/stg_payments.sql`
 
-1. Add `payments` to `models/sources.yml`
+1. Add `payments` to `models/staging/sources.yml`
 2. Create the `models/staging/stg_payments.sql` and apply the following transformation
     - rename `id` to `payment_id`
     - rename `orderid` to `order_id` for consistency
@@ -473,6 +473,8 @@ Let's complete `models/staging/schema.yml`:
               field: id
 ```
 
+Run the test by doing `dbt test -s stg_orders`
+
 2. Add the following singular test fixing any failing tests
 
 ```sql
@@ -484,6 +486,8 @@ from {{ ref('dim_customer' )}}
 group by 1
 having sum(number_of_orders) > 0
 ```
+
+Run `dbt test -s dim_customer`
 
 3. Add a test to the `stg_orders` model table checking that the date is greater than 2017
 
@@ -565,4 +569,42 @@ Now that we've added all the documentation we can run the following self explana
 ```bash
 dbt docs generate
 dbt docs serve
+```
+
+### Macros
+
+Macros are a reusable block of SQL code.
+They can be invoked within models, tests, or other macros.
+
+The arguments can be column references, numbers, references to other models etc. 
+
+Example:
+
+Definition of macro in `macros/` directory:
+```
+{% macro my_macro(column1) %}
+    do something with {{ column1 }}
+{% endmacro %}
+```
+
+Use of macro in a model:
+```
+select
+  {{ my_macro('column1') }}
+```
+
+### Exercise 7
+
+Assume the payment amount in the `stg_payments` model is in cents, and it should be converted to dollars. There are hundreds of other columns where this same logic would need to be applied.
+
+Create a macro to convert cents to dollars. It will take one argument, which will be the column name.
+
+**Stretch** 
+
+Give the macro a second argument, which will set the precison of the created numeric value, with a default value of 2. 
+> Hint
+The default value to a macro can be set like the below
+
+```
+{{ my_macro (argument1, argument2="default") }}
 ```
