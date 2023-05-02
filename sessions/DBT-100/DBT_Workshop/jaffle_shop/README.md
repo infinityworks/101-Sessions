@@ -2,30 +2,6 @@
 
 ## Setting up the project
 
-### The project structure
-
-```bash
-$ tree -L 2                        
-.
-├── README.md
-└── requirements.txt
-```
-
-### The content of requirements.txt
-
-```bash
-dbt-snowflake>=1.4.2
-```
-
-### Setting up the python environment
-
-```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -U pip
-pip install -r requirements.txt
-```
-
 ### Checking the installation
 
 ```bash
@@ -41,7 +17,7 @@ Plugins:
 ### Setting up the dbt project
 
 ```bash
-dbt init 
+dbt init
 ```
 
 ### Answer the prompted questions
@@ -64,6 +40,7 @@ Happy modeling!
 ### Test the connection
 
 ```bash
+cd jaffleshop
 dbt debug
 ```
 
@@ -80,6 +57,8 @@ Jaffle Shop sells stuff and want to understand their customer purchase behaviour
 ![jaffle shop ERD](./assets/jaffle_shop_erd.png)
 
 ### Data Engineering and Analytics
+
+---
 
 #### Step 1: Data exploration
 
@@ -109,16 +88,13 @@ transformed_customer as (
 select * from transformed_customer
 ```
 
-**notes:**
-
-1. The default db and schema comes from the `profile.yml`
-2. We need to configure this in the dbt_project.yml
+Notes: The default db and schema comes from the `profile.yml`
 
 The models portion of dbt_project.yml file
 
 ```yml
 models:
-  jaffle_shop:
+  jaffleshop:
     +database: dbt_workshop
     staging:
       +schema: staging
@@ -126,10 +102,9 @@ models:
 
 Notes:
 
-- This creates a schema named `ANALYTICS_<YOUR NAME>` staging. Because we have `ANALYTICS_<YOUR NAME>` as the default schema
-- This behaviour works well in development environments, to ensure each user has their own schema (and optionally own database etc) that they're working. 
+- This creates a schema named `ANALYTICS_<YOUR NAME>_staging`. Because we have `ANALYTICS_<YOUR NAME>` as the default schema
+- This behaviour works well in development environments, to ensure each user has their own schema (and optionally own database etc) that they're working.
 - This behaviour can be adjused using macros, to better suit production environments, different development patterns etc.
-```
 
 ### Modularisation
 
@@ -145,7 +120,7 @@ Content of the `models/sources.yml` file
 version: 2
 
 sources:
-  - name: jaffle_shop
+  - name: jaffleshop
     database: dbt_workshop  
     schema: raw  
     tables:
@@ -156,7 +131,7 @@ With that let's refactor the customer model we've just created
 
 ```sql
 with raw_customer as (
-    select * from {{ source('jaffle_shop', 'customers') }}
+    select * from {{ source('jaffleshop', 'customers') }}
 ),
 transformed_customer as (
     select
@@ -170,7 +145,6 @@ select * from transformed_customer
 ```
 
 Putting it all together, lets create the stg_orders model by following the steps bellow
-**Alert**: An exercise is coming
 
 1. Add `orders` to `models/sources.yml` file
 2. Create the `models/staging/stg_orders.sql` and apply the following transformation:
@@ -181,7 +155,7 @@ Putting it all together, lets create the stg_orders model by following the steps
 version: 2
 
 sources:
-  - name: jaffle_shop
+  - name: jaffleshop
     database: dbt_workshop  
     schema: raw  
     tables:
@@ -191,7 +165,7 @@ sources:
 
 ```sql
 with raw_orders as (
-    select * from  {{ source('jaffle_shop', 'orders') }}
+    select * from  {{ source('jaffleshop', 'orders') }}
 ),
 transformed_orders as (
     select
@@ -205,7 +179,8 @@ transformed_orders as (
 select * from transformed_orders
 ```
 
-**Exercise:**
+#### Exercise 1
+
 Now using the same steps lets create the `models/staging/stg_payments.sql`
 
 1. Add `payments` to `models/sources.yml`
@@ -219,7 +194,7 @@ Content of `sources.yml`
 version: 2
 
 sources:
-  - name: jaffle_shop
+  - name: jaffleshop
     database: dbt_workshop  
     schema: raw  
     tables:
@@ -232,7 +207,7 @@ Content of `models/staging/stg_payments.sql`
 
 ```sql
 with raw_payments as (
-    select * from {{ source('jaffle_shop', 'payments') }}
+    select * from {{ source('jaffleshop', 'payments') }}
 ),
 transformed_payments as (
     select
@@ -248,20 +223,23 @@ transformed_payments as (
 select * from transformed_payments
 ```
 
+---
+
 #### Step 3: Populating the mart/warehouse
 
 Now that we have out data prepared let's create the data warehouse/mart layer
 This is where the Analytics Engineering role enters
 This layer also know the presentation layer will be used to serve the BI/Reporting tools to be able to fulfil reporting requirements
 
-Question: I want to know the top N customers based on purchase habit
+**Question:** As a business analyst I want to know the top N customers based on their purchase habit
 
-**Building the Mart**
+##### Building the Mart
+
 Lets build the mart/warehouse to answer to this and possibly other business question
 
-Content of `models/mart/dim_customer.sql`
+Content of `models/mart/dim_customer.sql`. Seems daunting but lets break it down
 
-- Seems daunting but lets break it down
+> NOTE: Replace `<your_name>` to match your schema
 
 ```sql
 with customers as (
@@ -269,7 +247,7 @@ with customers as (
         customer_id,
         first_name,
         last_name
-    from DBT_WORKSHOP.STAGING.STG_CUSTOMERS
+    from DBT_WORKSHOP.ANALYTICS_<your_name>_STAGING.STG_CUSTOMERS
 ),
 orders as (
     select
@@ -277,7 +255,7 @@ orders as (
         customer_id,
         order_date,
         status
-    from DBT_WORKSHOP.STAGING.STG_ORDERS
+    from DBT_WORKSHOP.ANALYTICS_<your_name>_STAGING.STG_ORDERS
 ),
 customer_orders as (
     select
@@ -302,7 +280,27 @@ final as (
 select * from final
 ```
 
-##### Modularity Revisited
+### Exercise 2
+
+Before building the models, please make sure the `dim_customer` is created in the `mart` schema.
+
+### Solution
+
+Content of `dbt_project.yml`
+
+```yml
+models:
+  jaffleshop:
+    +database: dbt_workshop
+    staging:
+      +schema: staging
+    mart:
+      +schema: mart
+```
+
+---
+
+### Modularity Revisited
 
 As with sources we also want to make models modular so we can reuse them elsewhere following:
 
@@ -311,7 +309,7 @@ As with sources we also want to make models modular so we can reuse them elsewhe
 - testing
 - lineage, we'll revisit this in the documentation section
 
-**The ref() function**
+### The ref() function
 
 Instead of hardcoding the fqn of tables, let's refer to them in dbt by using the `ref()` function
 
@@ -330,13 +328,11 @@ orders as (
         order_date,
         status
     from {{ ref('stg_orders') }}
-),
-...
-...
+)
 ...
 ```
 
-#### Recap
+### Recap
 
 So far:
 
@@ -350,26 +346,36 @@ So far:
 
 ## Materialisation
 
-Materialisation determines how data is persisted:
+Materialisation determines how data is persisted in the data warehouse.
+
+There are 4 types of materialisation:
 
 - View (the default)
 - Table
 - Incremental Table
 - Ephemeral - Not directly built into the database; Used to reduce clutter in models
 
-So far all our model have been materialised as `views`
+So far all our model have been materialised as `views`, because that is the default.
+
 The recommended approach is to leave them as views until we start noticing performance degradation, then table then Incremental Table.
+
+Also we might need to materialise as table for auditing and compliance.
+
+> Note: Apart from materialisations, model creation can also be enabled/disabled by using `+enabled: true | false` config.
+> This is useful to when using external dbt packages
+
+### How to configure materialisation?
 
 There are 2 places where we can configure materialisation
 
-1. The `dbt_project.yml` from a broader configuration
+1. The `dbt_project.yml` for a broader configuration
 2. Individual model for a more granular configuration
 
 Example 1 - using the config file
 
 ```yml
 models:
-  jaffle_shop:
+  jaffleshop:
     +database: dbt_workshop
     staging:
       +schema: staging
@@ -397,13 +403,15 @@ with customers as (
 ...
 ```
 
-```sql
-Placeholder for incremental materialisation if we have time
-- config block
-- - unique_key
-- - date column
-- evaluating the is_incremental() macro
-```
+### Exercise 3
+
+Modify your dbt project and make sure the following materialisation rules are applied:
+
+1. All models created in `jaffleshop` must be views by default
+2. All models in staging must be tables apart from `stg_customer` which must be view
+3. All models in mart must be views apart from `dim_customer` which must be a table
+
+---
 
 ## Testing
 
@@ -437,7 +445,7 @@ select * from result
 -- where col > 123   -- pass
 ```
 
-### Exercise
+### Exercise 4
 
 Let's complete `models/schema.yml`:
 
@@ -471,18 +479,19 @@ having sum(number_of_orders) > 0
 
 ### Source Freshness
 
-DBT allows us to check the freshness of the data sources.
-This allows us to identify if the ingestion pipeline has failed
-We can make sure that the freshness checks pass before we build the models preventing stale models
+- DBT allows us to check the freshness of the data sources
+- This allows us to identify if the ingestion pipeline has failed
+- We can make sure that the freshness checks pass before we build the models preventing stale models
 
-#### Exercise
+#### Exercise 5
+
 To configure source freshness you need to update `models/sources.yml` with the following code
 
 ```yml
 version: 2
 
 sources:
-  - name: jaffle_shop
+  - name: jaffleshop
     database: dbt_workshop
     schema: raw
     tables:
@@ -497,7 +506,7 @@ sources:
 
 Now run the command `dbt source freshness` to check source freshness
 
-#### Exercise
+#### Exercise 6
 
 1. Turn this into an error and fix it so that it passes
 Hint: The period can be `minute`, `hour` or `day`
@@ -514,6 +523,7 @@ There are 2 ways to add documentation to you dbt project
 1. By adding the `description` key and directly documenting the model
 2. By using the `{{doc('key')}}`and pulling the actual doc from the configured location
 
+Content of `models/schema.yml`
 ```yml
 version: 2
 
