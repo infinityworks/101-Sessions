@@ -479,7 +479,7 @@ dbt compile -s incremental_orders.sql
 
 To rebuild the incremental model we run the following commands
 ```bash
---full-refresh
+dbt run --full-refresh -s incremental_orders+
 ```
 
 
