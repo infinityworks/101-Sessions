@@ -413,6 +413,68 @@ Modify your dbt project and make sure the following materialisation rules are ap
 
 ---
 
+### Incremental model
+
+#### Guiding principle when building dbt models
+
+- **Start with a view**. When the view gets too long to query for end users
+- **Make it a table**. When the table gets too long to build in your dbt Jobs
+- **Build it incrementally**. That is, layer the data on in chunks as it comes in
+
+#### What are incremental models
+
+- Models materialised as tables
+- Models that only apply our transformation on new or updated rows
+- The incremental models depend on the incremental strategy of the adapter
+
+- We need 3 key things in order to accomplish the above:
+  - A filter to select just the new or updated records
+  - A conditional block that wraps our filter and only applies it when we want it
+  - configuration that tells dbt we want to build incrementally and helps apply the conditional filter when needed
+
+Lets create an incremental model for the orders table
+
+Content of `models/staging/incremental_orders.sql` file
+
+```yaml
+{{
+    config(
+        materialized='incremental',
+        unique_key='id'
+    )
+}}
+
+select * from {{ source('jaffleshop', 'orders') }}
+
+{% if is_incremental() %}
+
+where
+  _etl_loaded_at > (select max(_etl_loaded_at) from {{ this }})
+
+{% endif %}
+```
+
+Now lets explore the following commands to see what happens to the compiled sql.
+
+```bash
+dbt compile -s incremental_orders.sql
+```
+
+Now lets do run and compare again the result of the compiled version
+
+```bash
+dbt run -s incremental_orders.sql
+dbt compile -s incremental_orders.sql
+```
+
+To rebuild the incremental model we run the following commands
+```bash
+--full-refresh
+```
+
+
+Useful: https://docs.getdbt.com/guides/best-practices/materializations/4-incremental-models
+
 ## Testing
 
   > Tests are assertions you make about your models and other resources in your dbt project
