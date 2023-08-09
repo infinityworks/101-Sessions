@@ -41,15 +41,31 @@ The first step is to TRUNCATE your existing table from the previous exercise to 
 
     TRUNCATE TABLE RAW_DATA.SALES.TRANSACTIONS;
 
+You can check that the table is empty:
+    SELECT * FROM RAW_DATA.SALES.TRANSACTIONS;
+
+And you can also check that the `"TOP_10_VIEWS_PRODUCTS"` view is now also empty:
+
+    SELECT * FROM RAW_DATA.SALES.TOP_10_VIEWED_PRODUCTS;
+
 We're now ready to load data into Snowflake. Instaed of using the Data Load Wizard, we can now reference data directly from S3 via SQL commands. The COPY INTO command copies the data from our files in S3 into our Snowflake table:
 
     COPY INTO
         RAW_DATA.SALES.TRANSACTIONS
     FROM
         @TRANSACTIONS_EXTERNAL_STAGE/all_transactions.json
-        FILE_FORMAT = RAW_DATA.PUBLIC.TRANSACTIONS_JSON
+        FILE_FORMAT =   (
+                            TYPE=JSON,
+                            STRIP_OUTER_ARRAY=FALSE,
+                            DATE_FORMAT=AUTO,
+                            TIME_FORMAT=AUTO,
+                            TIMESTAMP_FORMAT=AUTO
+                        )
         ON_ERROR = 'skip_file';
 
 You can now query the data ingested from S3 using:
-
     SELECT * FROM RAW_DATA.SALES.TRANSACTIONS;
+
+And you can also check that the `"TOP_10_VIEWS_PRODUCTS"` view is up to date:
+
+    SELECT * FROM RAW_DATA.SALES.TOP_10_VIEWED_PRODUCTS;
