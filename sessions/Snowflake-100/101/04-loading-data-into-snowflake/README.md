@@ -25,7 +25,7 @@ In your terminal using `curl`:
 
 ## Loading data via the console UI
 
-To load data via the console, navigate to the Data tab of the main menu. If you're in a worksheet, you will need to click the `< Worksheets` button in the top-lefgt to get back ot the main menu.
+To load data via the console, navigate to the Data tab of the main menu. If you're in a worksheet, you will need to click the `< Worksheets` button in the top-left to get back ot the main menu.
 
 ![Databases tab](./assets/databases.png "Databases tab")
 
