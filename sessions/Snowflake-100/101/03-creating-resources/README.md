@@ -50,7 +50,7 @@ List roles:
 
 ### Assigning a role to a user
 
-    GRANT ROLE DATA_CONSUMER TO USER JohnnyLawrence
+    GRANT ROLE DATA_CONSUMER TO USER JohnnyLawrence;
 
 ## Create databases [[docs](https://docs.snowflake.com/en/sql-reference/sql/create-database.html)]
 

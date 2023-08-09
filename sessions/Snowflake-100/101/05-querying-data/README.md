@@ -6,6 +6,11 @@ The most basic query is to retrieve everything from our table:
 
     SELECT * FROM RAW_DATA.SALES.TRANSACTIONS;
 
+When you're just looking to see what data is in a table it is good practice to limit how many rows are returned in your query. This stops the database from having to retreive every row and display it, which can be very costly if there are millions or even billions of rows. We do this by adding a `LIMIT` clause to the end of our query.
+
+    SELECT * FROM RAW_DATA.SALES.TRANSACTIONS LIMIT 10;
+
+
 Snowflake can query JSON and other semi-structured data from within a VARIANT column too:
 
     SELECT PAYLOAD:"PRODUCTS_VIEWED" FROM RAW_DATA.SALES.TRANSACTIONS;
@@ -35,12 +40,16 @@ This query specifies the database and schema where the table lives; if you do no
 
 We can find insights like the most popular products sold:
 
-    SELECT FLATTENED_DATA.VALUE:PRODUCT_ID::VARCHAR AS PRODUCT_ID,
+    SELECT
+        FLATTENED_DATA.VALUE:PRODUCT_ID::VARCHAR AS PRODUCT_ID,
         SUM(1) AS FREQUENCY
-    FROM RAW_DATA.SALES.TRANSACTIONS AS TRANSACTIONS,
+    FROM
+        TRANSACTIONS AS TRANSACTIONS,
         LATERAL FLATTEN(input => TRANSACTIONS.PAYLOAD, path => 'PRODUCTS_VIEWED') AS FLATTENED_DATA
-    GROUP BY FLATTENED_DATA.VALUE:PRODUCT_ID
-    ORDER BY FREQUENCY DESC;
+    GROUP BY
+        FLATTENED_DATA.VALUE:PRODUCT_ID
+    ORDER BY
+        FREQUENCY DESC;
 
 ## Creating a view [[docs](https://docs.snowflake.com/en/user-guide/views-introduction.html)]
 
@@ -50,15 +59,21 @@ The physical data is not stored again but instead acts as a handy shortcut to ru
 
     CREATE OR REPLACE VIEW RAW_DATA.SALES."TOP_10_VIEWED_PRODUCTS" AS
     (
-      SELECT FLATTENED_DATA.VALUE:PRODUCT_ID::VARCHAR AS PRODUCT_ID,
-          SUM(1) AS FREQUENCY
-      FROM RAW_DATA.SALES.TRANSACTIONS AS TRANSACTIONS,
-          LATERAL FLATTEN(input => TRANSACTIONS.PAYLOAD, path => 'PRODUCTS_VIEWED') AS FLATTENED_DATA
-      GROUP BY FLATTENED_DATA.VALUE:PRODUCT_ID
-      ORDER BY FREQUENCY DESC
-      LIMIT 10
+        SELECT
+            FLATTENED_DATA.VALUE:PRODUCT_ID::VARCHAR AS PRODUCT_ID,
+            SUM(1) AS FREQUENCY
+        FROM
+            RAW_DATA.SALES.TRANSACTIONS AS TRANSACTIONS,
+            LATERAL FLATTEN(input => TRANSACTIONS.PAYLOAD, path => 'PRODUCTS_VIEWED') AS FLATTENED_DATA
+        GROUP BY
+            FLATTENED_DATA.VALUE:PRODUCT_ID
+        ORDER BY
+            FREQUENCY DESC
+        LIMIT 10
     ); 
 
 To run the view, use:
 
     SELECT * FROM RAW_DATA.SALES.TOP_10_VIEWED_PRODUCTS;
+
+The useful thing about Views is that they are automatically up to date as their source data changes. So as more transactions get loaded in the future, the `"TOP_10_VIEWS_PRODUCTS"` view will always contain the top 10 most viewed products. 

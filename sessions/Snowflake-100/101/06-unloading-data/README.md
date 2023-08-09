@@ -10,11 +10,13 @@ Let's start by querying the view we made:
 
     SELECT * FROM RAW_DATA.SALES.TOP_10_VIEWED_PRODUCTS;
 
-Next, hit the download button.
+Next, hit the `Download results` button.
 
 ![Download](./assets/unload.png "Download")
 
-You'll be presented with a few options to configure the delimiter (what separates the columns in the file) and file name. One of the most common file formats to consume is a `.csv`; this can be opened by a vast number of applications, including Microsoft Excel.
+You'll be presented with a few options to decide the delimiter (what separates the columns in the file) and file name. One of the most common file formats to consume is a `.csv`; this can be opened by a vast number of applications, including Microsoft Excel.
+
+There is a specific option for `.csv for Excel` which, at the time of writing (August 2023), seems to simply add an extra blank line at the top of the file. So for now, stick to the plain `.csv` or `.tsv`. This may change in the future, if you're having trouble loading certain `.csv` files into Excel, give the `.csv for Excel` option a go.
 
 ![Export options](./assets/export_options.png "Export options")
 
