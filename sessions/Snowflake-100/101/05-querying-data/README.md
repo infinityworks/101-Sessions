@@ -84,13 +84,13 @@ The useful thing about Views is that they are automatically up to date as their 
 
 If we were to log in as JohnnyLawrence, they only have the DATA_CONSUMER role, and therefore would not be able to see this useful view that we've created as a SYSADMIN. We need to explicity grant permissions to the DATA_CONSUMER role so they can see this view, and we also need to grant them compute power though a virtual warehouse to run their queries.
 
-We could use the same warehouse we have used for loading the data across both roles, but this can become a challenge when you're increasing the scale or your data warehouse. Queries get queued when you have stretched a warehouse to it's limits. And you don't want the CEO waiting on his report to load because you're trying to load a massive JSON file! 
+We could use the same warehouse we have used for loading the data across both roles, but this can become a challenge when you're increasing the scale of your data warehouse. Queries get queued when you have stretched a warehouse to it's limits; and you don't want the CEO waiting on his report to load because you're trying to load a massive JSON file! 
 
 ### Creating a new warehouse
 
     use role sysadmin;
     create or replace warehouse reporting warehouse_size = 'Medium';
-    grant usage on warehouse to role data_consumer;
+    grant usage on warehouse reporting to role data_consumer;
 
 ### Grant Permissions
 
