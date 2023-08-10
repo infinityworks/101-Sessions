@@ -52,6 +52,24 @@ List roles:
 
     GRANT ROLE DATA_CONSUMER TO USER JohnnyLawrence;
 
+### Assigning a role to another role
+
+We can create a role hierarchy by assigning roles to other roles.
+
+    GRANT ROLE DATA_CONSUMER TO ROLE SYSADMIN;
+
+This means that any user with the SYSADMIN role, is also able to switch to the DATA_CONSUMER role. 
+However, JohnnyLawrence is only able to use the DATA_CONSUMER role.
+
+## Virtual Warehouses
+
+Warehouses provide a cluster of compute resource needed for querying your data. A default warehouse called `COMPUTE_WH` is created for us when we create the trial account. 
+To allow the SYSADMIM role to use this warehouse, we will need to grant it the required permissions.
+
+    GRANT USAGE ON WAREHOUSE COMPUTE_WH TO ROLE SYSADMIN;
+
+We can have warehouses of all different sizes to satisfy different use cases. Later we will create a seperate warehouse to be used for reporting. 
+
 ## Create databases [[docs](https://docs.snowflake.com/en/sql-reference/sql/create-database.html)]
 
 To instantiate resources like databases, you must adopt the `SYSADMIN` role:
