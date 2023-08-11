@@ -1,6 +1,5 @@
 # Loading data via the Snowflake UI [[docs](https://docs.snowflake.com/en/user-guide/data-load-web-ui.html)]
 
-
 ## The Snowflake Load Data Wizard
 
 To load ad-hoc files into Snowflake, we can use the Snowflake Load Data Wizard which is part of the Snowflake UI. In the _real world_, you would usually build a data pipeline to automate this but the Load Data Wizard is a great way to easily import data while you are developing and testing new functionality for your data warehouse.
@@ -15,13 +14,13 @@ Sample transaction data has been provided in a public S3 bucket `snowflake-101` 
 
 To download the files, you have a couple of options:
 
-Via your web browser:
+1. Via your web browser:
 
-Visit https://snowflake-101.s3.eu-west-1.amazonaws.com/all_transactions.json and save the file/page to your local disk.
+    Visit <https://snowflake-101.s3.eu-west-1.amazonaws.com/all_transactions.json> and save the file/page to your local disk.
 
-In your terminal using `curl`:
+1. In your **terminal** using `curl`. **NOTE: Do not run this in your Snowflake worksheet**
 
-    curl https://snowflake-101.s3.eu-west-1.amazonaws.com/all_transactions.json > all_transactions.json
+        curl https://snowflake-101.s3.eu-west-1.amazonaws.com/all_transactions.json > all_transactions.json
 
 ## Loading data via the console UI
 
@@ -29,11 +28,11 @@ To load data via the console, navigate to the Data tab of the main menu. If you'
 
 ![Databases tab](./assets/databases.png "Databases tab")
 
-### Use the tree view to navigate to the table you wish to upload data into.
+### Use the tree view to navigate to the table you wish to upload data into
 
 ![Table](./assets/tables.png "Table")
 
-### Click on Load Data in the top right.
+### Click on Load Data in the top right
 
 You'll now be taken through a series of options to choose the file you're loading, and its file format.
 
