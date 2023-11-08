@@ -1,0 +1,42 @@
+{
+  "userId": "1",
+  "location": {
+    "name": "Leeds",
+    "region": "Kent",
+    "country": "United Kingdom",
+    "lat": 51.24,
+    "lon": 0.61,
+    "tz_id": "Europe/London",
+    "localtime_epoch": 1655714997,
+    "localtime": "2022-06-20 9:49"
+  },
+  "current": {
+    "last_updated_epoch": 1655714700,
+    "last_updated": "2022-06-20 09:45",
+    "temp_c": 15.4,
+    "temp_f": 59.7,
+    "is_day": 1,
+    "condition": {
+      "text": "Sunny",
+      "icon": "//cdn.weatherapi.com/weather/64x64/day/113.png",
+      "code": 1000
+    },
+    "wind_mph": 13.4,
+    "wind_kph": 21.6,
+    "wind_degree": 32,
+    "wind_dir": "NNE",
+    "pressure_mb": 1019.0,
+    "pressure_in": 30.09,
+    "precip_mm": 0.0,
+    "precip_in": 0.0,
+    "humidity": 59,
+    "cloud": 5,
+    "feelslike_c": 15.4,
+    "feelslike_f": 59.7,
+    "vis_km": 10.0,
+    "vis_miles": 6.0,
+    "uv": 5.0,
+    "gust_mph": 15.4,
+    "gust_kph": 24.8
+  }
+}
