@@ -14,9 +14,9 @@
     "license": "UNLICENSED",
     "dependencies": {
         "aws-sdk": "^2.389.0",
-        "body-parser": "^1.18.3",
+        "body-parser": "^1.20.1",
         "cookie-parser": "^1.4.3",
-        "express": "^4.16.4",
+        "express": "^4.18.2",
         "image-data-uri": "^2.0.0",
         "serverless-http": "^1.8.0",
         "uuid": "^3.3.2"
