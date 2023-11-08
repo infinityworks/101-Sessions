@@ -4,8 +4,8 @@
   "description": "This is the 102 on Step Functions.",
   "main": "index.js",
   "dependencies": {
-    "serverless": "^1.57.0",
-    "serverless-step-functions": "^2.11.0"
+    "serverless": "^3.32.2",
+    "serverless-step-functions": "^2.32.0"
   },
   "devDependencies": {},
   "scripts": {
