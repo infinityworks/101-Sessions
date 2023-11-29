@@ -1,5 +1,5 @@
 -- PARSING SEMI-STRUCTURED DATA
-use role accountadmin;
+use role sysadmin;
 create database if not exists parsing_semi_structured;
 create schema if not exists parsing_semi_structured.parsing_semi_structured;
 
@@ -126,7 +126,7 @@ FROM parsing_semi_structured.parsing_semi_structured.colors;
 --+----------+--------------+-------+----------+------------+------------+-----------------------+
 --| 4        | Skirt        | 25    | 1        | Mr         | Womenswear | Skirts                |
 --+----------+--------------+-------+----------+------------+------------+-----------------------+
-use role accountadmin;
+
 CREATE OR REPLACE TABLE parsing_semi_structured.parsing_semi_structured.orders
 (
   src variant
