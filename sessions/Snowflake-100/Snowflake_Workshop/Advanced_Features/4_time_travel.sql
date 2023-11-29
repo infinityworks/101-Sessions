@@ -39,27 +39,28 @@ select o_orderdate, count(*) from orders_3_day group by o_orderdate order by o_o
 
 -- let's delete some data and save the query id and the number of rows deleted
 delete from orders_3_day where o_orderdate < '1996-01-01';
--- record deleted:
--- query-id:
+-- record deleted: 355584
+-- query-id: 01b0a77f-0000-ab53-0000-000116c2d259
 update orders_3_day set O_ORDERPRIORITY = '5-LOW' where O_ORDERPRIORITY = '4-NOT SPECIFIED';
--- records updated:
--- query-id:
+-- records updated: 128307
+-- query-id: 01b0a77f-0000-ab53-0000-000116c2d271
 
 -- check the table
 select count(*) from orders_3_day;
 select distinct O_ORDERPRIORITY from orders_3_day;
 
 -- time travel before
-select count(*) from orders_3_day before(statement => 'first_query_id');
+select count(*) from orders_3_day before(statement => '01b0a77f-0000-ab53-0000-000116c2d259');
 
-select count(*) from orders_3_day before(statement => 'second_query_id');
-select distinct O_ORDERPRIORITY from orders_3_day before(statement => 'second_query_id');
+select count(*) from orders_3_day before(statement => '01b0a77f-0000-ab53-0000-000116c2d271');
+select distinct O_ORDERPRIORITY from orders_3_day before(statement => '01b0a77f-0000-ab53-0000-000116c2d271');
 
 -- time travel at
-select count(*) from orders_3_day at(statement => 'first_query_id');
+select count(*) from orders_3_day at(statement => '01b0a77f-0000-ab53-0000-000116c2d259');
 
 -- not exist query approach. Use the first query id
-select * from orders_3_day before(statement => 'first_query_id') tt_past
+-- Gives all the records that have been deleted by the first query
+select * from orders_3_day before(statement => '01b0a77f-0000-ab53-0000-000116c2d259') tt_past
 where not exists
 (select 1
           from orders_3_day tt_now
@@ -68,13 +69,14 @@ where not exists
 -- you can check your query ids here
 select *
 from table(information_schema.query_history())
-where end_time > current_time() -INTERVAL '5 minutes'order by start_time desc;
+where end_time > current_time() -INTERVAL '5 minutes' order by start_time desc;
 
 -- if you don't know the query id, you can select based on a time offset in seconds
 select count(*) from orders_3_day at(offset => -300);
 
 -- The following query selects historical data from a table as of the date and time represented by the specified timestamp:
-select count(*) from orders_3_day at(timestamp => 'Thu, 9 Mar 2023 01:33:03.389 -0800'::timestamp_tz);
+select count(*) from orders_3_day at(timestamp => '2023-11-29 05:55:50.494 -0800'::timestamp_tz);
+
 
 -- with time travel you can also "undrop" tables
 drop table orders_3_day;
