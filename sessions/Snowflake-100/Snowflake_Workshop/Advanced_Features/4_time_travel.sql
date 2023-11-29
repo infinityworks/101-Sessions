@@ -18,15 +18,8 @@ create or replace table time_travel.time_travel.orders_3_day (
 data_retention_time_in_days=3 -- note we specify here data retention
 ;
 
--- desc table does not show time travel period
-desc table orders_3_day;
-
--- to see the retention period, you have to use show tables sql
+-- to see the retention period, use show tables sql
 show tables like 'orders_3_day';
-
--- alternatively, you can see it via information schema
-select * from "TIME_TRAVEL"."INFORMATION_SCHEMA"."TABLES"
-where table_name = 'ORDERS_3_DAY';
 
 -- load data from a sample data set
 insert into orders_3_day select * from SNOWFLAKE_SAMPLE_DATA.TPCH_SF1000.ORDERS limit 1000000;
@@ -39,28 +32,28 @@ select o_orderdate, count(*) from orders_3_day group by o_orderdate order by o_o
 
 -- let's delete some data and save the query id and the number of rows deleted
 delete from orders_3_day where o_orderdate < '1996-01-01';
--- record deleted: 355584
--- query-id: 01b0a77f-0000-ab53-0000-000116c2d259
+-- record deleted: 
+-- query-id: 
 update orders_3_day set O_ORDERPRIORITY = '5-LOW' where O_ORDERPRIORITY = '4-NOT SPECIFIED';
--- records updated: 128307
--- query-id: 01b0a77f-0000-ab53-0000-000116c2d271
+-- records updated:
+-- query-id: 
 
 -- check the table
 select count(*) from orders_3_day;
 select distinct O_ORDERPRIORITY from orders_3_day;
 
 -- time travel before
-select count(*) from orders_3_day before(statement => '01b0a77f-0000-ab53-0000-000116c2d259');
+select count(*) from orders_3_day before(statement => 'query_id_1');
 
-select count(*) from orders_3_day before(statement => '01b0a77f-0000-ab53-0000-000116c2d271');
-select distinct O_ORDERPRIORITY from orders_3_day before(statement => '01b0a77f-0000-ab53-0000-000116c2d271');
+select count(*) from orders_3_day before(statement => 'query_id_2');
+select distinct O_ORDERPRIORITY from orders_3_day before(statement => 'query_id_2');
 
 -- time travel at
-select count(*) from orders_3_day at(statement => '01b0a77f-0000-ab53-0000-000116c2d259');
+select count(*) from orders_3_day at(statement => 'query_id_1');
 
 -- not exist query approach. Use the first query id
 -- Gives all the records that have been deleted by the first query
-select * from orders_3_day before(statement => '01b0a77f-0000-ab53-0000-000116c2d259') tt_past
+select * from orders_3_day before(statement => 'query_id_1') tt_past
 where not exists
 (select 1
           from orders_3_day tt_now
