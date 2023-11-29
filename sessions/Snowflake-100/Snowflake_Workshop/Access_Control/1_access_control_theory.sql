@@ -50,7 +50,7 @@ show databases like 'db1';
 
 -- PRIVILEGES
 
--- create some objctes
+-- create some objects
 use role sysadmin;
 create warehouse wh1 warehouse_size = 'xsmall' warehouse_type = 'standard' auto_suspend = 60 auto_resume = true;
 create schema db1.schema1;
