@@ -1,11 +1,18 @@
 -- ROLES AND USERS
 
+-- Creation of a user
+-- USERADMIN is the recommended role to be used to create users
+use role useradmin;
+create user user1;
+
 -- Creation of a role:
 -- Useradmin has the privileges to create roles
 use role useradmin;
 create role role1;
--- as the owner of the role, it can grant the role to users
-grant role role1 to user admin;
+grant role role1 to role sysadmin;
+
+-- as the owner of the role, it can grant the role to users. securityadmin can also grant the role
+grant role role1 to user user1;
 show roles like 'role1';
 show grants on role role1;
 
@@ -13,25 +20,13 @@ show grants on role role1;
 use role sysadmin;
 create role role2;
 
--- Creation of a user
--- USERADMIN is the recommended role to be used to create users
-use role useradmin;
-create user user1;
-show grants on user user1;
-
--- I can also use the role SECURITYADMIN to manage grants
-use role securityadmin;
-grant role role1 to user user1;
 
 -- Let's check what we have:
--- role1 has been granted to two users i.e. user1, admin
+-- role1 has been granted to one user - user1, and one role - sysadmin
 show grants of role role1;
 
--- user1 has the grant to role1, admin has many grants
+-- user1 has the grant to role1
 show grants to user user1;
-show grants to user admin;
-
-
 
 -- SECURABLE OBJECTS
 
@@ -50,21 +45,12 @@ show grants on database db1;
 
 -- Let's change the ownership of the database
 grant ownership on database db1 to role role1;
--- this will produce no result as SYSADMIN has lost ownership of that database.
+-- now we can see the owner has changed
 show databases like 'db1';
-use role role1;
-show databases like 'db1';
-
--- granting back the ownership to SYSADMIN will make it visible again to SYSADMIN and not visible to role1.
-grant ownership on database db1 to role sysadmin;
-show databases like 'db1';
-use role sysadmin;
-show databases like 'db1';
-
 
 -- PRIVILEGES
 
--- create some objctes
+-- create some objects
 use role sysadmin;
 create warehouse wh1 warehouse_size = 'xsmall' warehouse_type = 'standard' auto_suspend = 60 auto_resume = true;
 create schema db1.schema1;
@@ -121,25 +107,6 @@ insert into db1.schema1.table3 (col) VALUES (1),(2),(3),(4),(5);
 use role role1;
 select * from db1.schema1.table3;
 
-
-
--- ROLE GRANTS AND PRIVILEGES INHERITANCE
-use role sysadmin;
-grant create table on schema db1.schema1 to role1; -- grant create tables to role1
-use role role1;
-create table db1.schema1.table4 (col int);
-insert into db1.schema1.table4 (col) VALUES (1),(2),(3),(4),(5);
-
-show tables like 'table%';
-
-use role sysadmin;
-show tables like 'table%'; -- SYSADMIN cannot see the table even though it is the owner of the schema
-
-use role securityadmin;
-grant role role1 to role sysadmin;
-use role sysadmin;
-show tables like 'table%';
-show grants on role role1;
 
 -- Clean-Up
 use role accountadmin;
