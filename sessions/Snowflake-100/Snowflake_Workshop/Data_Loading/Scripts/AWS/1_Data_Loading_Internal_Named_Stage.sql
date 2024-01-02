@@ -37,6 +37,13 @@ SHOW STAGES;
 --List files in internal stage
 LIST @MY_INTERNAL_STAGE;
 
+--In your terminal, connect to this Snowflake account using snowql.
+--The below SQL command will help you get your account identifier. 
+
+select concat(CURRENT_ORGANIZATION_NAME(),'-',CURRENT_ACCOUNT_NAME());
+
+--Then we can run "snowsql -a <account_identifer> -u <username>"
+
 --Place the file from your terminal using "put file://C:\ANGE_SnowflakeWorkshop_DrM\Internal_Stage_Load\category.csv @MANAGE_DB.INTERNAL_STAGES.MY_INTERNAL_STAGE;"
 
 --Load data into table from Internal Named Stage

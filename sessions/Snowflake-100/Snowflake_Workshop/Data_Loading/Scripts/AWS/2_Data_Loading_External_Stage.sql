@@ -27,6 +27,9 @@ CREATE FILE FORMAT FILE_FORMATS.CSV_PIPE_DELIMITED
     FIELD_DELIMITER = '|'
     SKIP_HEADER = 1;
 
+-- Got to AWS and create our S3 bucket, and a role that has access to the bucket, using this guide
+-- https://docs.snowflake.com/en/user-guide/data-load-s3-config-storage-integration
+
 -- Create Storage Integration
 CREATE OR REPLACE STORAGE INTEGRATION s3_int
   TYPE = EXTERNAL_STAGE
@@ -35,7 +38,8 @@ CREATE OR REPLACE STORAGE INTEGRATION s3_int
   STORAGE_AWS_ROLE_ARN = '<arn of the role in AWS>'
   STORAGE_ALLOWED_LOCATIONS = ('s3://<bucket_name>/');
 
-  DESC INTEGRATION S3_INT;
+DESC INTEGRATION S3_INT;
+-- Now we need to update the trust policy of the role we created.
 
 -- Create External Stage
 CREATE OR REPLACE STAGE product_stage
@@ -47,14 +51,9 @@ CREATE OR REPLACE STAGE product_stage
 -- (update trust policy if needed in AWS (https://community.snowflake.com/s/article/S3-Storage-Integration-Error-assuming-AWS-ROLE))
 LIST @PRODUCT_STAGE;
 
---Creating Pattern to load Current Date file ( Stored Procedure can replace doing it here)
-SET DATEVAR = (SELECT TO_VARCHAR(CURRENT_DATE(), 'yyyymmdd'));
-SET Path =  (SELECT '.*products_'|| $DATEVAR || '.csv');
-SELECT $Path;
-
 --Loading into table using Copy command and using Pattern
 COPY INTO DEMO_DB.DEMO_SCHEMA.PRODUCTS
-FROM (SELECT $1, $2, $3, $4, metadata$filename from @PRODUCT_STAGE (PATTERN=>$Path));
+FROM (SELECT $1, $2, $3, $4, metadata$filename from @PRODUCT_STAGE);
 
 -- Validating the data
 SELECT * FROM DEMO_DB.DEMO_SCHEMA.PRODUCTS;
