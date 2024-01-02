@@ -9,8 +9,6 @@ USE WAREHOUSE COMPUTE_WH;
 USE DATABASE SNOWFLAKE_SAMPLE_DATA;
 USE SCHEMA TPCH_SF1;
 
---"SNOWFLAKE_SAMPLE_DATA"."WEATHER"."DAILY_14_TOTAL"
-
 -- Describe table schema
 DESC TABLE CUSTOMER;
 
@@ -19,8 +17,6 @@ SHOW TABLES;
 
 -- Filter output of SHOW TABLES using LIKE string matching
 SHOW TABLES LIKE 'CUSTOMER';
-
-SELECT "name", "database_name", "schema_name", "kind", "is_external", "retention_time" FROM TABLE(result_scan(last_query_id()));
 
 -- Create demo database & schema
 CREATE DATABASE DEMO_DB;
@@ -50,8 +46,6 @@ CREATE TRANSIENT TABLE TRANSIENT_TABLE
 
 SHOW TABLES;
 
-SELECT "name", "database_name", "schema_name", "kind", "is_external" FROM TABLE(result_scan(last_query_id()));
-
 -- Successful
 ALTER TABLE PERMANENT_TABLE SET DATA_RETENTION_TIME_IN_DAYS = 90;
 
@@ -67,5 +61,3 @@ CREATE MATERIALIZED VIEW MATERIALIZED_VIEW AS
 SELECT * FROM PERMANENT_TABLE;
 
 SHOW VIEWS;
-
-SELECT "name", "database_name", "schema_name", "is_materialized" FROM TABLE(result_scan(last_query_id()));

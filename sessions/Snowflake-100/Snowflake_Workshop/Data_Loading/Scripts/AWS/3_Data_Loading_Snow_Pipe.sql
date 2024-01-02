@@ -43,10 +43,10 @@ CREATE OR REPLACE PIPE MANAGE_DB.PIPES.SALES_PIPE
 
 -- Show pipe
 SHOW PIPES;
+-- Now we need to add the event notification on the S3 bucket
 
 -- Refresh Pipe for inserting existing stage files into table
 ALTER PIPE MANAGE_DB.PIPES.SALES_PIPE REFRESH;
--- ALTER PIPE MANAGE_DB.PIPES.SALES_PIPE REFRESH;
 
 --Get SnowPipe Status details
 SELECT SYSTEM$PIPE_STATUS('SALES_PIPE');
