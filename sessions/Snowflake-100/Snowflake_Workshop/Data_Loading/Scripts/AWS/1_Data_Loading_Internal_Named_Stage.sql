@@ -20,12 +20,6 @@ CREATE TABLE CATEGORY
     CATEGORY_NAME VARCHAR(64)
 );
 
---Query to see contents of the Table Stage
-SELECT * FROM @%CATEGORY;
-
---Query to see the files in the Table Stage
-LIST @%CATEGORY;
-
 /*----------------Create Internal Named Stage----------------*/
 
 CREATE OR REPLACE STAGE MY_INTERNAL_STAGE
@@ -42,14 +36,15 @@ LIST @MY_INTERNAL_STAGE;
 
 select concat(CURRENT_ORGANIZATION_NAME(),'-',CURRENT_ACCOUNT_NAME());
 
+-- In your terminal, cd to the directory containing the data to load
+
 --Then we can run "snowsql -a <account_identifer> -u <username>"
 
---Place the file from your terminal using "put file://C:\ANGE_SnowflakeWorkshop_DrM\Internal_Stage_Load\category.csv @MANAGE_DB.INTERNAL_STAGES.MY_INTERNAL_STAGE;"
+--Place the file from your terminal using "put file://category.csv @MANAGE_DB.INTERNAL_STAGES.MY_INTERNAL_STAGE;"
 
 --Load data into table from Internal Named Stage
 COPY INTO CATEGORY
-    FROM @MY_INTERNAL_STAGE/category.csv.gz
-    FILE_FORMAT = (type = csv field_delimiter = ',' skip_header = 1);
+FROM @MY_INTERNAL_STAGE/category.csv.gz;
 
 -- Validate data in table
 SELECT * FROM CATEGORY;
