@@ -51,9 +51,7 @@ grant usage on warehouse transformer_wh to role transformer;
 -- grant read and write access to the transformer role
 -------------------------------------------------------------------------------------------------
 grant usage on database jaffleshop to role transformer;
-grant usage on schema jaffleshop.retail to role transformer;
 grant all privileges on schema jaffleshop.retail to role transformer;
-grant all privileges on all tables in database jaffleshop to role transformer;
 grant all privileges on all tables in database jaffleshop to role transformer;
 
 -- grant read-only access on to the reporter role
@@ -112,3 +110,16 @@ select * from jaffleshop.retail.customers;
 -- Allow the reporter role to use this warehouse. 
 
 -- start here:
+
+
+--- Clean Up
+use role accountadmin;
+drop role transformer;
+drop role deployer;
+drop role reporter;
+drop database jaffleshop;
+drop warehouse transformer_wh;
+drop warehouse reporter_wh;
+drop user transformer_1;
+drop user reporter_1;
+
