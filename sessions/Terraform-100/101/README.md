@@ -3,7 +3,7 @@
 The repos is designed to be used alongside the Infinity Works 100 Training for Terraform on 
 [Meetup.com](https://www.meetup.com/Infinity-Works-101-Sessions/events/255765040/). 
 
-Copies of the tha presentation are also in the parent folder as a [pptx](../Terraform-101.pptx) and [pdf](../Terraform-101.pdf).
+Copies of the original presentation are also in the parent folder as a [pptx](../Terraform-101.pptx) and [pdf](../Terraform-101.pdf).
 
 ## Pre-requisits
 
