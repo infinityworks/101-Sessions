@@ -100,7 +100,7 @@ models:
       +schema: staging
 ```
 
-Now time to run the model. In the terminal do 
+Now time to run the model. In the terminal do
 `dbt run -s stg_customers`.
 
 This runs the selected model.
@@ -129,8 +129,8 @@ version: 2
 
 sources:
   - name: jaffleshop
-    database: dbt_workshop  
-    schema: raw  
+    database: dbt_workshop
+    schema: raw
     tables:
       - name: customers
 ```
@@ -166,8 +166,8 @@ version: 2
 
 sources:
   - name: jaffleshop
-    database: dbt_workshop  
-    schema: raw  
+    database: dbt_workshop
+    schema: raw
     tables:
       - name: customers
       - name: orders
@@ -205,8 +205,8 @@ version: 2
 
 sources:
   - name: jaffleshop
-    database: dbt_workshop  
-    schema: raw  
+    database: dbt_workshop
+    schema: raw
     tables:
       - name: customers
       - name: orders
@@ -597,9 +597,10 @@ Why documenting:
 There are 2 ways to add documentation to you dbt project
 
 1. By adding the `description` key and directly documenting the model
-2. By using the `{{doc('key')}}`and pulling the actual doc from the configured location
+2. By using the `{{doc('key')}}` and pulling the actual doc from the configured location
 
 Content of `models/staging/schema.yml`
+
 ```yml
 version: 2
 
@@ -617,13 +618,11 @@ models:
 Content of `models/staging/docs.md`
 
 ```sql
-{% docs stg_models %}
 # Staged orders table
 The `stg_orders` model is a populated from the raw `orders` table.
 
 The following transformation are applied:
 - `orderid` column reneamed to `order_id`
-{% enddocs %}
 ```
 
 Now that we've added all the documentation we can run the following self explanaory commands
@@ -638,7 +637,7 @@ dbt docs serve
 Macros are a reusable block of SQL code.
 They can be invoked within models, tests, or other macros.
 
-The arguments can be column references, numbers, references to other models etc. 
+The arguments can be column references, numbers, references to other models etc.
 
 Example:
 
@@ -661,9 +660,9 @@ Assume the payment amount in the `stg_payments` model is in cents, and it should
 
 Create a macro to convert cents to dollars. It will take one argument, which will be the column name.
 
-**Stretch** 
+**Stretch**
 
-Give the macro a second argument, which will set the precison of the created numeric value, with a default value of 2. 
+Give the macro a second argument, which will set the precison of the created numeric value, with a default value of 2.
 > Hint
 The default value to a macro can be set like the below
 
