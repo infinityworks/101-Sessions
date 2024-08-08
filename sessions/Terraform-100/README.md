@@ -7,7 +7,7 @@
 * Installing Terraform 
 * The Terraform CLI
 * Getting the sample code
-* Deploying an server with Terraform - Workshop
+* Deploying a server with Terraform - Workshop
 
 ## Session 2
 
